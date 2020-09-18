@@ -34,11 +34,11 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
         policy: false
       }}
       validationSchema={Yup.object().shape({
-        firstName: Yup.string().max(255).required('First name is required'),
-        lastName: Yup.string().max(255).required('Last name is required'),
-        email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-        password: Yup.string().min(7).max(255).required('Password is required'),
-        policy: Yup.boolean().oneOf([true], 'This field must be checked')
+        firstName: Yup.string().max(255).required('Primeiro nome é obrigatório'),
+        lastName: Yup.string().max(255).required('Sobrenome é obrigatório'),
+        email: Yup.string().email('Digite um email válido').max(255).required('Email é obrigatório'),
+        password: Yup.string().min(7).max(255).required('Senha é obrigatória'),
+        policy: Yup.boolean().oneOf([true], 'Aceite os termos')
       })}
       onSubmit={async (values, {
         setErrors,
@@ -73,7 +73,7 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
             error={Boolean(touched.firstName && errors.firstName)}
             fullWidth
             helperText={touched.firstName && errors.firstName}
-            label="First Name"
+            label="Primeiro nome"
             margin="normal"
             name="firstName"
             onBlur={handleBlur}
@@ -86,7 +86,7 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
             error={Boolean(touched.lastName && errors.lastName)}
             fullWidth
             helperText={touched.lastName && errors.lastName}
-            label="Last Name"
+            label="Sobrenome"
             margin="normal"
             name="lastName"
             onBlur={handleBlur}
@@ -99,7 +99,7 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
             error={Boolean(touched.email && errors.email)}
             fullWidth
             helperText={touched.email && errors.email}
-            label="Email Address"
+            label="Email"
             margin="normal"
             name="email"
             onBlur={handleBlur}
@@ -112,7 +112,7 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
             error={Boolean(touched.password && errors.password)}
             fullWidth
             helperText={touched.password && errors.password}
-            label="Password"
+            label="Senha"
             margin="normal"
             name="password"
             onBlur={handleBlur}
@@ -136,14 +136,14 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
               variant="body2"
               color="textSecondary"
             >
-              I have read the
+              Eu aceito os
               {' '}
               <Link
                 component="a"
                 href="#"
                 color="secondary"
               >
-                Terms and Conditions
+                Termos e Condições
               </Link>
             </Typography>
           </Box>
@@ -161,7 +161,7 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
               type="submit"
               variant="contained"
             >
-              Create account
+              Criar conta
             </Button>
           </Box>
         </form>

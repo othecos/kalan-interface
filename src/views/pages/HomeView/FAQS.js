@@ -12,7 +12,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.dark,
+    backgroundColor: theme.palette.background.default,
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(6),
     '& dt': {
@@ -34,7 +34,7 @@ function FAQS({ className, ...rest }) {
           variant="h1"
           color="textPrimary"
         >
-          Frequently asked questions
+          Perguntas frequentes
         </Typography>
         <Box my={3}>
           <Divider />
@@ -53,7 +53,7 @@ function FAQS({ className, ...rest }) {
               variant="overline"
               color="secondary"
             >
-              Technical &amp; Licensing
+              Sobre o Kalan
             </Typography>
             <Box mt={6}>
               <dd>
@@ -61,7 +61,7 @@ function FAQS({ className, ...rest }) {
                   variant="h4"
                   color="textPrimary"
                 >
-                  What do we use for styling our components?
+                  O que é o Kalan?
                 </Typography>
               </dd>
               <dt>
@@ -69,8 +69,7 @@ function FAQS({ className, ...rest }) {
                   variant="body1"
                   color="textSecondary"
                 >
-                  We use Material-ui&apos;s hooks api as we think it’s
-                  the best way of avoiding clutter.
+                  Kalan é um serviço de analise de mercado financeiro que veio para auxiliar os investidores nas tomadas de decisão em suas jornadas financeiras.
                 </Typography>
               </dt>
             </Box>
@@ -80,7 +79,7 @@ function FAQS({ className, ...rest }) {
                   variant="h4"
                   color="textPrimary"
                 >
-                  Are you providing support for setting up my project?
+                  Quais as vantagens do serviço?
                 </Typography>
               </dd>
               <dt>
@@ -88,8 +87,9 @@ function FAQS({ className, ...rest }) {
                   variant="body1"
                   color="textSecondary"
                 >
-                  Yes, we offer email support for all our customers &amp;
-                  even skype meetings for our extended license customers.
+                  Ele oferece uma analise imparcial das noticias do mercado,
+                  juntando o conhecimento dos melhores analistas do mercado em um algoritmo de Inteligencia artificial.
+                  Conseguindo orientar compras de curto, médio e longo prazo aos seus usuarios.
                 </Typography>
               </dt>
             </Box>
@@ -103,7 +103,7 @@ function FAQS({ className, ...rest }) {
               variant="overline"
               color="secondary"
             >
-              Design
+              Publico
             </Typography>
             <Box mt={6}>
               <dd>
@@ -111,7 +111,7 @@ function FAQS({ className, ...rest }) {
                   variant="h4"
                   color="textPrimary"
                 >
-                  Are the design files (sketch, figma) included in the Standard Package?
+                  Investidores
                 </Typography>
               </dd>
               <dt>
@@ -119,8 +119,28 @@ function FAQS({ className, ...rest }) {
                   variant="body1"
                   color="textSecondary"
                 >
-                  No, we offer the design source file only to Standard Plus Sketch
-                  &amp; Figma and Extended Package.
+                  Como investidor, voce pode visualizar uma analise completa de valuation para os ativos disponiveis, obtendo nossas recomendações de compra e venda para os ativos a longo prazo. 
+                  E, se desejar, visualizar o humor do mercado, para escolhar a melhor hora de iniciar seu investimento.
+                </Typography>
+              </dt>
+            </Box>
+            <Box mt={6}>
+              <dd>
+                <Typography
+                  variant="h4"
+                  color="textPrimary"
+                >
+                  Traders
+                </Typography>
+              </dd>
+              <dt>
+                <Typography
+                  variant="body1"
+                  color="textSecondary"
+                >
+                 Para os traders, oferecemos a visualização das principais noticias relacionadas a cada ativo.
+                 E juntamente com a nossa inteligencia articial, conseguimos extrair a tendência do sentimento daquela noticia para com o ativo desejado.
+                 Assim criando predições capazes de orientar a tomada de decisao de compra ou venda uma ação
                 </Typography>
               </dt>
             </Box>

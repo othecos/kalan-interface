@@ -38,14 +38,14 @@ function Features({ className, ...rest }) {
           color="secondary"
           align="center"
         >
-          Explore Devias Kit Pro
+          Explore o Kalan IA
         </Typography>
         <Typography
           variant="h1"
           align="center"
           color="textPrimary"
         >
-          Not just a pretty face
+          Mais do que um simples robo
         </Typography>
         <Box mt={8}>
           <Grid
@@ -67,14 +67,14 @@ function Features({ className, ...rest }) {
                     gutterBottom
                     color="textPrimary"
                   >
-                    Complete User Flows
+                    Utiliza IA e ML
                   </Typography>
                   <Typography
                     variant="body1"
                     color="textPrimary"
                   >
-                    Not just a set of tools, the package includes the most common use cases of
-                    user flows like User Management, Second Level Layout.
+                    O Kalan utiliza de IA e ML para analisar noticias e sentir o "humor" do mercado.
+                    Dizendo qual o melhor momento para realizar para realizar uma compra
                   </Typography>
                 </Box>
               </Box>
@@ -94,14 +94,14 @@ function Features({ className, ...rest }) {
                     gutterBottom
                     color="textPrimary"
                   >
-                    Support for Plugins
+                    Valuation
                   </Typography>
                   <Typography
                     variant="body1"
                     color="textPrimary"
                   >
-                    The kit provides support for multiple third-party plugins right out of the box
-                    like Chart.js, Dropzone.js, Kanban Plugin and many more.
+                    Para os investidores de longo prazo, o kalan tem uma area especializada onde seu algoritmo
+                    analisa qual é o preço alvo dos ativos escolhidos
                   </Typography>
                 </Box>
               </Box>
@@ -121,15 +121,14 @@ function Features({ className, ...rest }) {
                     gutterBottom
                     color="textPrimary"
                   >
-                    Designers, we got you
+                    Traders e investidores
                   </Typography>
                   <Typography
                     variant="body1"
                     color="textPrimary"
                     gutterBottom
                   >
-                    We&apos;ve included the source Sketch &amp; Figma files to Plus &amp;
-                    Extended licenses so you can get creative! Build layouts with confidence.
+                    Perfeito tanto para traders quanto pra investidores.
                   </Typography>
                   <Button
                     variant="outlined"
@@ -137,7 +136,7 @@ function Features({ className, ...rest }) {
                     href="https://sketch.cloud/s/q4a8e"
                     target="_blank"
                   >
-                    Preview Design
+                    Teste aqui
                   </Button>
                 </Box>
               </Box>

@@ -21,7 +21,7 @@ function HomeView() {
     >
       <Hero />
       <Features />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CTA />
       <FAQS />
     </Page>

@@ -5,15 +5,12 @@ import PropTypes from 'prop-types';
 import {
   AppBar,
   Box,
-  Button,
-  Divider,
   Toolbar,
   Hidden,
   Typography,
   Link,
   makeStyles
 } from '@material-ui/core';
-import { APP_VERSION } from 'src/config';
 import Logo from 'src/components/Logo';
 
 const useStyles = makeStyles((theme) => ({
@@ -58,9 +55,7 @@ function TopBar({ className, ...rest }) {
             variant="caption"
             color="textSecondary"
           >
-            Version
-            {' '}
-            {APP_VERSION}
+            Kalan
           </Typography>
         </Hidden>
         <Box flexGrow={1} />
@@ -74,26 +69,6 @@ function TopBar({ className, ...rest }) {
         >
           Dashboard
         </Link>
-        <Link
-          className={classes.link}
-          color="textSecondary"
-          component={RouterLink}
-          to="/docs"
-          underline="none"
-          variant="body2"
-        >
-          Documentation
-        </Link>
-        <Divider className={classes.divider} />
-        <Button
-          color="secondary"
-          component="a"
-          href="https://material-ui.com/store/items/devias-kit-pro"
-          variant="contained"
-          size="small"
-        >
-          Get the kit
-        </Button>
       </Toolbar>
     </AppBar>
   );

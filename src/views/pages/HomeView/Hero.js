@@ -70,23 +70,21 @@ function Hero({ className, ...rest }) {
                 variant="overline"
                 color="secondary"
               >
-                Introducing
+                Apresentando
               </Typography>
               <Typography
                 variant="h1"
                 color="textPrimary"
               >
-                Devias React Material Kit - PRO
+                Kalan IA - Orientador inteligente de compra e vendas de ativos 
               </Typography>
               <Box mt={3}>
                 <Typography
                   variant="body1"
                   color="textSecondary"
                 >
-                  A professional kit that comes with ready-to-use Material-UI© components
-                  developed with one common goal in mind, help you build faster &amp; beautiful
-                  applications. Each component is fully customizable,
-                  responsive and easy to integrate.
+                  Um gerador de insights e orientações de trade de ativos do mercado financeiro brasileiro.
+                Gerando analises de curto, médio e longo prazo sobre as principais ações com o uso de Inteligencia Artificial e Machine Learning
                 </Typography>
               </Box>
               <Box mt={3}>
@@ -99,13 +97,13 @@ function Hero({ className, ...rest }) {
                       variant="h1"
                       color="secondary"
                     >
-                      30+
+                      5+
                     </Typography>
                     <Typography
                       variant="overline"
                       color="textSecondary"
                     >
-                      Demo Pages
+                      Ativos analisados
                     </Typography>
                   </Grid>
                   <Grid item>
@@ -113,27 +111,13 @@ function Hero({ className, ...rest }) {
                       variant="h1"
                       color="secondary"
                     >
-                      UX
+                      +10.000
                     </Typography>
                     <Typography
                       variant="overline"
                       color="textSecondary"
                     >
-                      Complete Flows
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography
-                      variant="h1"
-                      color="secondary"
-                    >
-                      300+
-                    </Typography>
-                    <Typography
-                      variant="overline"
-                      color="textSecondary"
-                    >
-                      Components
+                      Usuarios
                     </Typography>
                   </Grid>
                 </Grid>

@@ -21,11 +21,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     backgroundColor: theme.palette.background.dark,
     display: 'flex',
-    height: '100%',
     minHeight: '100%',
     flexDirection: 'column',
-    paddingBottom: 80,
-    paddingTop: 80
+    paddingBottom: 20,
+    paddingTop: 20
   }
 }));
 
@@ -56,7 +55,7 @@ function RegisterView() {
             to="/"
             className={classes.backButton}
           >
-            Back to home
+            Voltar
           </Button>
         </Box>
         <Card>
@@ -66,10 +65,10 @@ function RegisterView() {
               variant="h2"
               color="textPrimary"
             >
-              Sign up
+              Registrar
             </Typography>
             <Typography variant="subtitle1">
-              Sign up on the internal platform
+              Registre-se na plataforma
             </Typography>
             <Box mt={3}>
               <RegisterForm onSubmitSuccess={handleSubmitSuccess} />
@@ -83,7 +82,7 @@ function RegisterView() {
               variant="body2"
               color="textSecondary"
             >
-              Have an account?
+              Possui uma conta?
             </Link>
           </CardContent>
         </Card>

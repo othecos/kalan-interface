@@ -100,7 +100,7 @@ function LoginView() {
             to="/"
             className={classes.backButton}
           >
-            Back to home
+            Voltar
           </Button>
         </Box>
         <Card className={classes.card}>
@@ -112,29 +112,14 @@ function LoginView() {
               variant="h2"
               color="textPrimary"
             >
-              Sign in
+              Login
             </Typography>
             <Typography
               variant="subtitle1"
               color="textSecondary"
             >
-              Sign in on the internal platform
+              Faça o login para acessar a plataforma
             </Typography>
-            <Box mt={2}>
-              <Alert
-                severity="info"
-              >
-                <div>
-                  Use
-                  {' '}
-                  <b>admin@devias.io</b>
-                  {' '}
-                  and password
-                  {' '}
-                  <b>admin</b>
-                </div>
-              </Alert>
-            </Box>
             <Box mt={3}>
               <LoginForm onSubmitSuccess={handleSubmitSuccess} />
             </Box>
@@ -147,7 +132,7 @@ function LoginView() {
               variant="body2"
               color="textSecondary"
             >
-              Create new account
+              Registrar nova conta
             </Link>
           </CardContent>
           <CardMedia
@@ -159,8 +144,9 @@ function LoginView() {
               color="inherit"
               variant="subtitle1"
             >
-              Hella narvwhal Cosby sweater McSweeney&apos;s,
-              salvia kitsch before they sold out High Life.
+               &quot;Regra número 1: nunca perca dinheiro.
+               <br></br>
+               Regra numero 2: nunca se esqueça da regra numero 1.&quot;
             </Typography>
             <Box
               alignItems="center"
@@ -169,20 +155,20 @@ function LoginView() {
             >
               <Avatar
                 alt="Person"
-                src="/static/images/avatars/avatar_2.png"
+                src="/static/images/avatars/avatar_buffet.jpg"
               />
               <Box ml={3}>
                 <Typography
                   color="inherit"
                   variant="body1"
                 >
-                  Ekaterina Tankova
+                  <Box fontStyle="oblique">Buffet, Warren</Box>
                 </Typography>
                 <Typography
                   color="inherit"
                   variant="body2"
                 >
-                  Manager at inVision
+                  Diretor executivo da Berkshire Hathaway
                 </Typography>
               </Box>
             </Box>

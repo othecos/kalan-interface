@@ -11,7 +11,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.dark,
     paddingTop: 128,
     paddingBottom: 128
   },
@@ -34,14 +34,14 @@ function CTA({ className, ...rest }) {
           align="center"
           color="textPrimary"
         >
-          Ready to start building?
+          Pronto para testar o Kalan?
         </Typography>
         <Typography
           variant="h1"
           align="center"
           color="secondary"
         >
-          Download Devias Material Kit today.
+          Clique aqui e faça sua simulação
         </Typography>
         <Box
           mt={6}
@@ -55,7 +55,7 @@ function CTA({ className, ...rest }) {
             href="https://material-ui.com/store/items/devias-kit-pro"
             variant="contained"
           >
-            Get the kit
+            Ir para dashboard
           </Button>
         </Box>
       </Container>

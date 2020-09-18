@@ -28,8 +28,8 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
         password: 'admin'
       }}
       validationSchema={Yup.object().shape({
-        email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-        password: Yup.string().max(255).required('Password is required')
+        email: Yup.string().email('Email deve ser válido').max(255).required('Email é obrigatório '),
+        password: Yup.string().max(255).required('Senha é obrigatória')
       })}
       onSubmit={async (values, {
         setErrors,
@@ -40,7 +40,7 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
           await dispatch(login(values.email, values.password));
           onSubmitSuccess();
         } catch (error) {
-          const message = (error.response && error.response.data.message) || 'Something went wrong';
+          const message = (error.response && error.response.data.message) || 'Algo deu errado';
 
           setStatus({ success: false });
           setErrors({ submit: message });
@@ -68,7 +68,7 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
             fullWidth
             autoFocus
             helperText={touched.email && errors.email}
-            label="Email Address"
+            label="Email"
             margin="normal"
             name="email"
             onBlur={handleBlur}
@@ -81,7 +81,7 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
             error={Boolean(touched.password && errors.password)}
             fullWidth
             helperText={touched.password && errors.password}
-            label="Password"
+            label="Senha"
             margin="normal"
             name="password"
             onBlur={handleBlur}
@@ -99,7 +99,7 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
               type="submit"
               variant="contained"
             >
-              Log In
+              Entrar
             </Button>
             {errors.submit && (
               <Box mt={3}>
