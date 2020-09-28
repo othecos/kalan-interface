@@ -314,14 +314,17 @@ mock.onGet('/api/reports/latest-projects').reply(200, {
   projects: [
     {
       id: uuidv4(),
-      title: 'Mella Full Screen Slider',
+      title: 'Banco Itau',
+      sector: 'Financeiro',
       price: '12,500',
       currency: '$',
+      amount: Math.round(Math.random() * 100),
       author: {
         id: '5e887b7602bdbc4dbb234b27',
         name: 'Anje Keizer',
         avatar: '/static/images/avatars/avatar_5.png'
       },
+      tendency: 'Neutral',
       technologies: ['angular'],
       createdAt: moment()
         .subtract(2, 'hours')
@@ -332,9 +335,12 @@ mock.onGet('/api/reports/latest-projects').reply(200, {
     },
     {
       id: uuidv4(),
-      title: 'Dashboard Design',
+      title: 'Banco BTG Pactual',
+      sector: 'Financeiro',
       price: '15,750',
       currency: '$',
+      tendency: 'Positive',
+      amount: Math.round(Math.random() * 100),
       author: {
         id: '5e887d0b3d090c1b8f162003',
         name: 'Emilee Simchenko',
@@ -350,9 +356,12 @@ mock.onGet('/api/reports/latest-projects').reply(200, {
     },
     {
       id: uuidv4(),
-      title: 'Ten80 Web Design',
+      title: 'Banco do Brasil',
+      sector: 'Financeiro',
       price: '15,750',
       currency: '$',
+      tendency: 'Negative',
+      amount: Math.round(Math.random() * 100),
       author: {
         id: '5e88792be2d4cfb4bf0971d9',
         name: 'Elliott Stone',
@@ -368,8 +377,11 @@ mock.onGet('/api/reports/latest-projects').reply(200, {
     },
     {
       id: uuidv4(),
-      title: 'Neura e-commerce UI Kit',
+      title: 'Banco Bradesco',
+      sector: 'Financeiro',
       price: '12,500',
+      tendency: 'Positive',
+      amount: Math.round(Math.random() * 100),
       currency: '$',
       author: {
         id: '5e8877da9a65442b11551975',
@@ -386,9 +398,12 @@ mock.onGet('/api/reports/latest-projects').reply(200, {
     },
     {
       id: uuidv4(),
-      title: 'Administrator Dashboard',
+      title: 'Banco Santeder',
+      sector: 'Financeiro',
       price: '15,750',
       currency: '$',
+      tendency: 'Negative',
+      amount: Math.round(Math.random() * 100),
       author: {
         id: '5e887ac47eed253091be10cb',
         name: 'Cao Yu',

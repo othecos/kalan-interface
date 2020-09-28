@@ -24,7 +24,7 @@ import { useSelector } from 'react-redux';
 
 function getTo(params, mailId) {
   const { systemLabel, customLabel } = params;
-  const baseUrl = '/app/support/mail';
+  const baseUrl = '/app/analysis/stocks';
 
   if (systemLabel) {
     return `${baseUrl}/${systemLabel}/${mailId}`;
@@ -267,8 +267,6 @@ function MailItem({
 MailItem.propTypes = {
   className: PropTypes.string,
   mail: PropTypes.object.isRequired,
-  onDeselect: PropTypes.func,
-  onSelect: PropTypes.func,
   selected: PropTypes.bool.isRequired
 };
 

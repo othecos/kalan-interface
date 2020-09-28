@@ -16,11 +16,13 @@ import HomeView from 'src/views/pages/HomeView';
 import LoadingScreen from 'src/components/LoadingScreen';
 import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
+import LandingGuard from './components/LandingGuard';
 
 const routesConfig = [
   {
     exact: true,
     path: '/',
+    guard: LandingGuard,
     component: () => <Redirect to="/home" />
   },
   {
@@ -36,34 +38,43 @@ const routesConfig = [
   },
   {
     exact: true,
-    path: '/login-unprotected',
-    component: lazy(() => import('src/views/auth/LoginView'))
-  },
-  {
-    exact: true,
     guard: GuestGuard,
     path: '/register',
     component: lazy(() => import('src/views/auth/RegisterView'))
   },
   {
-    exact: true,
-    path: '/register-unprotected',
-    component: lazy(() => import('src/views/auth/RegisterView'))
-  },
-  {
     path: '/app',
     guard: AuthGuard,
+    redirectTo: '/login',
     layout: DashboardLayout,
     routes: [
       {
         exact: true,
         path: '/app',
-        component: () => <Redirect to="/app/reports/dashboard" />
+        component: () => <Redirect to="/app/analysis" />
       },
       {
         exact: true,
         path: '/app/account',
         component: lazy(() => import('src/views/pages/AccountView'))
+      },
+      {
+        exact: true,
+        path: '/app/analysis',
+        component: lazy(() => import('src/views/pages/Analysis'))
+      },
+      {
+        exact: true,
+        path: '/app/analysis/stocks',
+        path: [
+          '/app/analysis/stocks/:tickerID',
+        ],
+        component: lazy(() => import('src/views/pages/StocksView'))
+      },
+      {
+        exact: true,
+        path: '/app/news',
+        component: lazy(() => import('src/views/pages/News'))
       },
       {
         exact: true,
@@ -143,28 +154,28 @@ const routesConfig = [
       {
         exact: true,
         path: [
-          '/app/chat/new',
-          '/app/chat/:threadKey'
+          '/app/support/chat/new',
+          '/app/support/chat/:threadKey'
         ],
         component: lazy(() => import('src/views/chat/ChatView'))
       },
       {
         exact: true,
-        path: '/app/chat',
-        component: () => <Redirect to="/app/chat/new" />
+        path: '/app/support/chat',
+        component: () => <Redirect to="/app/support/chat/new" />
       },
       {
         exact: true,
         path: [
-          '/app/mail/label/:customLabel/:mailId?',
-          '/app/mail/:systemLabel/:mailId?'
+          '/app/support/mail/label/:customLabel/:mailId?',
+          '/app/support/mail/:systemLabel/:mailId?'
         ],
         component: lazy(() => import('src/views/mail/MailView'))
       },
       {
         exact: true,
-        path: '/app/mail',
-        component: () => <Redirect to="/app/mail/all" />
+        path: '/app/support/mail',
+        component: () => <Redirect to="/app/support/mail/all" />
       },
       {
         exact: true,
@@ -264,14 +275,16 @@ const renderRoutes = (routes) => (routes ? (
         const Guard = route.guard || Fragment;
         const Layout = route.layout || Fragment;
         const Component = route.component;
-
+        const guardProps = route.redirectTo ? {
+          redirectTo: route.redirectTo
+        } : null
         return (
           <Route
             key={i}
             path={route.path}
             exact={route.exact}
             render={(props) => (
-              <Guard>
+              <Guard {...guardProps}>
                 <Layout>
                   {route.routes
                     ? renderRoutes(route.routes)

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import {
   Box,
@@ -34,14 +35,14 @@ function CTA({ className, ...rest }) {
           align="center"
           color="textPrimary"
         >
-          Pronto para testar o Kalan?
+          Pronto para usar o Kalan?
         </Typography>
         <Typography
           variant="h1"
           align="center"
           color="secondary"
         >
-          Clique aqui e faça sua simulação
+          Clique aqui e veja nossos planos 
         </Typography>
         <Box
           mt={6}
@@ -51,11 +52,11 @@ function CTA({ className, ...rest }) {
         >
           <Button
             color="secondary"
-            component="a"
-            href="https://material-ui.com/store/items/devias-kit-pro"
+            component={RouterLink}
+            to="/pricing"
             variant="contained"
           >
-            Ir para dashboard
+            Ver planos
           </Button>
         </Box>
       </Container>

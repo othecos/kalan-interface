@@ -11,7 +11,7 @@ import {
 import Page from 'src/components/Page';
 import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Header from '../../pages/News/Header';
+import Header from './Header';
 import Filter from './Filter';
 import Results from './Results';
 
@@ -46,7 +46,7 @@ function ProjectBrowseView() {
   return (
     <Page
       className={classes.root}
-      title="Project List"
+      title="Noticias"
     >
       <Container maxWidth="lg">
         <Header />

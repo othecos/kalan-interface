@@ -9,3 +9,4 @@ import './kanbanMock';
 import './mailMock';
 import './projectMock';
 import './socialMock';
+import './stocksMock';

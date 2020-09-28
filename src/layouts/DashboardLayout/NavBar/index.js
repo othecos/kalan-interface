@@ -30,6 +30,7 @@ import {
   UserPlus as UserPlusIcon,
   Shield as ShieldIcon,
   AlertCircle as AlertCircleIcon,
+  TrendingUp as TendencyIcon,
   Trello as TrelloIcon,
   User as UserIcon,
   Layout as LayoutIcon,
@@ -39,7 +40,8 @@ import {
   MessageCircle as MessageCircleIcon,
   PieChart as PieChartIcon,
   Share2 as ShareIcon,
-  Users as UsersIcon
+  Users as UsersIcon,
+  FileText as NewsIcon
 } from 'react-feather';
 import Logo from 'src/components/Logo';
 import NavItem from './NavItem';
@@ -175,9 +177,21 @@ const navConfig = [
         href: '/app/kanban',
         icon: TrelloIcon
       },
+      
+      {
+        title: 'Calendar',
+        href: '/app/calendar',
+        icon: CalendarIcon
+      },
+    ]
+  },
+  {
+    subheader: 'Support',
+    href: '/app/support',
+    items: [
       {
         title: 'Mail',
-        href: '/app/mail',
+        href: '/app/support/mail',
         icon: MailIcon,
         info: () => (
           <Chip
@@ -189,7 +203,7 @@ const navConfig = [
       },
       {
         title: 'Chat',
-        href: '/app/chat',
+        href: '/app/support/chat',
         icon: MessageCircleIcon,
         info: () => (
           <Chip
@@ -199,36 +213,6 @@ const navConfig = [
           />
         )
       },
-      {
-        title: 'Calendar',
-        href: '/app/calendar',
-        icon: CalendarIcon
-      },
-    ]
-  },
-  {
-    subheader: 'Auth',
-    items: [
-      {
-        title: 'Login',
-        href: '/login-unprotected',
-        icon: LockIcon
-      },
-      {
-        title: 'Register',
-        href: '/register-unprotected',
-        icon: UserPlusIcon
-      },
-      {
-        title: 'Login: Guest Protected',
-        href: '/login',
-        icon: ShieldIcon
-      },
-      {
-        title: 'Register: Guest Protected',
-        href: '/register',
-        icon: ShieldIcon
-      }
     ]
   },
   {
@@ -236,19 +220,38 @@ const navConfig = [
     href: '/app/pages',
     items: [
       {
-        title: 'Account',
-        href: '/app/account',
-        icon: UserIcon
+        title: 'Analysis',
+        href: '/app/analysis',
+        icon: BarChartIcon
       },
       {
-        title: 'Error',
-        href: '/404',
-        icon: AlertCircleIcon
+        title: 'News',
+        href: '/app/news',
+        icon: NewsIcon,
+        // items: [
+        //   {
+        //     title: 'Valuation',
+        //     href: '/app/analysis/valuation',
+        //     icon: DollarSignIcon
+        //   },
+        //   {
+        //     title: 'Market tendency',
+        //     href: '/app/analysis/tendency',
+        //     icon: TendencyIcon
+        //   }
+        // ]
       },
       {
-        title: 'Pricing',
+        title: 'Plans',
         href: '/pricing',
-        icon: DollarSignIcon
+        icon: DollarSignIcon,
+        info: () => (
+          <Chip
+            color="secondary"
+            size="small"
+            label="Turn Pro"
+          />
+        )
       }
     ]
   },

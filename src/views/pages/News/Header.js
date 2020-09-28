@@ -7,14 +7,18 @@ import {
   Button,
   Grid,
   Link,
-  Menu,
-  MenuItem,
   SvgIcon,
   Typography,
+  Menu,
+  MenuItem,
   makeStyles
 } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import { Calendar as CalendarIcon } from 'react-feather';
+import {
+  PlusCircle as PlusIcon,
+  Calendar as CalendarIcon
+} from 'react-feather';
+
 
 const timeRanges = [
   {
@@ -50,9 +54,10 @@ function Header({ className, ...rest }) {
 
   return (
     <Grid
+      alignItems="center"
       container
-      spacing={3}
       justify="space-between"
+      spacing={3}
       className={clsx(classes.root, className)}
       {...rest}
     >
@@ -67,20 +72,21 @@ function Header({ className, ...rest }) {
             to="/app"
             component={RouterLink}
           >
-            Dashboard
+            Application
           </Link>
           <Typography
             variant="body1"
             color="textPrimary"
           >
-            Reports
+            News
           </Typography>
+
         </Breadcrumbs>
         <Typography
           variant="h3"
           color="textPrimary"
         >
-          Ultimas noticias
+          Veja as ultimas noticias
         </Typography>
       </Grid>
       <Grid item>

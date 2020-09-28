@@ -64,7 +64,7 @@ function PricingView() {
           variant="h1"
           color="textPrimary"
         >
-          Start today. Boost up your services!
+          Comece hoje a enriquecer na bolsa!
         </Typography>
         <Box mt={3}>
           <Typography
@@ -72,9 +72,7 @@ function PricingView() {
             variant="subtitle1"
             color="textSecondary"
           >
-            Welcome to the first platform created for freelancers and agencies
-            for showcasing and finding the best clinets in the market.
-            30% of our income goes into Whale Charity
+           Bem vindo a primeira plataforma a usar IA e ML para aprimorar seus investimentos
           </Typography>
         </Box>
       </Container>
@@ -104,7 +102,7 @@ function PricingView() {
                   variant="overline"
                   color="textSecondary"
                 >
-                  Freelancer
+                  Free
                 </Typography>
                 <div>
                   <Typography
@@ -113,7 +111,7 @@ function PricingView() {
                     variant="h3"
                     color="textPrimary"
                   >
-                    $5
+                    $0
                   </Typography>
                   <Typography
                     component="span"
@@ -121,14 +119,14 @@ function PricingView() {
                     variant="subtitle2"
                     color="textSecondary"
                   >
-                    /month
+                    /mês
                   </Typography>
                 </div>
                 <Typography
                   variant="overline"
                   color="textSecondary"
                 >
-                  Max 1 user
+                 1 Ativo rastreavel
                 </Typography>
                 <Box my={2}>
                   <Divider />
@@ -137,7 +135,7 @@ function PricingView() {
                   variant="body2"
                   color="textPrimary"
                 >
-                  20 proposals/month
+                  1 analise de valuation/semana
                   <br />
                   10 templates
                   <br />

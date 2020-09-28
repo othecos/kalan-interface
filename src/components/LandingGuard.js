@@ -3,20 +3,18 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function AuthGuard({ children,redirectTo  }) {
+function LandingGuard({ children  }) {
   const account = useSelector((state) => state.account);
 
-  if (!account.user) {
-    console.log(redirectTo)
-    redirectTo = redirectTo ? redirectTo : '/login'
-    return <Redirect to={redirectTo} />;
+  if (account.user) {
+    return <Redirect to="/app" />;
   }
 
   return children;
 }
 
-AuthGuard.propTypes = {
+LandingGuard.propTypes = {
   children: PropTypes.any
 };
 
-export default AuthGuard;
+export default LandingGuard;

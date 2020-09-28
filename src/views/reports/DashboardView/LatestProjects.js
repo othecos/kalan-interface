@@ -82,7 +82,7 @@ function LatestProjects({ className, ...rest }) {
     >
       <CardHeader
         action={<GenericMoreButton />}
-        title="Latest Projects"
+        title="Noticias"
       />
       <Divider />
       <PerfectScrollbar>
@@ -99,21 +99,21 @@ function LatestProjects({ className, ...rest }) {
                       active
                       direction="desc"
                     >
-                      Project Name
+                      Ação
                     </TableSortLabel>
                   </Tooltip>
                 </TableCell>
                 <TableCell>
-                  Owner
+                  Setor
                 </TableCell>
                 <TableCell>
-                  Amount
+                  Quantidade de noticias
                 </TableCell>
                 <TableCell>
-                  Technology
+                  Têndencia
                 </TableCell>
                 <TableCell align="right">
-                  Date
+                  Data Ultima noticia
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -131,31 +131,23 @@ function LatestProjects({ className, ...rest }) {
                       display="flex"
                       alignItems="center"
                     >
-                      <Avatar
+                      {/* <Avatar
                         alt="Author"
                         className={classes.avatar}
                         src={project.author.avatar}
                       >
                         {getInitials(project.author.name)}
-                      </Avatar>
+                      </Avatar> */}
                       <Box ml={1}>
-                        {project.author.name}
+                        {project.sector}
                       </Box>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    {project.currency}
-                    {project.price}
+                    {project.amount}
                   </TableCell>
                   <TableCell>
-                    {project.technologies.map((technology) => (
-                      <img
-                        alt="Tech"
-                        key={technology}
-                        className={classes.technology}
-                        src={technologyMap[technology]}
-                      />
-                    ))}
+                    {project.tendency}
                   </TableCell>
                   <TableCell align="right">
                     {moment(project.createdAt).format('DD MMM, YYYY')}
