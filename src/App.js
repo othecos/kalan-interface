@@ -21,6 +21,7 @@ import ScrollReset from 'src/components/ScrollReset';
 import useSettings from 'src/hooks/useSettings';
 import { createTheme } from 'src/theme';
 import Routes from 'src/Routes';
+import FirebaseAuth from './components/FirebaseAuth';
 
 const history = createBrowserHistory();
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -60,13 +61,13 @@ function App() {
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <SnackbarProvider maxSnack={1}>
             <Router history={history}>
-              <Auth>
+              <FirebaseAuth>
                 <ScrollReset />
                 <GoogleAnalytics />
                 <CookiesNotification />
                 <SettingsNotification />
                 <Routes />
-              </Auth>
+              </FirebaseAuth>
             </Router>
           </SnackbarProvider>
         </MuiPickersUtilsProvider>

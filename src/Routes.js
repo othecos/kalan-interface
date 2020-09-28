@@ -17,6 +17,7 @@ import LoadingScreen from 'src/components/LoadingScreen';
 import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
 import LandingGuard from './components/LandingGuard';
+import FirebaseAuth from './components/FirebaseGuard';
 
 const routesConfig = [
   {
@@ -44,7 +45,7 @@ const routesConfig = [
   },
   {
     path: '/app',
-    guard: AuthGuard,
+    guard: FirebaseAuth,
     redirectTo: '/login',
     layout: DashboardLayout,
     routes: [
