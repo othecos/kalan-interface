@@ -62,7 +62,7 @@ function MessageAdd({
       }
 
       await dispatch(addMessage({
-        userId: user.id,
+        userId: user?.id,
         threadKey: thread.key,
         body,
         attachments
@@ -93,7 +93,7 @@ function MessageAdd({
     >
       <Avatar
         alt="Person"
-        src={user.avatar}
+        src={user?.avatar}
       />
       <Paper
         variant="outlined"

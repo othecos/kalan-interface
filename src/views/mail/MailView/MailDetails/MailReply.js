@@ -63,7 +63,7 @@ function MailReply({ className, ...rest }) {
       <Avatar
         alt="Person"
         className={classes.avatar}
-        src={user.avatar}
+        src={user?.avatar}
       />
       <Paper
         component={Box}

@@ -13,15 +13,13 @@ export function login(email, password) {
   return async (dispatch) => {
     try {
       dispatch({ type: LOGIN_REQUEST });
-
-      const user = await authService.loginWithEmailAndPassword(email, password);
-
       dispatch({
         type: LOGIN_SUCCESS,
         payload: {
-          user
+          user: {}
         }
       });
+      return 
     } catch (error) {
       dispatch({ type: LOGIN_FAILURE });
       throw error;

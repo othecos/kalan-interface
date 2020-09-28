@@ -15,6 +15,7 @@ import {
 import Page from 'src/components/Page';
 import Logo from 'src/components/Logo';
 import RegisterForm from './RegisterForm';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,7 @@ function RegisterView() {
   const history = useHistory();
 
   const handleSubmitSuccess = () => {
-    history.push('/app/login');
+    history.push('/login');
   };
 
   return (

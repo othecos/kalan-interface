@@ -37,7 +37,7 @@ function NewComment({ cardId, className, ...rest }) {
       event.persist();
 
       if (event.keyCode === 13 && message) {
-        await dispatch(addComment(user.id, cardId, message));
+        await dispatch(addComment(user?.id, cardId, message));
         setMessage('');
         enqueueSnackbar('Comment added', {
           variant: 'success'
@@ -57,7 +57,7 @@ function NewComment({ cardId, className, ...rest }) {
     >
       <Avatar
         alt="Person"
-        src={user.avatar}
+        src={user?.avatar}
       />
       <TextField
         fullWidth

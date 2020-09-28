@@ -30,14 +30,15 @@ const settings = restoreSettings();
 
 const fbConfig = {} // object containing Firebase config
 const rrfConfig = {
-   userProfile: 'users' ,
-   // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+   userProfile: 'profiles' ,
+   useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
   } // react-redux-firebase config
 
 
 const rrfProps = {
   firebase,
   config: rrfConfig,
+  fbConfig,
   dispatch: store.dispatch,
   createFirestoreInstance // <- needed if using firestore
 }

@@ -14,16 +14,13 @@ import DocsLayout from 'src/layouts/DocsLayout';
 import MainLayout from 'src/layouts/MainLayout';
 import HomeView from 'src/views/pages/HomeView';
 import LoadingScreen from 'src/components/LoadingScreen';
-import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
-import LandingGuard from './components/LandingGuard';
 import FirebaseAuth from './components/FirebaseGuard';
 
 const routesConfig = [
   {
     exact: true,
     path: '/',
-    guard: LandingGuard,
     component: () => <Redirect to="/home" />
   },
   {
@@ -46,7 +43,6 @@ const routesConfig = [
   {
     path: '/app',
     guard: FirebaseAuth,
-    redirectTo: '/login',
     layout: DashboardLayout,
     routes: [
       {

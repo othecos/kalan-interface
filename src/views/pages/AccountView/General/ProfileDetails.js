@@ -40,7 +40,7 @@ function ProfileDetails({ user, className, ...rest }) {
         >
           <Avatar
             className={classes.avatar}
-            src={user.avatar}
+            src={user?.avatar}
           />
           <Typography
             className={classes.name}
@@ -48,19 +48,19 @@ function ProfileDetails({ user, className, ...rest }) {
             variant="h3"
             color="textPrimary"
           >
-            {`${user.firstName} ${user.lastName}`}
+            {`${user?.firstName} ${user?.lastName}`}
           </Typography>
           <Typography
             color="textPrimary"
             variant="body1"
           >
-            {`${user.state}, ${user.country}`}
+            {`${user?.state}, ${user?.country}`}
           </Typography>
           <Typography
             color="textSecondary"
             variant="body2"
           >
-            {user.timezone}
+            {user?.timezone}
           </Typography>
         </Box>
       </CardContent>

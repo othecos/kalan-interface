@@ -58,7 +58,7 @@ function Header({ className, ...rest }) {
           >
             Good Morning,
             {' '}
-            {user.firstName}
+            {user?.firstName}
           </Typography>
           <Typography
             variant="subtitle1"

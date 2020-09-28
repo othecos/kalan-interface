@@ -35,7 +35,7 @@ mock.onPost('/api/account/login').reply((config) => {
   const { user } = db;
 
   const accessToken = jwt.sign(
-    { id: user.id },
+    { id: user?.id },
     JWT_SECRET,
     { expiresIn: JWT_EXPIRES_IN }
   );
@@ -55,7 +55,7 @@ mock.onGet('/api/account/me').reply((config) => {
 
     const { id } = jwt.verify(accessToken, JWT_SECRET);
 
-    if (id !== db.user.id) {
+    if (id !== db.user?.id) {
       return [401, { message: 'Invalid authorization token' }];
     }
 

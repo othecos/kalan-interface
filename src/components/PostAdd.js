@@ -64,7 +64,7 @@ function PostAdd({ className, ...rest }) {
               disableUnderline
               fullWidth
               onChange={handleChange}
-              placeholder={`What's on your mind, ${account.user.firstName}`}
+              placeholder={`What's on your mind, ${account?.user?.firstName}`}
             />
           </Paper>
           <Tooltip title="Send">

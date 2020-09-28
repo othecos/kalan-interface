@@ -14,7 +14,8 @@ import {
   Link,
   makeStyles
 } from '@material-ui/core';
-import { register } from 'src/actions/accountActions';
+import { signUp } from 'src/actions/firebaseActions';
+import { useFirebase } from 'react-redux-firebase';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -23,6 +24,7 @@ const useStyles = makeStyles(() => ({
 function RegisterForm({ className, onSubmitSuccess, ...rest }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const firebase = useFirebase()
 
   return (
     <Formik
@@ -46,9 +48,12 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
         setSubmitting
       }) => {
         try {
-          await dispatch(register(values));
-          onSubmitSuccess();
+          setSubmitting(true)
+          await dispatch(signUp(values,firebase) )
+          setStatus({ success: true });
+          onSubmitSuccess()
         } catch (error) {
+          console.log(error);
           setStatus({ success: false });
           setErrors({ submit: error.message });
           setSubmitting(false);
@@ -64,108 +69,108 @@ function RegisterForm({ className, onSubmitSuccess, ...rest }) {
         touched,
         values
       }) => (
-        <form
-          className={clsx(classes.root, className)}
-          onSubmit={handleSubmit}
-          {...rest}
-        >
-          <TextField
-            error={Boolean(touched.firstName && errors.firstName)}
-            fullWidth
-            helperText={touched.firstName && errors.firstName}
-            label="Primeiro nome"
-            margin="normal"
-            name="firstName"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            type="firstName"
-            value={values.firstName}
-            variant="outlined"
-          />
-          <TextField
-            error={Boolean(touched.lastName && errors.lastName)}
-            fullWidth
-            helperText={touched.lastName && errors.lastName}
-            label="Sobrenome"
-            margin="normal"
-            name="lastName"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            type="lastName"
-            value={values.lastName}
-            variant="outlined"
-          />
-          <TextField
-            error={Boolean(touched.email && errors.email)}
-            fullWidth
-            helperText={touched.email && errors.email}
-            label="Email"
-            margin="normal"
-            name="email"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            type="email"
-            value={values.email}
-            variant="outlined"
-          />
-          <TextField
-            error={Boolean(touched.password && errors.password)}
-            fullWidth
-            helperText={touched.password && errors.password}
-            label="Senha"
-            margin="normal"
-            name="password"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            type="password"
-            value={values.password}
-            variant="outlined"
-          />
-          <Box
-            alignItems="center"
-            display="flex"
-            mt={2}
-            ml={-1}
+          <form
+            className={clsx(classes.root, className)}
+            onSubmit={handleSubmit}
+            {...rest}
           >
-            <Checkbox
-              checked={values.policy}
-              name="policy"
-              onChange={handleChange}
-            />
-            <Typography
-              variant="body2"
-              color="textSecondary"
-            >
-              Eu aceito os
-              {' '}
-              <Link
-                component="a"
-                href="#"
-                color="secondary"
-              >
-                Termos e Condições
-              </Link>
-            </Typography>
-          </Box>
-          {Boolean(touched.policy && errors.policy) && (
-            <FormHelperText error>
-              {errors.policy}
-            </FormHelperText>
-          )}
-          <Box mt={2}>
-            <Button
-              color="secondary"
-              disabled={isSubmitting}
+            <TextField
+              error={Boolean(touched.firstName && errors.firstName)}
               fullWidth
-              size="large"
-              type="submit"
-              variant="contained"
+              helperText={touched.firstName && errors.firstName}
+              label="Primeiro nome"
+              margin="normal"
+              name="firstName"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              type="firstName"
+              value={values.firstName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(touched.lastName && errors.lastName)}
+              fullWidth
+              helperText={touched.lastName && errors.lastName}
+              label="Sobrenome"
+              margin="normal"
+              name="lastName"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              type="lastName"
+              value={values.lastName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(touched.email && errors.email)}
+              fullWidth
+              helperText={touched.email && errors.email}
+              label="Email"
+              margin="normal"
+              name="email"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              type="email"
+              value={values.email}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(touched.password && errors.password)}
+              fullWidth
+              helperText={touched.password && errors.password}
+              label="Senha"
+              margin="normal"
+              name="password"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              type="password"
+              value={values.password}
+              variant="outlined"
+            />
+            <Box
+              alignItems="center"
+              display="flex"
+              mt={2}
+              ml={-1}
             >
-              Criar conta
+              <Checkbox
+                checked={values.policy}
+                name="policy"
+                onChange={handleChange}
+              />
+              <Typography
+                variant="body2"
+                color="textSecondary"
+              >
+                Eu aceito os
+              {' '}
+                <Link
+                  component="a"
+                  href="#"
+                  color="secondary"
+                >
+                  Termos e Condições
+              </Link>
+              </Typography>
+            </Box>
+            {Boolean(touched.policy && errors.policy) && (
+              <FormHelperText error>
+                {errors.policy}
+              </FormHelperText>
+            )}
+            <Box mt={2}>
+              <Button
+                color="secondary"
+                disabled={isSubmitting}
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Criar conta
             </Button>
-          </Box>
-        </form>
-      )}
+            </Box>
+          </form>
+        )}
     </Formik>
   );
 }
@@ -176,7 +181,7 @@ RegisterForm.propTypes = {
 };
 
 RegisterForm.default = {
-  onSubmitSuccess: () => {}
+  onSubmitSuccess: () => { }
 };
 
 export default RegisterForm;

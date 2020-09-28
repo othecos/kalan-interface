@@ -53,7 +53,7 @@ function About({
         <CardContent>
           <LinearProgress
             variant="determinate"
-            value={user.profileProgress}
+            value={user?.profileProgress}
           />
           <Box mt={2}>
             <Typography
@@ -75,7 +75,7 @@ function About({
               color="textSecondary"
             >
               &quot;
-              {user.quote}
+              {user?.quote}
               &quot;
             </Typography>
             <List>
@@ -95,7 +95,7 @@ function About({
                       variant="body2"
                       color="textPrimary"
                     >
-                      {user.currentJob.title}
+                      {user?.currentJob?.title}
                       {' '}
                       at
                       {' '}
@@ -104,7 +104,7 @@ function About({
                         color="textPrimary"
                         href="#"
                       >
-                        {user.currentJob.company}
+                        {user?.currentJob?.company}
                       </Link>
                     </Typography>
                   )}
@@ -114,14 +114,14 @@ function About({
                       color="textSecondary"
                     >
                       Past:
-                      {user.previousJob.title}
+                      {user?.previousJob?.title}
                       {' '}
                       <Link
                         variant="caption"
                         color="textSecondary"
                         href="#"
                       >
-                        {user.previousJob.company}
+                        {user?.previousJob?.company}
                       </Link>
                     </Typography>
                   )}
@@ -167,7 +167,7 @@ function About({
                         color="textPrimary"
                         href="#"
                       >
-                        {user.currentCity}
+                        {user?.currentCity}
                       </Link>
                     </Typography>
                   )}
@@ -183,7 +183,7 @@ function About({
                         color="textSecondary"
                         href="#"
                       >
-                        {user.originCity}
+                        {user?.originCity}
                       </Link>
                     </Typography>
                   )}
@@ -199,7 +199,7 @@ function About({
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary={user.email}
+                  primary={user?.email}
                   primaryTypographyProps={{
                     variant: 'body2',
                     color: 'textPrimary'

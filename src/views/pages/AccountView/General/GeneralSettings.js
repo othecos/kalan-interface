@@ -36,14 +36,14 @@ function GeneralSettings({ user, className, ...rest }) {
     <Formik
       enableReinitialize
       initialValues={{
-        canHire: user.canHire,
-        country: user.country,
-        email: user.email,
-        firstName: user.firstName,
-        isPublic: user.isPublic,
-        lastName: user.lastName,
-        phone: user.phone,
-        state: user.state,
+        canHire: user?.canHire,
+        country: user?.country,
+        email: user?.email,
+        firstName: user?.firstName,
+        isPublic: user?.isPublic,
+        lastName: user?.lastName,
+        phone: user?.phone,
+        state: user?.state,
       }}
       validationSchema={Yup.object().shape({
         country: Yup.string().max(255).required('Country is required'),

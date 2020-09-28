@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   chat: chatReducer,
   mail: mailReducer,
   kanban: kanbanReducer,
-  firebaseReducer,
+  firebase: firebaseReducer,
   firestore: firestoreReducer, // <- needed if using firestore
   form: formReducer
 });

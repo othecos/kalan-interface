@@ -45,10 +45,10 @@ function ThreadItem({
 }) {
   const classes = useStyles();
   const { user } = useSelector((state) => state.account);
-  const contact = useSelector((state) => contactSelector(state, thread, user.id));
+  const contact = useSelector((state) => contactSelector(state, thread, user?.id));
 
   const lastMessage = thread.messages[thread.messages.length - 1];
-  const lastMessageInfo = lastMessage ? `${lastMessage.senderId === user.id ? 'Me:' : ''} ${lastMessage.contentType === 'image' ? 'Sent a photo' : lastMessage.body}` : '';
+  const lastMessageInfo = lastMessage ? `${lastMessage.senderId === user?.id ? 'Me:' : ''} ${lastMessage.contentType === 'image' ? 'Sent a photo' : lastMessage.body}` : '';
 
   return (
     <ListItem

@@ -17,7 +17,7 @@ function senderSelector(state, senderId) {
   const { user } = state.account;
   const { contacts } = state.chat;
 
-  if (senderId !== user.id) {
+  if (senderId !== user?.id) {
     const contact = contacts.byId[senderId];
 
     return {
@@ -28,7 +28,7 @@ function senderSelector(state, senderId) {
   }
 
   return {
-    avatar: user.avatar,
+    avatar: user?.avatar,
     name: 'Me',
     type: 'user'
   };

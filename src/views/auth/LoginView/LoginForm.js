@@ -12,6 +12,8 @@ import {
   makeStyles
 } from '@material-ui/core';
 import { login } from 'src/actions/accountActions';
+import {signInWithEmail} from 'src/actions/firebaseActions';
+import { useFirebase } from 'react-redux-firebase';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -20,12 +22,12 @@ const useStyles = makeStyles(() => ({
 function LoginForm({ className, onSubmitSuccess, ...rest }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const firebase = useFirebase()
   return (
     <Formik
       initialValues={{
-        email: 'admin@devias.io',
-        password: 'admin'
+        email: 'othecos@outlook.com',
+        password: '1234567'
       }}
       validationSchema={Yup.object().shape({
         email: Yup.string().email('Email deve ser válido').max(255).required('Email é obrigatório '),
@@ -37,11 +39,10 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
         setSubmitting
       }) => {
         try {
-          await dispatch(login(values.email, values.password));
-          onSubmitSuccess();
+          await dispatch(signInWithEmail(values.email, values.password,firebase ));
+          onSubmitSuccess()
         } catch (error) {
-          const message = (error.response && error.response.data.message) || 'Algo deu errado';
-
+          const message = (error.message) || 'Algo deu errado';
           setStatus({ success: false });
           setErrors({ submit: message });
           setSubmitting(false);

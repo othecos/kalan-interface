@@ -44,7 +44,7 @@ function threadSelector(state, threadKey, history) {
     return {
       key: threadKey,
       type: 'ONE_TO_ONE', // We might add GROUP type in future
-      participantIds: [contactId, user.id],
+      participantIds: [contactId, user?.id],
       messages: []
     };
   }

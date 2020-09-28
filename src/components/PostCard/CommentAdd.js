@@ -52,7 +52,7 @@ function CommentAdd({ className, ...rest }) {
     >
       <Avatar
         alt="Person"
-        src={user.avatar}
+        src={user?.avatar}
       />
       <Paper
         variant="outlined"

@@ -415,7 +415,7 @@ function NavBar({ openMobile, onMobileClose, }) {
               <Avatar
                 alt="User"
                 className={classes.avatar}
-                src={user.avatar}
+                src={user?.avatar}
               />
             </RouterLink>
           </Box>
@@ -430,13 +430,13 @@ function NavBar({ openMobile, onMobileClose, }) {
               color="textPrimary"
               underline="none"
             >
-              {`${user.firstName} ${user.lastName}`}
+              {`${user?.firstName} ${user?.lastName}`}
             </Link>
             <Typography
               variant="body2"
               color="textSecondary"
             >
-              {user.bio}
+              {user?.bio}
             </Typography>
           </Box>
         </Box>

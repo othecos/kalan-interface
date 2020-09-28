@@ -10,7 +10,7 @@ import {
 } from 'src/actions/accountActions';
 
 const initialState = {
-  user: null
+  user: {}
 };
 
 const accountReducer = (state = initialState, action) => {

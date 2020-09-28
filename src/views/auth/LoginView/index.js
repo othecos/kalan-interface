@@ -78,7 +78,7 @@ function LoginView() {
   const history = useHistory();
 
   const handleSubmitSuccess = () => {
-    history.push('/app');
+    // history.push('/app');
   };
 
   return (
@@ -162,7 +162,7 @@ function LoginView() {
                   color="inherit"
                   variant="body1"
                 >
-                  <Box fontStyle="oblique">Buffet, Warren</Box>
+                  Buffet, Warren
                 </Typography>
                 <Typography
                   color="inherit"

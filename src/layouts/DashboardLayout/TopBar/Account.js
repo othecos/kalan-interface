@@ -17,6 +17,8 @@ import {
   makeStyles
 } from '@material-ui/core';
 import { logout } from 'src/actions/accountActions';
+import { signOut } from 'src/actions/firebaseActions';
+import { useFirebase } from 'react-redux-firebase';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -37,6 +39,7 @@ function Account() {
   const account = useSelector((state) => state.account);
   const { enqueueSnackbar } = useSnackbar();
   const [isOpen, setOpen] = useState(false);
+  const firebase = useFirebase()
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,7 +52,7 @@ function Account() {
   const handleLogout = async () => {
     try {
       handleClose();
-      await dispatch(logout());
+      await dispatch(signOut(firebase))
       history.push('/');
     } catch (error) {
       enqueueSnackbar('Unable to logout', {
@@ -70,14 +73,14 @@ function Account() {
         <Avatar
           alt="User"
           className={classes.avatar}
-          src={account.user.avatar}
+          src={account?.user?.avatar}
         />
         <Hidden smDown>
           <Typography
             variant="h6"
             color="inherit"
           >
-            {`${account.user.firstName} ${account.user.lastName}`}
+            {`${account?.user?.firstName} ${account?.user?.lastName}`}
           </Typography>
         </Hidden>
       </Box>

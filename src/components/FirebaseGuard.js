@@ -2,14 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { isLoaded, isEmpty } from 'react-redux-firebase'
 
-const FirebaseGuard = ({children }) => {
-  const {auth} = useSelector((state) => state.firebaseReducer);
-  console.log('[Auth]',auth)
-  if (auth.isEmpty) {
-    return <Redirect to='/login' />;
+const FirebaseGuard = ({ children }) => {
+  const { auth } = useSelector((state) => state.firebase);
+  if (isLoaded(auth) && !isEmpty(auth)) {
+    return children;
+  } else {
+    return <Redirect to="/login" />;
   }
-  return children;
 };
 
 FirebaseGuard.propTypes = {

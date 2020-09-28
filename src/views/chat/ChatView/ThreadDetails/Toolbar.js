@@ -40,7 +40,7 @@ function contactSelector(state, participantIds) {
 
   // In most apps one thread can have more than two participants
   // We could display all participants, but for now we only select one
-  const contactId = participantIds.filter((participantId) => participantId !== user.id)[0];
+  const contactId = participantIds.filter((participantId) => participantId !== user?.id)[0];
 
   return contacts.byId[contactId];
 }

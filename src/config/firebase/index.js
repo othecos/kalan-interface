@@ -6,9 +6,10 @@ import * as firebase from "firebase/app";
 // Add the Firebase services that you want to use
 // We only want to use Firebase Auth here
 import "firebase/auth";
+import 'firebase/firestore';
 
 // Your app's Firebase configuration
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyCZNSNmn1QZc2gxFVwt3_eydptsAocnczI",
   authDomain: "stock-history-backend.firebaseapp.com",
   databaseURL: "https://stock-history-backend.firebaseio.com",
@@ -20,6 +21,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+// Initialize other services on firebase instance
+firebase.firestore() // <- needed if using firestore
+
 
 // Finally, export it to use it throughout your app
 export default firebase;

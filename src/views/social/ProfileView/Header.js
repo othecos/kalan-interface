@@ -77,7 +77,7 @@ function Header({
   ...rest
 }) {
   const classes = useStyles();
-  const [connectedStatus, setConnectedStatus] = useState(user.connectedStatus);
+  const [connectedStatus, setConnectedStatus] = useState(user?.connectedStatus);
 
   const handleConnectToggle = () => {
     setConnectedStatus((prevConnectedStatus) => (prevConnectedStatus === 'not_connected' ? 'pending' : 'not_connected'));
@@ -90,7 +90,7 @@ function Header({
     >
       <div
         className={classes.cover}
-        style={{ backgroundImage: `url(${user.cover})` }}
+        style={{ backgroundImage: `url(${user?.cover})` }}
       >
         <Button
           className={classes.changeButton}
@@ -110,20 +110,20 @@ function Header({
           <Avatar
             alt="Person"
             className={classes.avatar}
-            src={user.avatar}
+            src={user?.avatar}
           />
           <Box marginLeft="160px">
             <Typography
               variant="overline"
               color="textSecondary"
             >
-              {user.bio}
+              {user?.bio}
             </Typography>
             <Typography
               variant="h4"
               color="textPrimary"
             >
-              {user.name}
+              {user?.name}
             </Typography>
           </Box>
           <Box flexGrow={1} />
