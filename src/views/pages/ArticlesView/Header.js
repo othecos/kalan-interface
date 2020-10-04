@@ -78,7 +78,7 @@ function Header({ className, ...rest }) {
             variant="body1"
             color="textPrimary"
           >
-            News
+            Articles
           </Typography>
 
         </Breadcrumbs>

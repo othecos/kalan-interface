@@ -24,7 +24,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import { ArrowRight as ArrowRightIcon } from 'react-feather';
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Label from 'src/components/Label';
 import GenericMoreButton from 'src/components/GenericMoreButton';

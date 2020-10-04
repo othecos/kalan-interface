@@ -13,7 +13,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import ProjectCard from 'src/components/ProjectCard';
 

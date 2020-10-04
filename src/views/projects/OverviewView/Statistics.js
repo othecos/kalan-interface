@@ -12,7 +12,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Label from 'src/components/Label';
 

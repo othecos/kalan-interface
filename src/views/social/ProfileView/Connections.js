@@ -28,7 +28,7 @@ import {
   Search as SearchIcon,
   MoreVertical as MoreIcon
 } from 'react-feather';
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 
 const connectStatusMap = {

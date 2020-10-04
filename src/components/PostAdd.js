@@ -32,7 +32,9 @@ function PostAdd({ className, ...rest }) {
   const classes = useStyles();
   const fileInputRef = useRef(null);
   const [value, setValue] = useState('');
-  const account = useSelector((state) => state.account);
+  const state = useSelector((state) => state.account);
+  const {account} =state
+  console.log(state);
 
   const handleChange = (event) => {
     event.persist();

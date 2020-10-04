@@ -11,7 +11,7 @@ import {
   Tabs,
   makeStyles
 } from '@material-ui/core';
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Page from 'src/components/Page';
 import Header from './Header';

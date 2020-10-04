@@ -13,7 +13,6 @@ import {
   ThemeProvider
 } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import Auth from 'src/components/Auth';
 import CookiesNotification from 'src/components/CookiesNotification';
 import SettingsNotification from 'src/components/SettingsNotification';
 import GoogleAnalytics from 'src/components/GoogleAnalytics';
@@ -54,7 +53,12 @@ function App() {
   useStyles();
 
   const { settings } = useSettings();
-
+  console.log({
+    NODE_ENV: process.env,
+    BASE_URL: process.env.REACT_APP_BASE_URL,
+    PORT: process.env.REACT_APP_PORT,
+    PATH: process.env.REACT_APP_PATH
+  });
   return (
     <ThemeProvider theme={createTheme(settings)}>
       <StylesProvider jss={jss}>

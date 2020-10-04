@@ -28,7 +28,6 @@ enableES5();
 const store = configureStore();
 const settings = restoreSettings();
 
-const fbConfig = {} // object containing Firebase config
 const rrfConfig = {
    userProfile: 'profiles' ,
    useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
@@ -38,7 +37,6 @@ const rrfConfig = {
 const rrfProps = {
   firebase,
   config: rrfConfig,
-  fbConfig,
   dispatch: store.dispatch,
   createFirestoreInstance // <- needed if using firestore
 }

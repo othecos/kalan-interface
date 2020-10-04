@@ -9,9 +9,9 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Header from '../../pages/News/Header';
+import Header from '../../pages/ArticlesView/Header';
 import Filter from './Filter';
 import Results from './Results';
 

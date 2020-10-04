@@ -225,8 +225,8 @@ const navConfig = [
         icon: BarChartIcon
       },
       {
-        title: 'News',
-        href: '/app/news',
+        title: 'Articles',
+        href: '/app/articles',
         icon: NewsIcon,
         // items: [
         //   {

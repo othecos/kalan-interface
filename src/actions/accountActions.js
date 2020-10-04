@@ -1,5 +1,4 @@
-import axios from 'src/utils/axios';
-import authService from 'src/services/authService';
+import axios from 'src/utils/axiosMock';
 
 export const LOGIN_REQUEST = '@account/login-request';
 export const LOGIN_SUCCESS = '@account/login-success';
@@ -34,16 +33,6 @@ export function setUserData(user) {
       user
     }
   });
-}
-
-export function logout() {
-  return async (dispatch) => {
-    authService.logout();
-
-    dispatch({
-      type: LOGOUT
-    });
-  };
 }
 
 export function register() {

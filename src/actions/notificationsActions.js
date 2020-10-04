@@ -1,4 +1,4 @@
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 
 export const GET_NOTIFICATIONS = '@notifications/get-notifications';
 

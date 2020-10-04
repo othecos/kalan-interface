@@ -26,7 +26,7 @@ import {
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Label from 'src/components/Label';
 import GenericMoreButton from 'src/components/GenericMoreButton';
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 
 const labelColors = {

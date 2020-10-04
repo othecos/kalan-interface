@@ -1,4 +1,4 @@
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 
 export const GET_CONTACTS = '@chat/get-contacts';
 export const GET_THREADS = '@chat/get-threads';

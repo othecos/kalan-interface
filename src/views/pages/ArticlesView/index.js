@@ -9,11 +9,10 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import axios from 'src/utils/axios';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Header from './Header';
 import Filter from './Filter';
 import Results from './Results';
+import axios from 'src/utils/axios'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,24 +23,28 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function ProjectBrowseView() {
-  const classes = useStyles();
-  const isMountedRef = useIsMountedRef();
-  const [projects, setProjects] = useState([]);
-
-  const getProjects = useCallback(() => {
-    axios
-      .get('/api/projects/projects')
-      .then((response) => {
-        if (isMountedRef.current) {
-          setProjects(response.data.projects);
-        }
-      });
-  }, [isMountedRef]);
-
+function ArticlesView() {
+  const [articles, setArticles] = useState([]);
   useEffect(() => {
-    getProjects();
-  }, [getProjects]);
+    const fetchData = async () => {
+      try{
+        console.log('hi');
+        let response = await axios.get('/analysis/news/')
+        console.log(response);
+        let docs = response.data
+        setArticles(docs)
+      }catch(err){
+        console.error("Error response:");
+        console.error(err.response);    // ***
+        console.error(err.response.status);  // ***
+        console.error(err.response.headers); // ***
+      }
+     
+    }
+    fetchData();
+  }, [])
+
+  const classes = useStyles();
 
   return (
     <Page
@@ -54,11 +57,11 @@ function ProjectBrowseView() {
           <Filter />
         </Box>
         <Box mt={6}>
-          <Results projects={projects} />
+        <Results articles={articles} />
         </Box>
       </Container>
     </Page>
   );
 }
 
-export default ProjectBrowseView;
+export default ArticlesView;

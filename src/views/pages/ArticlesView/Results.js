@@ -19,6 +19,9 @@ import {
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ProjectCard from 'src/components/ProjectCard';
+import ArticleCard from 'src/components/ArticleCard';
+import { useEffect } from 'react';
+import { Link } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -34,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main
     }
   },
+  
   sortButton: {
     textTransform: 'none',
     letterSpacing: 0,
@@ -41,19 +45,32 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Results({ className, projects, ...rest }) {
+function Results({ className, articles, ...rest }) {
   const classes = useStyles();
   const sortRef = useRef(null);
+  const lengthPerPage = 10
   const [openSort, setOpenSort] = useState(false);
   const [selectedSort, setSelectedSort] = useState('Most popular');
   const [mode, setMode] = useState('grid');
-
+  const [count, setCount] = useState(10);
+  const [articlesPiece, setArticlesPiece] = useState([]);
+  
   const handleSortOpen = () => {
     setOpenSort(true);
   };
 
+  useEffect(() => {
+    setArticlesPiece(articles.slice(0,lengthPerPage))
+    setCount( Math.round(articles.length /lengthPerPage ))
+  },[articles])
+
   const handleSortClose = () => {
     setOpenSort(false);
+  };
+  const handlePaginationChange = (event, value) => {
+    const index = (value -1 ) * lengthPerPage
+    const finalIndex = index + lengthPerPage
+   setArticlesPiece(articles.slice(index,finalIndex))
   };
 
   const handleSortSelect = (value) => {
@@ -64,6 +81,9 @@ function Results({ className, projects, ...rest }) {
   const handleModeChange = (event, value) => {
     setMode(value);
   };
+  if(!articles){
+    return null
+  }
 
   return (
     <div
@@ -84,9 +104,9 @@ function Results({ className, projects, ...rest }) {
         >
           Showing
           {' '}
-          {projects.length}
+          {articles.length}
           {' '}
-          projects
+          articles
         </Typography>
         <Box
           display="flex"
@@ -116,15 +136,15 @@ function Results({ className, projects, ...rest }) {
         container
         spacing={3}
       >
-        {projects.map((project) => (
+        {articlesPiece.map((article) => (
           <Grid
             item
-            key={project.id}
+            key={article._id}
             md={mode === 'grid' ? 4 : 12}
             sm={mode === 'grid' ? 6 : 12}
             xs={12}
           >
-            <ProjectCard project={project} />
+            <ArticleCard article={article} />
           </Grid>
         ))}
       </Grid>
@@ -133,7 +153,7 @@ function Results({ className, projects, ...rest }) {
         display="flex"
         justifyContent="center"
       >
-        <Pagination count={3} />
+        <Pagination onChange={handlePaginationChange}  count={count} />
       </Box>
       <Menu
         anchorEl={sortRef.current}
@@ -159,7 +179,7 @@ function Results({ className, projects, ...rest }) {
 
 Results.propTypes = {
   className: PropTypes.string,
-  projects: PropTypes.array.isRequired
+  articles: PropTypes.array.isRequired
 };
 
 export default Results;

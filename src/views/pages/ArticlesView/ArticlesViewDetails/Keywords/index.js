@@ -12,8 +12,7 @@ import {
 import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Page from 'src/components/Page';
-import Header from './Header';
-import InvoicePreview from './InvoicePreview';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,43 +23,26 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function InvoiceDetailsView() {
+function Keywords({keywords,className,...rest}) {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
   const [invoice, setInvoice] = useState(null);
 
-  const getInvoice = useCallback(() => {
-    axios
-      .get('/api/management/invoices/1')
-      .then((response) => {
-        if (isMountedRef.current) {
-          setInvoice(response.data.invoice);
-        }
-      });
-  }, [isMountedRef]);
-
-  useEffect(() => {
-    getInvoice();
-  }, [getInvoice]);
-
-  if (!invoice) {
-    return null;
-  }
-
   return (
     <Page
       className={classes.root}
-      title="Invoice Details"
+      title="Keywords"
     >
       <Container maxWidth="lg">
-        <Header invoice={invoice} />
         <Box my={2}>
-          <Divider />
         </Box>
-        <InvoicePreview invoice={invoice} />
       </Container>
     </Page>
   );
 }
 
-export default InvoiceDetailsView;
+Keywords.propTypes = {
+  className: PropTypes.string,
+  keywords: PropTypes.array.isRequired
+}; 
+export default Keywords;

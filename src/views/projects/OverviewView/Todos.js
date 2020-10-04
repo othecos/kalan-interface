@@ -22,7 +22,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import ArchiveIcon from '@material-ui/icons/ArchiveOutlined';
-import axios from 'src/utils/axios';
+import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Label from 'src/components/Label';
 

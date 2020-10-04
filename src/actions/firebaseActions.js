@@ -6,6 +6,8 @@ export const SIGNUP_ERROR = "SIGNUP_ERROR";
 // SIGN IN
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const SIGNIN_ERROR = "SIGNIN_ERROR";
+// SIGN IN
+export const SILENT_LOGIN = "SILENT_LOGIN";
 
 // SIGN OUT
 export const SIGNOUT_SUCCESS = "SIGNOUT_SUCCESS";
@@ -16,17 +18,17 @@ export const RESET_SUCCESS = "RESET_SUCCESS";
 export const RESET_ERROR = "RESET_ERROR";
 
 // Signing up with Firebase
-export function signUp (values,firebase) {
+export function signUp(values, firebase) {
   return async (dispatch) => {
     try {
-      firebase.createUser(
+      let user = await firebase.createUser(
         { email: values.email, password: values.password },
         { username: values.firstName, email: values.email }
       )
       dispatch({
         type: SIGNUP_SUCCESS,
         payload:
-          "Your account was successfully created! Now you need to verify your e-mail address, please go check your inbox."
+          user
       });
     } catch (error) {
       dispatch({
@@ -39,15 +41,16 @@ export function signUp (values,firebase) {
   }
 };
 // Signing in with Firebase
-export const signInWithEmail = (email, password,firebase) => {
+export const signInWithEmail = (email, password, firebase) => {
   return async (dispatch) => {
     try {
       let result = await firebase.login({
-        email, 
+        email,
         password,
       })
+      console.log(result.user.user.toJSON());
       dispatch({ type: SIGNIN_SUCCESS });
-      return 
+      return
     } catch (error) {
       dispatch({ type: SIGNIN_ERROR, payload: "Invalid login credentials" });
       throw error
@@ -68,13 +71,25 @@ export const signInWithGoogle = (firebase, callback) => {
   }
 };
 
+export const setUserData = (user) => {
+  return (dispatch) => dispatch({
+    type: SILENT_LOGIN,
+    payload: {
+      user
+    }
+  });
+}
 
 // Signing out with Firebase
 export const signOut = (firebase) => {
   return async dispatch => {
     try {
       await firebase.logout()
-      dispatch({ type: SIGNOUT_SUCCESS });
+      dispatch({
+        type: SIGNOUT_SUCCESS, payload: {
+          user: null
+        }
+      });
     } catch (error) {
       dispatch({
         type: SIGNOUT_ERROR,

@@ -1,18 +1,17 @@
 import React, {
-  useCallback,
+  useState,
   useEffect,
-  useState
+  useCallback
 } from 'react';
 import {
   Box,
   Container,
+  Divider,
   makeStyles
 } from '@material-ui/core';
 import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Page from 'src/components/Page';
-import Header from './Header';
-import Results from './Results';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,42 +22,27 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function OrderListView() {
+function AdditionalInfo() {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
-  const [orders, setOrders] = useState(null);
+  const [invoice, setInvoice] = useState(null);
 
-  const getOrders = useCallback(() => {
-    axios
-      .get('/api/management/orders')
-      .then((response) => {
-        if (isMountedRef.current) {
-          setOrders(response.data.orders);
-        }
-      });
-  }, [isMountedRef]);
-
-  useEffect(() => {
-    getOrders();
-  }, [getOrders]);
-
-  if (!orders) {
+  if (!invoice) {
     return null;
   }
 
   return (
     <Page
       className={classes.root}
-      title="Orders  List"
+      title="Invoice Details"
     >
-      <Container maxWidth={false}>
-        <Header />
-        <Box mt={3}>
-          <Results orders={orders} />
+      <Container maxWidth="lg">
+        <Box my={2}>
+          <Divider />
         </Box>
       </Container>
     </Page>
   );
 }
 
-export default OrderListView;
+export default AdditionalInfo;

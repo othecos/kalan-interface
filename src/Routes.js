@@ -70,8 +70,13 @@ const routesConfig = [
       },
       {
         exact: true,
-        path: '/app/news',
-        component: lazy(() => import('src/views/pages/News'))
+        path: '/app/articles',
+        component: lazy(() => import('src/views/pages/ArticlesView'))
+      },
+      {
+        exact: true,
+        path: '/app/articles/:detail',
+        component: lazy(() => import('src/views/pages/ArticlesView/ArticlesViewDetails'))
       },
       {
         exact: true,
