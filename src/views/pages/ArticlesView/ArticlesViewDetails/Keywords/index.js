@@ -5,9 +5,11 @@ import React, {
 } from 'react';
 import {
   Box,
+  Chip,
   Container,
   Divider,
-  makeStyles
+  makeStyles,
+  Typography
 } from '@material-ui/core';
 import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
@@ -23,10 +25,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Keywords({keywords,className,...rest}) {
+function Keywords({ keywords, className, ...rest }) {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
-  const [invoice, setInvoice] = useState(null);
 
   return (
     <Page
@@ -34,7 +35,22 @@ function Keywords({keywords,className,...rest}) {
       title="Keywords"
     >
       <Container maxWidth="lg">
-        <Box my={2}>
+        <Box mt={3}>
+          <Typography
+            variant="subtitle2"
+            color="textSecondary"
+          >
+            Technology Stack
+              </Typography>
+          <Box mt={1}>
+            {keywords.map((keyword) => (
+              <Chip
+                key={keyword}
+                variant="outlined"
+                label={keyword}
+              />
+            ))}
+          </Box>
         </Box>
       </Container>
     </Page>
@@ -44,5 +60,5 @@ function Keywords({keywords,className,...rest}) {
 Keywords.propTypes = {
   className: PropTypes.string,
   keywords: PropTypes.array.isRequired
-}; 
+};
 export default Keywords;

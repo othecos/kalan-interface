@@ -24,22 +24,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ArticlesView() {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try{
-        console.log('hi');
         let response = await axios.get('/analysis/news/')
-        console.log(response);
+        console.log(response.data);
         let docs = response.data
         setArticles(docs)
       }catch(err){
-        console.error("Error response:");
-        console.error(err.response);    // ***
-        console.error(err.response.status);  // ***
-        console.error(err.response.headers); // ***
+        if(err.response){
+          console.error("Error response:");
+          console.error(err.response);    // ***
+          console.error(err?.response?.status);  // ***
+          console.error(err?.response?.headers); // ***
+        }
       }
-     
     }
     fetchData();
   }, [])
@@ -57,7 +57,7 @@ function ArticlesView() {
           <Filter />
         </Box>
         <Box mt={6}>
-        <Results articles={articles} />
+           <Results articles={articles}></Results>
         </Box>
       </Container>
     </Page>

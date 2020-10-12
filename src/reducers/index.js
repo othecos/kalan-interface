@@ -7,12 +7,14 @@ import mailReducer from './mailReducer';
 import kanbanReducer from './kanbanReducer';
 import { firebaseReducer } from "react-redux-firebase";
 import { firestoreReducer } from 'redux-firestore' // <- needed if using firestore
+import analysisReducer from './analysisReducer';
 
 
 const rootReducer = combineReducers({
 
   account: accountReducer,
   notifications: notificationsReducer,
+  analysis: analysisReducer,
   chat: chatReducer,
   mail: mailReducer,
   kanban: kanbanReducer,

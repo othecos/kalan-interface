@@ -22,6 +22,7 @@ import ProjectCard from 'src/components/ProjectCard';
 import ArticleCard from 'src/components/ArticleCard';
 import { useEffect } from 'react';
 import { Link } from 'react-router'
+import ArticleCardSkeleton from 'src/components/ArticleCardSkeleton';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main
     }
   },
-  
+
   sortButton: {
     textTransform: 'none',
     letterSpacing: 0,
@@ -48,29 +49,32 @@ const useStyles = makeStyles((theme) => ({
 function Results({ className, articles, ...rest }) {
   const classes = useStyles();
   const sortRef = useRef(null);
+  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
   const lengthPerPage = 10
   const [openSort, setOpenSort] = useState(false);
   const [selectedSort, setSelectedSort] = useState('Most popular');
   const [mode, setMode] = useState('grid');
   const [count, setCount] = useState(10);
   const [articlesPiece, setArticlesPiece] = useState([]);
-  
+
   const handleSortOpen = () => {
     setOpenSort(true);
   };
 
   useEffect(() => {
-    setArticlesPiece(articles.slice(0,lengthPerPage))
-    setCount( Math.round(articles.length /lengthPerPage ))
-  },[articles])
+    if(articles){
+      setArticlesPiece(articles.slice(0, lengthPerPage))
+      setCount(Math.round(articles.length / lengthPerPage))
+    }
+  }, [articles])
 
   const handleSortClose = () => {
     setOpenSort(false);
   };
   const handlePaginationChange = (event, value) => {
-    const index = (value -1 ) * lengthPerPage
+    const index = (value - 1) * lengthPerPage
     const finalIndex = index + lengthPerPage
-   setArticlesPiece(articles.slice(index,finalIndex))
+    setArticlesPiece(articles.slice(index, finalIndex))
   };
 
   const handleSortSelect = (value) => {
@@ -81,9 +85,6 @@ function Results({ className, articles, ...rest }) {
   const handleModeChange = (event, value) => {
     setMode(value);
   };
-  if(!articles){
-    return null
-  }
 
   return (
     <div
@@ -104,7 +105,7 @@ function Results({ className, articles, ...rest }) {
         >
           Showing
           {' '}
-          {articles.length}
+          {articles?.length}
           {' '}
           articles
         </Typography>
@@ -136,7 +137,7 @@ function Results({ className, articles, ...rest }) {
         container
         spacing={3}
       >
-        {articlesPiece.map((article) => (
+        {articles && articlesPiece.map((article) => (
           <Grid
             item
             key={article._id}
@@ -147,13 +148,24 @@ function Results({ className, articles, ...rest }) {
             <ArticleCard article={article} />
           </Grid>
         ))}
+        {!articles && skeleton.map((sk,index) => (
+          <Grid
+            item
+            key={`Skeleton_${index}`}
+            md={mode === 'grid' ? 4 : 12}
+            sm={mode === 'grid' ? 6 : 12}
+            xs={12}
+          >
+            <ArticleCardSkeleton />
+          </Grid>
+        ))}
       </Grid>
       <Box
         mt={6}
         display="flex"
         justifyContent="center"
       >
-        <Pagination onChange={handlePaginationChange}  count={count} />
+        <Pagination onChange={handlePaginationChange} count={count} />
       </Box>
       <Menu
         anchorEl={sortRef.current}
@@ -179,7 +191,7 @@ function Results({ className, articles, ...rest }) {
 
 Results.propTypes = {
   className: PropTypes.string,
-  articles: PropTypes.array.isRequired
+  articles: PropTypes.array
 };
 
 export default Results;

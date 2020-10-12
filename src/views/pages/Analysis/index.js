@@ -7,14 +7,9 @@ import {
 import Page from 'src/components/Page';
 import Header from './Header';
 import LatestProjects from 'src/views/reports/DashboardView/LatestProjects';
-import NewProjects from 'src/views/reports/DashboardView/NewProjects';
-import PerformanceOverTime from 'src/views/reports/DashboardView/PerformanceOverTime';
-import RealTime from 'src/views/reports/DashboardView/RealTime';
-import RoiPerCustomer from 'src/views/reports/DashboardView/RoiPerCustomer';
-import SystemHealth from 'src/views/reports/DashboardView/SystemHealth';
-import TeamTasks from 'src/views/reports/DashboardView/TeamTasks';
-import TodaysMoney from 'src/views/reports/DashboardView/TodaysMoney';
 import StocksPreview from './StocksPreview';
+import SentimentsPreview from './Sentiments/SentimentsPreview';
+import SentimentsGraph from './Sentiments/SentimentsGraph';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Analysis() {
   const classes = useStyles();
-
+  
   return (
     <Page
       className={classes.root}
@@ -48,72 +43,31 @@ function Analysis() {
           container
           spacing={3}
         >
-          {/* <Grid
+          
+          <Grid
             item
-            lg={3}
-            sm={6}
+            md={6}
             xs={12}
           >
-            <TodaysMoney />
+            <SentimentsPreview />
           </Grid>
           <Grid
             item
-            lg={3}
-            sm={6}
+            md={6}
             xs={12}
           >
-            <NewProjects />
+            <SentimentsGraph />
           </Grid>
           <Grid
             item
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <SystemHealth />
-          </Grid>
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xs={12}
-          >
-            <RoiPerCustomer />
-          </Grid>
-          <Grid
-            item
-            lg={3}
-            xs={12}
-          >
-            <RealTime />
-          </Grid>
-          <Grid
-            item
-            lg={9}
-            xs={12}
-          >
-            <PerformanceOverTime />
-          </Grid> */}
-          <Grid
-            item
-            lg={5}
-            xl={4}
+            md={6}
             xs={12}
           >
             <StocksPreview />
           </Grid>
           <Grid
             item
-            lg={5}
-            xl={4}
-            xs={12}
-          >
-            <TeamTasks />
-          </Grid>
-          <Grid
-            item
-            lg={12}
-            xl={12}
+            md={6}
             xs={12}
           >
             <LatestProjects />
