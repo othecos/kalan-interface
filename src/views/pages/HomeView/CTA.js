@@ -35,14 +35,15 @@ function CTA({ className, ...rest }) {
           align="center"
           color="textPrimary"
         >
-          Pronto para usar o Kalan?
+          {/* Pronto para usar o Kalan? */}
+          Em breve a plataforma estará disponivel
         </Typography>
         <Typography
           variant="h1"
           align="center"
           color="secondary"
         >
-          Clique aqui e veja nossos planos 
+          Acompanhe o desenvolvimento
         </Typography>
         <Box
           mt={6}
@@ -52,11 +53,12 @@ function CTA({ className, ...rest }) {
         >
           <Button
             color="secondary"
-            component={RouterLink}
-            to="/pricing"
+            // component={RouterLink}
+            href="https://www.notion.so/475d624353d94e20ac4c7d14cea3e1a9?v=b0fdfe833d214d03b2382ea7eaafd695"
+            targe="_blank"
             variant="contained"
           >
-            Ver planos
+            Releases
           </Button>
         </Box>
       </Container>

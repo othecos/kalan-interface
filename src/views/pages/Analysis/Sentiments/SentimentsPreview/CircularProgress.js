@@ -8,21 +8,21 @@ const useStyles = makeStyles((theme) => ({
     width: 56,
     height: 56
   },
+  '@keyframes progress': {
+    '0%': {
+      strokeDasharray: '0 100'
+    }
+  },
   circle1: {
     stroke: theme.palette.type === 'dark' ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.05)',
     fill: 'none',
     strokeWidth: 4
   },
-  circle2: props => ({
-    stroke: props > 70 ? '#4b9e86' : props  > 49 ? '#3d72eb' : '#b658f5',
+  circle2:{
+    stroke: '#4b9e86' ,
     fill: 'none',
     strokeWidth: 4,
     animation: '$progress 1s ease-out forwards'
-  }),
-  '@keyframes progress': {
-    '0%': {
-      strokeDasharray: '0 100'
-    }
   }
 }));
 

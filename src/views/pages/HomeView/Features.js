@@ -130,14 +130,14 @@ function Features({ className, ...rest }) {
                   >
                     Perfeito tanto para traders quanto pra investidores.
                   </Typography>
-                  <Button
+                  {/* <Button
                     variant="outlined"
                     component="a"
                     href="https://sketch.cloud/s/q4a8e"
                     target="_blank"
                   >
                     Teste aqui
-                  </Button>
+                  </Button> */}
                 </Box>
               </Box>
             </Grid>

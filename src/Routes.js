@@ -28,112 +28,112 @@ const routesConfig = [
     path: '/404',
     component: lazy(() => import('src/views/pages/Error404View'))
   },
-  {
-    exact: true,
-    guard: GuestGuard,
-    path: '/login',
-    component: lazy(() => import('src/views/auth/LoginView'))
-  },
-  {
-    exact: true,
-    guard: GuestGuard,
-    path: '/register',
-    component: lazy(() => import('src/views/auth/RegisterView'))
-  },
-  {
-    path: '/app',
-    guard: FirebaseGuard,
-    layout: DashboardLayout,
-    routes: [
-      {
-        exact: true,
-        path: '/app',
-        component: () => <Redirect to="/app/analysis" />
-      },
-      {
-        exact: true,
-        path: '/app/account',
-        component: lazy(() => import('src/views/pages/AccountView'))
-      },
-      {
-        exact: true,
-        path: '/app/analysis',
-        component: lazy(() => import('src/views/pages/Analysis'))
-      },
-      {
-        exact: true,
-        path: '/app/analysis/sentiments',
-        component: lazy(() => import('src/views/pages/Analysis/Sentiments'))
-      },
-      {
-        exact: true,
-        path: '/app/analysis/valuation',
-        component: lazy(() => import('src/views/pages/Analysis/Valuation'))
-      },
-      {
-        exact: true,
-        path: '/app/analysis/stocks',
-        path: [
-          '/app/analysis/stocks/:tickerID',
-        ],
-        component: lazy(() => import('src/views/pages/StocksView'))
-      },
-      {
-        exact: true,
-        path: '/app/articles',
-        component: lazy(() => import('src/views/pages/ArticlesView'))
-      },
-      {
-        exact: true,
-        path: '/app/articles/:detail',
-        component: lazy(() => import('src/views/pages/ArticlesView/ArticlesViewDetails'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers',
-        component: lazy(() => import('src/views/management/CustomerListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers/:customerId',
-        component: lazy(() => import('src/views/management/CustomerDetailsView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers/:customerId/edit',
-        component: lazy(() => import('src/views/management/CustomerEditView'))
-      },
-      {
-        exact: true,
-        path: [
-          '/app/support/chat/new',
-          '/app/support/chat/:threadKey'
-        ],
-        component: lazy(() => import('src/views/chat/ChatView'))
-      },
-      {
-        exact: true,
-        path: '/app/support/chat',
-        component: () => <Redirect to="/app/support/chat/new" />
-      },
-      {
-        exact: true,
-        path: [
-          '/app/support/mail/label/:customLabel/:mailId?',
-          '/app/support/mail/:systemLabel/:mailId?'
-        ],
-        component: lazy(() => import('src/views/mail/MailView'))
-      },
-      {
-        exact: true,
-        path: '/app/support/mail',
-        component: () => <Redirect to="/app/support/mail/all" />
-      },
-      {
-        component: () => <Redirect to="/404" />
-      }
-    ]
-  },
+  // {
+  //   exact: true,
+  //   guard: GuestGuard,
+  //   path: '/login',
+  //   component: lazy(() => import('src/views/auth/LoginView'))
+  // },
+  // {
+  //   exact: true,
+  //   guard: GuestGuard,
+  //   path: '/register',
+  //   component: lazy(() => import('src/views/auth/RegisterView'))
+  // },
+  // {
+  //   path: '/app',
+  //   guard: FirebaseGuard,
+  //   layout: DashboardLayout,
+  //   routes: [
+  //     {
+  //       exact: true,
+  //       path: '/app',
+  //       component: () => <Redirect to="/app/analysis" />
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/account',
+  //       component: lazy(() => import('src/views/pages/AccountView'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/analysis',
+  //       component: lazy(() => import('src/views/pages/Analysis'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/analysis/sentiments',
+  //       component: lazy(() => import('src/views/pages/Analysis/Sentiments'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/analysis/valuation',
+  //       component: lazy(() => import('src/views/pages/Analysis/Valuation'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/analysis/stocks',
+  //       path: [
+  //         '/app/analysis/stocks/:tickerID',
+  //       ],
+  //       component: lazy(() => import('src/views/pages/StocksView'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/articles',
+  //       component: lazy(() => import('src/views/pages/ArticlesView'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/articles/:detail',
+  //       component: lazy(() => import('src/views/pages/ArticlesView/ArticlesViewDetails'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/management/customers',
+  //       component: lazy(() => import('src/views/management/CustomerListView'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/management/customers/:customerId',
+  //       component: lazy(() => import('src/views/management/CustomerDetailsView'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/management/customers/:customerId/edit',
+  //       component: lazy(() => import('src/views/management/CustomerEditView'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: [
+  //         '/app/support/chat/new',
+  //         '/app/support/chat/:threadKey'
+  //       ],
+  //       component: lazy(() => import('src/views/chat/ChatView'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/support/chat',
+  //       component: () => <Redirect to="/app/support/chat/new" />
+  //     },
+  //     {
+  //       exact: true,
+  //       path: [
+  //         '/app/support/mail/label/:customLabel/:mailId?',
+  //         '/app/support/mail/:systemLabel/:mailId?'
+  //       ],
+  //       component: lazy(() => import('src/views/mail/MailView'))
+  //     },
+  //     {
+  //       exact: true,
+  //       path: '/app/support/mail',
+  //       component: () => <Redirect to="/app/support/mail/all" />
+  //     },
+  //     {
+  //       component: () => <Redirect to="/404" />
+  //     }
+  //   ]
+  // },
   {
     path: '*',
     layout: MainLayout,
@@ -143,11 +143,11 @@ const routesConfig = [
         path: '/home',
         component: HomeView
       },
-      {
-        exact: true,
-        path: '/pricing',
-        component: lazy(() => import('src/views/pages/PricingView'))
-      },
+      // {
+      //   exact: true,
+      //   path: '/pricing',
+      //   component: lazy(() => import('src/views/pages/PricingView'))
+      // },
       {
         component: () => <Redirect to="/404" />
       }

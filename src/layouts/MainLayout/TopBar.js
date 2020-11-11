@@ -59,7 +59,7 @@ function TopBar({ className, ...rest }) {
           </Typography>
         </Hidden>
         <Box flexGrow={1} />
-        <Link
+        {/* <Link
           className={classes.link}
           color="textSecondary"
           component={RouterLink}
@@ -68,7 +68,7 @@ function TopBar({ className, ...rest }) {
           variant="body2"
         >
           Dashboard
-        </Link>
+        </Link> */}
       </Toolbar>
     </AppBar>
   );
