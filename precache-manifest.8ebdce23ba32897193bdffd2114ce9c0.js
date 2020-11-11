@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e44ed3d54fc602186dd97703850c03bf",
+    "revision": "a38529c15b382320c4fd5777923fa03a",
     "url": "/kalan-interface/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kalan-interface/static/css/2.6fecc2cc.chunk.css"
   },
   {
-    "revision": "1cdd8bdba9dc013d1ebe",
+    "revision": "760d7e7c2da6456948a5",
     "url": "/kalan-interface/static/css/main.2b289f01.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kalan-interface/static/js/3.ffd27ef2.chunk.js"
   },
   {
-    "revision": "1cdd8bdba9dc013d1ebe",
-    "url": "/kalan-interface/static/js/main.9d63e3d8.chunk.js"
+    "revision": "760d7e7c2da6456948a5",
+    "url": "/kalan-interface/static/js/main.c1b1c0c2.chunk.js"
   },
   {
     "revision": "d3b535da3b9f44cafa79",
