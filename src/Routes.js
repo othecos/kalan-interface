@@ -7,7 +7,8 @@ import React, {
 import {
   Switch,
   Redirect,
-  Route
+  Route,
+  BrowserRouter
 } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
 import DocsLayout from 'src/layouts/DocsLayout';
@@ -149,7 +150,7 @@ const routesConfig = [
       //   component: lazy(() => import('src/views/pages/PricingView'))
       // },
       {
-        component: () => <Redirect to="/404" />
+        component: () => <Redirect to="/home" />
       }
     ]
   }
@@ -157,32 +158,35 @@ const routesConfig = [
 
 const renderRoutes = (routes) => (routes ? (
   <Suspense fallback={<LoadingScreen />}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Switch>
-      {routes.map((route, i) => {
-        const Guard = route.guard || Fragment;
-        const Layout = route.layout || Fragment;
-        const Component = route.component;
-        const guardProps = route.redirectTo ? {
-          redirectTo: route.redirectTo
-        } : null
-        return (
-          <Route
-            key={i}
-            path={route.path}
-            exact={route.exact}
-            render={(props) => (
-              <Guard {...guardProps}>
-                <Layout>
-                  {route.routes
-                    ? renderRoutes(route.routes)
-                    : <Component {...props} />}
-                </Layout>
-              </Guard>
-            )}
-          />
-        );
-      })}
+        {routes.map((route, i) => {
+          const Guard = route.guard || Fragment;
+          const Layout = route.layout || Fragment;
+          const Component = route.component;
+          const guardProps = route.redirectTo ? {
+            redirectTo: route.redirectTo
+          } : null
+          return (
+            <Route
+              key={i}
+              path={route.path}
+              exact={route.exact}
+              render={(props) => (
+                <Guard {...guardProps}>
+                  <Layout>
+                    {route.routes
+                      ? renderRoutes(route.routes)
+                      : <Component {...props} />}
+                  </Layout>
+                </Guard>
+              )}
+            />
+
+          );
+        })}
     </Switch>
+      </BrowserRouter>
   </Suspense>
 ) : null);
 
