@@ -133,13 +133,13 @@ function Hero({ className, ...rest }) {
               <div className={classes.shape}>
                 <img
                   alt="Shapes"
-                  src="/static/home/shapes.svg"
+                  src={ `${process.env.PUBLIC_URL}/static/home/shapes.svg`}
                 />
               </div>
               <div className={classes.image}>
                 <img
                   alt="Presentation"
-                  src="/static/home/dark-light.png"
+                  src={ `${process.env.PUBLIC_URL}/static/home/dark-light.png`}
                 />
               </div>
             </Box>

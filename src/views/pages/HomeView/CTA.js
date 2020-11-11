@@ -55,7 +55,7 @@ function CTA({ className, ...rest }) {
             color="secondary"
             // component={RouterLink}
             href="https://www.notion.so/475d624353d94e20ac4c7d14cea3e1a9?v=b0fdfe833d214d03b2382ea7eaafd695"
-            targe="_blank"
+            target="_blank"
             variant="contained"
           >
             Releases
