@@ -7,9 +7,9 @@ import {
 import Page from 'src/components/Page';
 import Header from './Header';
 import LatestProjects from 'src/views/reports/DashboardView/LatestProjects';
-import StocksPreview from './StocksPreview';
-import SentimentsPreview from './Sentiments/SentimentsPreview';
-import SentimentsGraph from './Sentiments/SentimentsGraph';
+import StocksPreview from './StocksView/StocksPreview';
+import SentimentsPreview from './SentimentsView/SentimentsPreview';
+import SentimentsGraph from './SentimentsView/SentimentsGraph';
 
 const useStyles = makeStyles((theme) => ({
   root: {

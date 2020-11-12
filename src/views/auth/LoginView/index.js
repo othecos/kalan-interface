@@ -155,7 +155,7 @@ function LoginView() {
             >
               <Avatar
                 alt="Person"
-                src="/static/images/avatars/avatar_buffet.jpg"
+                src={`${process.env.PUBLIC_URL}/static/images/avatars/avatar_buffet.jpg`}
               />
               <Box ml={3}>
                 <Typography

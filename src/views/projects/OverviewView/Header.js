@@ -84,7 +84,7 @@ function Header({ className, ...rest }) {
             <img
               alt="Cover"
               className={classes.image}
-              src="/static/images/undraw_growth_analytics_8btt.svg"
+              src={`${process.env.PUBLIC_URL}/static/images/undraw_growth_analytics_8btt.svg`}
             />
           </Grid>
         </Hidden>

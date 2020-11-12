@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
@@ -64,6 +64,7 @@ function App() {
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <SnackbarProvider maxSnack={1}>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Router history={history}>
               <FirebaseAuth>
                 <ScrollReset />
@@ -73,6 +74,7 @@ function App() {
                 <Routes />
               </FirebaseAuth>
             </Router>
+            </BrowserRouter>
           </SnackbarProvider>
         </MuiPickersUtilsProvider>
       </StylesProvider>

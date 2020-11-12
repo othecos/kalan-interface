@@ -7,6 +7,8 @@ import { isLoaded, isEmpty } from 'react-redux-firebase'
 const FirebaseGuard = ({ children }) => {
   const { auth } = useSelector((state) => state.firebase);
   if (isLoaded(auth) && !isEmpty(auth)) {
+    
+    console.log('Render children')
     return children;
   } else {
     return <Redirect to="/login" />;

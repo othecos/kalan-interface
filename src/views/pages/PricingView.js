@@ -94,7 +94,7 @@ function PricingView() {
                 <img
                   alt="Product"
                   className={classes.productImage}
-                  src="/static/images/products/product_freelancer.svg"
+                  src={`${process.env.PUBLIC_URL}/static/images/products/product_freelancer.svg`}
                 />
                 <Typography
                   component="h3"
@@ -167,7 +167,7 @@ function PricingView() {
                 <img
                   alt="Product"
                   className={classes.productImage}
-                  src="/static/images/products/product_agency--outlined.svg"
+                  src={`${process.env.PUBLIC_URL}/static/images/products/product_agency--outlined.svg`}
                 />
                 <Typography
                   component="h3"
@@ -240,7 +240,7 @@ function PricingView() {
                 <img
                   alt="Product"
                   className={classes.productImage}
-                  src="/static/images/products/product_enterprise.svg"
+                  src={`${process.env.PUBLIC_URL}/static/images/products/product_enterprise.svg`}
                 />
                 <Typography
                   component="h3"

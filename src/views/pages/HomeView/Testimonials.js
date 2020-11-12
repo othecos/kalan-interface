@@ -45,7 +45,7 @@ function Testimonials({ className, ...rest }) {
           justifyContent="center"
           alignItems="center"
         >
-          <Avatar src="/static/home/olivier.png" />
+          <Avatar src={`${process.env.PUBLIC_URL}/static/home/olivier.png`} />
           <Box ml={2}>
             <Typography
               variant="body1"

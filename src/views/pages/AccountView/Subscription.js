@@ -104,7 +104,7 @@ function Subscription({ className, ...rest }) {
               <img
                 alt="Product"
                 className={classes.productImage}
-                src="/static/images/products/product_freelancer.svg"
+                src={`${process.env.PUBLIC_URL}/static/images/products/product_freelancer.svg`}
               />
               <Typography
                 variant="overline"

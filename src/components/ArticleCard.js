@@ -78,7 +78,7 @@ function ArticleCard({ article, className, ...rest }) {
             <Link
               color="textPrimary"
               component={RouterLink}
-              to={`/app/articles/${article._id}`}
+              to={`/app/sentiments/${article._id}`}
               variant="h5"
             >
               {article?.title.text}

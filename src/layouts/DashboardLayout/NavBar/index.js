@@ -48,34 +48,29 @@ import NavItem from './NavItem';
 
 const navConfig = [
   {
-    subheader: 'Pages',
+    subheader: 'Páginas',
     href: '/app/pages',
     items: [
       {
-        title: 'Analysis',
+        title: 'Analises',
         items: [
           {
             title: 'Overview',
             href: '/app/analysis'
           },
           {
-            title: 'Sentiments',
+            title: 'Sentimentos',
             href: '/app/analysis/sentiments'
           },
           {
-            title: 'Valuation',
-            href: '/app/analysis/valuation'
+            title: 'Ações',
+            href: '/app/analysis/stocks'
           },
         ],
         icon: BarChartIcon
       },
       {
-        title: 'Articles',
-        href: '/app/articles',
-        icon: NewsIcon,
-      },
-      {
-        title: 'Plans',
+        title: 'Planos',
         href: '/pricing',
         icon: DollarSignIcon,
         info: () => (
