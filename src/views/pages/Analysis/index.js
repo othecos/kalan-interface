@@ -32,7 +32,7 @@ function Analysis() {
   return (
     <Page
       className={classes.root}
-      title="Analises"
+      title="Análises"
     >
       <Container
         maxWidth={false}

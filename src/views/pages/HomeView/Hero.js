@@ -84,7 +84,7 @@ function Hero({ className, ...rest }) {
                   color="textSecondary"
                 >
                   Um gerador de insights e orientações de trade de ativos do mercado financeiro brasileiro.
-                Gerando analises de curto, médio e longo prazo sobre as principais ações com o uso de Inteligencia Artificial e Machine Learning
+                Gerando Análises de curto, médio e longo prazo sobre as principais ações com o uso de Inteligencia Artificial e Machine Learning
                 </Typography>
               </Box>
               <Box mt={3}>

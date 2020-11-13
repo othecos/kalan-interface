@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Sentiments({ article, className, ...rest }) {
+function Sentiments({ sentiments, className, ...rest }) {
   const classes = useStyles();
   useEffect(() => {
-  }, [article])
+  }, [sentiments])
   return (
     <Grid container   
     className={clsx(classes.root, className)}
@@ -91,7 +91,7 @@ function Sentiments({ article, className, ...rest }) {
                   color="textSecondary"
                   className={classes.wrap}
                 >
-                  {article?.title?.text}
+                  {sentiments?.title?.text}
                 </Typography>
               </ListItem>
               <ListItem
@@ -111,7 +111,7 @@ function Sentiments({ article, className, ...rest }) {
                   noWrap
                   className={classes.wrap}
                 >
-                  {article?.title?.href}
+                  {sentiments?.title?.href}
                 </Typography>
               </ListItem>
             </List>
@@ -120,7 +120,7 @@ function Sentiments({ article, className, ...rest }) {
 
       </Grid>
       <Grid item xs={12} md={4}>
-        <Score score={article.score} terms={['Selic', 'Selic Up', 'Selic stay']} />
+        <Score score={sentiments.score} terms={['Selic', 'Selic Up', 'Selic stay']} />
       </Grid>
     </Grid>
   );
@@ -128,9 +128,9 @@ function Sentiments({ article, className, ...rest }) {
 
 Sentiments.propTypes = {
   className: PropTypes.string,
-  article: PropTypes.object
+  sentiments: PropTypes.object
 };
 Sentiments.defaultProps = {
-  article: {}
+  sentiments: {}
 }
 export default Sentiments;

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   root: {}
 }));
 
-function ArticlesPreview({ sentimentPreview, className, ...rest }) {
+function ArticleView({ article, className, ...rest }) {
   const classes = useStyles();
 
   return (
@@ -43,7 +43,7 @@ function ArticlesPreview({ sentimentPreview, className, ...rest }) {
                     variant="h2"
                     color="textPrimary"
                   >
-                    {sentimentPreview?.title?.text}
+                    {article?.title?.text}
               </Typography>
                 </Grid>
               </Grid>
@@ -53,7 +53,7 @@ function ArticlesPreview({ sentimentPreview, className, ...rest }) {
                   variant="body1"
                   color="textSecondary"
                 >
-                  {sentimentPreview.resume}
+                  {article.resume}
                 </Typography>
               </Box>
             </Box>
@@ -64,12 +64,12 @@ function ArticlesPreview({ sentimentPreview, className, ...rest }) {
   );
 }
 
-ArticlesPreview.propTypes = {
+ArticleView.propTypes = {
   className: PropTypes.string,
-  sentimentPreview: PropTypes.object
+  article: PropTypes.object
 };
-ArticlesPreview.defaultProps = {
-  sentimentPreview :{
+ArticleView.defaultProps = {
+  article :{
     title:{
       text: '',
       href: ''
@@ -78,4 +78,4 @@ ArticlesPreview.defaultProps = {
   }
 }
 
-export default ArticlesPreview;
+export default ArticleView;

@@ -16,11 +16,11 @@ import Page from 'src/components/Page';
 import LoadingScreen from 'src/components/LoadingScreen';
 import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import Keywords from './Keywords';
+import KeywordsView from './KeywordsView';
 import Header from './Header'
-import Sentiments from './Sentiments';
+import SentimentsView from './SentimentsView';
 import { trimEllpsis } from 'src/utils/string'
-import ArticlesPreview from './ArticlesPreview';
+import ArticleView from './ArticleView';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -111,9 +111,9 @@ function ArticlesViewDetails(props) {
         {
           article ?
             <Box mt={3}>
-              {currentTab === 'article' && <ArticlesPreview sentimentPreview={article} />}
-              {currentTab === 'sentiments' && <Sentiments article={article} />}
-              {currentTab === 'keywords' && <Keywords keywords={article.keywords} />}
+              {currentTab === 'article' && <ArticleView article={article} />}
+              {currentTab === 'sentiments' && <SentimentsView article={article} />}
+              {currentTab === 'keywords' && <KeywordsView keywords={article.keywords} />}
             </Box> :
             <Box  
               display="flex" 

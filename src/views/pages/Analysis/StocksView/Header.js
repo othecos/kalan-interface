@@ -1,25 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React  from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  Box,
   Breadcrumbs,
-  Button,
   Grid,
   Link,
-  SvgIcon,
   Typography,
   makeStyles,
-  Menu,
-  MenuItem
 } from '@material-ui/core';
-import {
-  Calendar as CalendarIcon,
-} from 'react-feather';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSector } from 'src/actions/analysisActions';
+import SectorFilter from 'src/components/SectorFilter';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -34,27 +25,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const sectorsList = [
-  {
-    key: 'bank',
-    label: 'Setor Bancário'
-  },
-];
 function Header({ className, ...rest }) {
-  const dispatch = useDispatch();
   const classes = useStyles();
-  const actionRef = useRef(null);
-  const {sector} = useSelector(state => state.analysis)
-  const [isMenuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    dispatch(setSector(sectorsList[0]));
-  }, [dispatch]);
-
-  const handleSectorChange = async (sector ) =>{
-    setMenuOpen(false)
-    await dispatch(setSector(sector));
-  }
   return (
     <Grid
       container
@@ -74,7 +46,7 @@ function Header({ className, ...rest }) {
             to="/app/analysis"
             component={RouterLink}
           >
-            Analises
+            Análises
           </Link>
           <Link
             variant="body1"
@@ -93,42 +65,7 @@ function Header({ className, ...rest }) {
         </Typography>
       </Grid>
       <Grid item>
-        <Button
-          ref={actionRef}
-          onClick={() => setMenuOpen(true)}
-        >
-          <SvgIcon
-            fontSize="small"
-            className={classes.actionIcon}
-          >
-            <CalendarIcon />
-          </SvgIcon>
-          {sector?.label}
-        </Button>
-        <Menu
-          anchorEl={actionRef.current}
-          onClose={() => setMenuOpen(false)}
-          open={isMenuOpen}
-          PaperProps={{ className: classes.menu }}
-          getContentAnchorEl={null}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center'
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center'
-          }}
-        >
-          {sectorsList.map((t) => (
-            <MenuItem
-              key={t.key}
-              onClick={()=> handleSectorChange(t)}
-            >
-              {t.label}
-            </MenuItem>
-          ))}
-        </Menu>
+       <SectorFilter/>
       </Grid>
     
     </Grid>

@@ -44,7 +44,7 @@ function Header({ className,ticker, ...rest }) {
             to="/app/analysis"
             component={RouterLink}
           >
-            Ánalises
+            Análises
           </Link>
           <Link
             variant="body1"
@@ -58,7 +58,7 @@ function Header({ className,ticker, ...rest }) {
             variant="body1"
             color="textPrimary"
           >
-            {ticker || 'XXXX'}
+            {ticker || ''}
           </Typography>
         </Breadcrumbs>
       </Grid>
