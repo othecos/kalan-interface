@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bdbbfe326cb56ae6dc9a7d43645520fe",
+    "revision": "9e80f8d1f4162966357e8d0773fb3973",
     "url": "/kalan-interface/index.html"
   },
   {
@@ -68,23 +68,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kalan-interface/static/js/6.2bcf1696.chunk.js"
   },
   {
-    "revision": "c35e36c1cde377c54657",
-    "url": "/kalan-interface/static/js/7.9e8ce6d9.chunk.js"
+    "revision": "d339449019cdcd8a733a",
+    "url": "/kalan-interface/static/js/7.b5cd6347.chunk.js"
   },
   {
     "revision": "9bca3ff4daf8377a085e",
     "url": "/kalan-interface/static/js/8.bc59d7aa.chunk.js"
   },
   {
-    "revision": "facc17995b045852fc78",
-    "url": "/kalan-interface/static/js/9.56864e8f.chunk.js"
+    "revision": "9123bf515346720d6469",
+    "url": "/kalan-interface/static/js/9.ac145003.chunk.js"
   },
   {
     "revision": "8f6531bb3c836165572d",
     "url": "/kalan-interface/static/js/main.cc5298a2.chunk.js"
   },
   {
-    "revision": "352437fede77a0101b51",
-    "url": "/kalan-interface/static/js/runtime-main.922da0ca.js"
+    "revision": "2372fef6d526590fe752",
+    "url": "/kalan-interface/static/js/runtime-main.86f18a21.js"
   }
 ]);
