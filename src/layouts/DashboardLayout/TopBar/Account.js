@@ -80,7 +80,7 @@ function Account() {
             variant="h6"
             color="inherit"
           >
-            {`${account?.user?.firstName} ${account?.user?.lastName}`}
+            {`${account?.user?.firstName || 'Otavio'} ${account?.user?.lastName || ''}`}
           </Typography>
         </Hidden>
       </Box>
@@ -100,16 +100,16 @@ function Account() {
           component={RouterLink}
           to="/app/social/profile"
         >
-          Profile
+          Perfil
         </MenuItem>
         <MenuItem
           component={RouterLink}
           to="/app/account"
         >
-          Account
+          Minha conta
         </MenuItem>
         <MenuItem onClick={handleLogout}>
-          Logout
+          Sair
         </MenuItem>
       </Menu>
     </>

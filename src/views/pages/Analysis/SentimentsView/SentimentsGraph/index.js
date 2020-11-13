@@ -62,7 +62,6 @@ function SentimentsGraph({ className, ...rest }) {
       {...rest}
     >
       <CardHeader
-        action={<GenericMoreButton />}
         title="Sentimento das noticias"
       />
       <Divider />

@@ -24,7 +24,8 @@ import { Users as UsersIcon } from 'react-feather';
 import {
   Edit as EditIcon,
   ArrowRight as ArrowRightIcon,
-  Search as SearchIcon
+  Search as SearchIcon,
+  Eye
 } from 'react-feather';
 
 const useStyles = makeStyles((theme) => ({
@@ -81,13 +82,13 @@ function ArticleCard({ article, className, ...rest }) {
               to={`/app/sentiments/${article._id}`}
               variant="h5"
             >
-              {article?.title.text}
+              {article?.title?.text}
             </Link>
             <Typography
               variant="body2"
               color="textSecondary"
             >
-              by
+              por
               {' '}
               <Link
                 color="textPrimary"
@@ -98,7 +99,7 @@ function ArticleCard({ article, className, ...rest }) {
                 {article?.metadata.source}
               </Link>
               {' '}
-              | Publicated
+              | Publicado
               {' '}
               {article?.metadata?.datetime}
             </Typography>
@@ -151,7 +152,7 @@ function ArticleCard({ article, className, ...rest }) {
         display="flex"
         alignItems="center"
       >
-        {isLiked ? (
+        {/* {isLiked ? (
           <Tooltip title="Unlike">
             <IconButton
               className={classes.likedButton}
@@ -166,26 +167,27 @@ function ArticleCard({ article, className, ...rest }) {
                 <FavoriteBorderIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-          )}
-        <Typography
-          variant="subtitle2"
-          color="textSecondary"
-        >
-          {likes}
-        </Typography>
-        <SvgIcon
+          )} */}
+           <SvgIcon
           fontSize="small"
-          color="action"
+          color="secondary"
           className={classes.subscribersIcon}
         >
-          <UsersIcon />
+          <Eye />
         </SvgIcon>
+        <Typography
+          variant="subtitle2"
+          color="secondary"
+        >
+          {article?.score?.label || 'Neutro'}
+        </Typography>
+       
         <Box flexGrow={1} />
         <IconButton
           component={RouterLink}
           to={`/app/analysis/sentiments/${article._id}`}
         >
-          <SvgIcon fontSize="small">
+          <SvgIcon  fontSize="small">
             <ArrowRightIcon />
           </SvgIcon>
         </IconButton>

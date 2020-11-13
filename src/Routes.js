@@ -82,48 +82,7 @@ const routesConfig = [
       },
     
       {
-        exact: true,
-        path: '/app/management/customers',
-        component: lazy(() => import('src/views/management/CustomerListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers/:customerId',
-        component: lazy(() => import('src/views/management/CustomerDetailsView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers/:customerId/edit',
-        component: lazy(() => import('src/views/management/CustomerEditView'))
-      },
-      {
-        exact: true,
-        path: [
-          '/app/support/chat/new',
-          '/app/support/chat/:threadKey'
-        ],
-        component: lazy(() => import('src/views/chat/ChatView'))
-      },
-      {
-        exact: true,
-        path: '/app/support/chat',
-        component: () => <Redirect to="/app/support/chat/new" />
-      },
-      {
-        exact: true,
-        path: [
-          '/app/support/mail/label/:customLabel/:mailId?',
-          '/app/support/mail/:systemLabel/:mailId?'
-        ],
-        component: lazy(() => import('src/views/mail/MailView'))
-      },
-      {
-        exact: true,
-        path: '/app/support/mail',
-        component: () => <Redirect to="/app/support/mail/all" />
-      },
-      {
-        component: () => <Redirect to="/404" />
+        component: () => <Redirect to="/app/analysis" />
       }
     ]
   },

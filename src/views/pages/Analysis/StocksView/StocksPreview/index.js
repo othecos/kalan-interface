@@ -73,7 +73,6 @@ function StocksPreview({ className, ...rest }) {
       {...rest}
     >
       <CardHeader
-        action={<GenericMoreButton />}
         title="Ações"
       />
       <Divider />

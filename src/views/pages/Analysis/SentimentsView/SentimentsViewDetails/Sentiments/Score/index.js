@@ -55,7 +55,7 @@ function Score({score,terms, className, ...rest }) {
           <Typography
             align="center"
             variant="h3"
-            color="textPrimary"
+            color="secondary"
           >
             {score.label}
           </Typography>

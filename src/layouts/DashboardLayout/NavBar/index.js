@@ -41,7 +41,9 @@ import {
   PieChart as PieChartIcon,
   Share2 as ShareIcon,
   Users as UsersIcon,
-  FileText as NewsIcon
+  FileText as NewsIcon,
+  Eye,
+  Activity
 } from 'react-feather';
 import Logo from 'src/components/Logo';
 import NavItem from './NavItem';
@@ -52,35 +54,32 @@ const navConfig = [
     href: '/app/pages',
     items: [
       {
-        title: 'Analises',
-        items: [
-          {
-            title: 'Overview',
-            href: '/app/analysis'
-          },
-          {
-            title: 'Sentimentos',
-            href: '/app/analysis/sentiments'
-          },
-          {
-            title: 'Ações',
-            href: '/app/analysis/stocks'
-          },
-        ],
+        title: 'Dashboard',
+        href: '/app/analysis',
         icon: BarChartIcon
       },
       {
-        title: 'Planos',
-        href: '/pricing',
-        icon: DollarSignIcon,
-        info: () => (
-          <Chip
-            color="secondary"
-            size="small"
-            label="Turn Pro"
-          />
-        )
-      }
+        title: 'Sentimentos',
+        href: '/app/analysis/sentiments',
+        icon: Activity
+      },
+      {
+        title: 'Ações',
+        href: '/app/analysis/stocks',
+        icon: Eye
+      },
+      // {
+      //   title: 'Planos',
+      //   href: '/pricing',
+      //   icon: DollarSignIcon,
+      //   info: () => (
+      //     <Chip
+      //       color="secondary"
+      //       size="small"
+      //       label="Turn Pro"
+      //     />
+      //   )
+      // }
     ]
   }
 ];
@@ -177,7 +176,7 @@ function NavBar({ openMobile, onMobileClose, }) {
       flexDirection="column"
     >
       <PerfectScrollbar options={{ suppressScrollX: true }}>
-        <Hidden lgUp>
+        {/* <Hidden lgUp>
           <Box
             p={2}
             display="flex"
@@ -187,7 +186,7 @@ function NavBar({ openMobile, onMobileClose, }) {
               <Logo />
             </RouterLink>
           </Box>
-        </Hidden>
+        </Hidden> */}
         <Box p={2}>
           <Box
             display="flex"
@@ -212,7 +211,7 @@ function NavBar({ openMobile, onMobileClose, }) {
               color="textPrimary"
               underline="none"
             >
-              {`${user?.firstName} ${user?.lastName}`}
+              {`${user?.firstName || 'Otavio'} ${user?.lastName || ''}`}
             </Link>
             <Typography
               variant="body2"

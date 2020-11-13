@@ -113,14 +113,14 @@ function Results({ className, articles, ...rest }) {
           display="flex"
           alignItems="center"
         >
-          <Button
+          {/* <Button
             className={classes.sortButton}
             onClick={handleSortOpen}
             ref={sortRef}
           >
             {selectedSort}
             <ArrowDropDownIcon />
-          </Button>
+          </Button> */}
           <ToggleButtonGroup
             exclusive
             onChange={handleModeChange}
@@ -167,7 +167,7 @@ function Results({ className, articles, ...rest }) {
       >
         <Pagination onChange={handlePaginationChange} count={count} />
       </Box>
-      <Menu
+      {/* <Menu
         anchorEl={sortRef.current}
         className={classes.menu}
         onClose={handleSortClose}
@@ -184,7 +184,7 @@ function Results({ className, articles, ...rest }) {
             </MenuItem>
           )
         )}
-      </Menu>
+      </Menu> */}
     </div>
   );
 }
