@@ -24,10 +24,6 @@ const sectorsList = [
     key: 'bank',
     label: 'Setor Bancário'
   },
-  {
-    key: 'eletric',
-    label: 'Setor Eletrico'
-  },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -65,19 +61,11 @@ function Header({ className, ...rest }) {
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"
         >
-          <Link
-            variant="body1"
-            color="inherit"
-            to="/app"
-            component={RouterLink}
-          >
-            Application
-          </Link>
           <Typography
             variant="body1"
             color="textPrimary"
           >
-            Analytics
+            Análises
           </Typography>
         </Breadcrumbs>
       </Grid>

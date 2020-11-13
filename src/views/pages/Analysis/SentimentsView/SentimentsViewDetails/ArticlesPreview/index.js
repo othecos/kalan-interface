@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
   root: {}
 }));
 
-function ArticlePreview({ articlePreview, className, ...rest }) {
+function ArticlesPreview({ sentimentPreview, className, ...rest }) {
   const classes = useStyles();
 
   return (
     <Page
       className={classes.root}
-      title="Article Preview"
+      title="Artigo"
     >
       <Container maxWidth="lg">
         <Paper
@@ -43,7 +43,7 @@ function ArticlePreview({ articlePreview, className, ...rest }) {
                     variant="h2"
                     color="textPrimary"
                   >
-                    {articlePreview?.title?.text}
+                    {sentimentPreview?.title?.text}
               </Typography>
                 </Grid>
               </Grid>
@@ -53,7 +53,7 @@ function ArticlePreview({ articlePreview, className, ...rest }) {
                   variant="body1"
                   color="textSecondary"
                 >
-                  {articlePreview.resume}
+                  {sentimentPreview.resume}
                 </Typography>
               </Box>
             </Box>
@@ -64,9 +64,18 @@ function ArticlePreview({ articlePreview, className, ...rest }) {
   );
 }
 
-ArticlePreview.propTypes = {
+ArticlesPreview.propTypes = {
   className: PropTypes.string,
-  articlePreview: PropTypes.object.isRequired
+  sentimentPreview: PropTypes.object
 };
+ArticlesPreview.defaultProps = {
+  sentimentPreview :{
+    title:{
+      text: '',
+      href: ''
+    },
+    resume: ''
+  }
+}
 
-export default ArticlePreview;
+export default ArticlesPreview;

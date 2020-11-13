@@ -41,25 +41,19 @@ function Header({ className,ticker, ...rest }) {
           <Link
             variant="body1"
             color="inherit"
-            to="/app"
+            to="/app/analysis"
             component={RouterLink}
           >
-            Application
+            Ánalises
           </Link>
           <Link
             variant="body1"
             color="inherit"
-            to="/app/application"
+            to="/app/analysis/stocks"
             component={RouterLink}
           >
-            Application
+            Ações
           </Link>
-          <Typography
-            variant="body1"
-            color="textPrimary"
-          >
-            Stocks
-          </Typography>
           <Typography
             variant="body1"
             color="textPrimary"

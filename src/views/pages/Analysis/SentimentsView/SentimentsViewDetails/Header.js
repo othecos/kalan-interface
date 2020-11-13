@@ -21,11 +21,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Header({articleTitleShortHand, className, ...rest }) {
+function Header({articleTitleShortHand,score, className, ...rest }) {
   const classes = useStyles();
 
   return (
     <Grid
+      alignItems="center"
       container
       spacing={3}
       justify="space-between"
@@ -43,15 +44,15 @@ function Header({articleTitleShortHand, className, ...rest }) {
             to="/app"
             component={RouterLink}
           >
-            Application
+            Aplicação
           </Link>
           <Link
             variant="body1"
             color="inherit"
-            to="/app/articles"
+            to="/app/analysis/sentiments"
             component={RouterLink}
           >
-            Articles
+            Sentimentos
           </Link>
           <Typography
             variant="body1"
@@ -60,6 +61,12 @@ function Header({articleTitleShortHand, className, ...rest }) {
             {articleTitleShortHand}
           </Typography>
         </Breadcrumbs>
+
+      </Grid>
+      <Grid item>
+        <Button color="secondary" variant="outlined">
+            {score?.label || 'Neutro'}
+        </Button>
       </Grid>
     </Grid>
   );
@@ -67,7 +74,8 @@ function Header({articleTitleShortHand, className, ...rest }) {
 
 Header.propTypes = {
   className: PropTypes.string,
-  articleTitleShortHand: PropTypes.string.isRequired
+  articleTitleShortHand: PropTypes.string.isRequired,
+  score: PropTypes.object
 };
 
 export default Header;

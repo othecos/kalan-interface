@@ -12,7 +12,11 @@ mock.onGet('/api/stocks/top-stocks').reply(200, {
       ticker: 'BBAS3',
       href: 'app/analysis/stocks/BBAS3',
       initials: 'GT',
-      value: '53,032'
+      price: 'R$53,03',
+      valuation: {
+        value: 'R$25,00',
+        status: 'ooverpriced'
+      }
     },
     {
       id: uuidv4(),
@@ -21,7 +25,11 @@ mock.onGet('/api/stocks/top-stocks').reply(200, {
       ticker: 'ITBU3',
       href: 'app/analysis/stocks/ITBU3',
       initials: 'TW',
-      value: '39,551'
+      price: 'R$39,51',
+      valuation: {
+        value: 'R$23,00',
+        status: 'overpriced'
+      }
     },
     {
       id: uuidv4(),
@@ -29,7 +37,11 @@ mock.onGet('/api/stocks/top-stocks').reply(200, {
       name: 'Banco Santander',
       ticker: 'SANB3',
       href: 'app/analysis/stocks/SANB3',
-      value: '23,150'
+      price: 'R$23,15',
+      valuation: {
+        value: 'R$13,00',
+        status: 'overpriced'
+      }
     },
     {
       id: uuidv4(),
@@ -37,7 +49,11 @@ mock.onGet('/api/stocks/top-stocks').reply(200, {
       name: 'Banco BTG',
       ticker: 'BPAC3',
       href: 'app/analysis/stocks/BPAC3',
-      value: '14,093'
+      price: 'R$14,93',
+      valuation: {
+        value: 'R$83,00',
+        status: 'overpriced'
+      }
     },
     {
       id: uuidv4(),
@@ -45,7 +61,11 @@ mock.onGet('/api/stocks/top-stocks').reply(200, {
       name: 'Banco Bradesco',
       ticker: 'BBDC3',
       href: 'app/analysis/stocks/BBDC3',
-      value: '7,251'
+      price: 'R$7,21',
+      valuation: {
+        value: 'R$23,00',
+        status: 'overpriced'
+      }
     }
   ]
 });

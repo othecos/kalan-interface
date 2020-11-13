@@ -46,10 +46,10 @@ function Analysis() {
           
           <Grid
             item
-            md={6}
+            md={12}
             xs={12}
           >
-            <SentimentsPreview />
+             <StocksPreview />
           </Grid>
           <Grid
             item
@@ -63,14 +63,7 @@ function Analysis() {
             md={6}
             xs={12}
           >
-            <StocksPreview />
-          </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-            <LatestProjects />
+            <SentimentsPreview />
           </Grid>
         </Grid>
       </Container>

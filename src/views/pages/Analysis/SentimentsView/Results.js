@@ -103,11 +103,11 @@ function Results({ className, articles, ...rest }) {
           variant="h5"
           color="textPrimary"
         >
-          Showing
+          Visualizando
           {' '}
           {articles?.length}
           {' '}
-          articles
+          noticias
         </Typography>
         <Box
           display="flex"

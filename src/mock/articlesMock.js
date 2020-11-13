@@ -23,8 +23,8 @@ mock.onGet('/api/analysis/sentiments').reply(200, {
       title: 'Primeira noticia',
       source: 'Valor investe',
       sentiments: {
-        label : 'positive',
-        score: 0.82
+        label : 'Positivo',
+        value: 1
       }
     },
     {
@@ -32,8 +32,8 @@ mock.onGet('/api/analysis/sentiments').reply(200, {
       title: 'Segunda noticia',
       source: 'Valor investe',
       sentiments: {
-        label : 'negative',
-        score: 0.12
+        label : 'Negativo',
+        value: -1
       }
     },
     {
@@ -41,8 +41,8 @@ mock.onGet('/api/analysis/sentiments').reply(200, {
       title: 'Terceira noticia',
       source: 'Valor investe',
       sentiments: {
-        label : 'neutral',
-        score: 0.52
+        label : 'Neutro',
+        value: 0
       }
     },
     {
@@ -50,8 +50,8 @@ mock.onGet('/api/analysis/sentiments').reply(200, {
       title: 'Quarta noticia',
       source: 'Valor investe',
       sentiments: {
-        label : 'neutral',
-        score: 0.58
+        label : 'Neutro',
+        value: 0
       }
     },
     {
@@ -59,8 +59,8 @@ mock.onGet('/api/analysis/sentiments').reply(200, {
       title: 'Quinta noticia',
       source: 'Valor investe',
       sentiments: {
-        label : 'positive',
-        score: 0.75
+        label : 'Positivo',
+        value: 1
       }
     },
     {
@@ -68,8 +68,8 @@ mock.onGet('/api/analysis/sentiments').reply(200, {
       title: 'Sexta noticia',
       source: 'Valor investe',
       sentiments: {
-        label : 'negative',
-        score: 0.32
+        label : 'Negativo',
+        value: -1
       }
     },
   ]

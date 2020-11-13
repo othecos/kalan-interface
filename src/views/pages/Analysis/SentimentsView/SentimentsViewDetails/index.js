@@ -16,11 +16,11 @@ import Page from 'src/components/Page';
 import LoadingScreen from 'src/components/LoadingScreen';
 import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import ArticlePreview from './ArticlePreview';
 import Keywords from './Keywords';
 import Header from './Header'
-import AdditionalInfo from './AdditionalInfo';
+import Sentiments from './Sentiments';
 import { trimEllpsis } from 'src/utils/string'
+import ArticlesPreview from './ArticlesPreview';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,8 +44,8 @@ function ArticlesViewDetails(props) {
   const { params } = props.match
   const tabs = [
     { value: 'article', label: 'Artigo' },
-    { value: 'keywords', label: 'Palavras chave' },
-    { value: 'additional-info', label: 'Informações adicionais' }
+    { value: 'sentiments', label: 'Sentimentos' },
+    { value: 'keywords', label: 'Palavras chave' }
   ];
 
   const handleTabsChange = (event, value) => {
@@ -63,8 +63,10 @@ function ArticlesViewDetails(props) {
         if (err && err.response && err.response.status) status = err.response.status
         switch (status) {
           case 404:
-            history.push('/404')
+            history.goBack()
             break;
+          default: 
+            history.goBack()
         }
       }
     }
@@ -80,12 +82,12 @@ function ArticlesViewDetails(props) {
   return (
     <Page
       className={classes.root}
-      title="Articles View Details"
+      title="Detalhe do artigo"
     >
       <Container
       className={classes.container}
        maxWidth={false}>
-        <Header articleTitleShortHand={article ? trimEllpsis(article.title.text, 30) : '...'} />
+        <Header articleTitleShortHand={article ? trimEllpsis(article.title.text, 30) : '...'} score={article?.score}/>
         <Box mt={3}>
           <Tabs
             onChange={handleTabsChange}
@@ -109,9 +111,9 @@ function ArticlesViewDetails(props) {
         {
           article ?
             <Box mt={3}>
-              {currentTab === 'article' && <ArticlePreview articlePreview={article} />}
+              {currentTab === 'article' && <ArticlesPreview sentimentPreview={article} />}
+              {currentTab === 'sentiments' && <Sentiments article={article} />}
               {currentTab === 'keywords' && <Keywords keywords={article.keywords} />}
-              {currentTab === 'additional-info' && <AdditionalInfo />}
             </Box> :
             <Box  
               display="flex" 

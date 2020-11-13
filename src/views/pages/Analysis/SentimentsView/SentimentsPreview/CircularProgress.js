@@ -18,15 +18,27 @@ const useStyles = makeStyles((theme) => ({
     fill: 'none',
     strokeWidth: 4
   },
-  circle2:{
-    stroke: '#4b9e86' ,
+  circle2: {
+    stroke: '#4b9e86',
     fill: 'none',
     strokeWidth: 4,
     animation: '$progress 1s ease-out forwards'
-  }
+  },
+  circleNegative: {
+    stroke: '#b658f5',
+    fill: 'none',
+    strokeWidth: 4,
+    animation: '$progress 1s ease-out forwards'
+  },
+  circleNeutral: {
+    stroke: '#3d72eb',
+    fill: 'none',
+    strokeWidth: 4,
+    animation: '$progress 1s ease-out forwards'
+  },
 }));
 
-function CircularProgress({ value, className, ...rest }) {
+function CircularProgress({ value, className, color, ...rest }) {
   const classes = useStyles(value);
 
   return (
@@ -34,18 +46,46 @@ function CircularProgress({ value, className, ...rest }) {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <svg viewBox="0 0 36 36">
-        <path
-          className={classes.circle1}
-          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-          strokeDasharray="100, 100"
-        />
-        <path
-          className={classes.circle2}
-          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-          strokeDasharray={`${value}, 100`}
-        />
-      </svg>
+      {color == 'neutral' ?
+        <svg viewBox="0 0 36 36">
+          <path
+            className={classes.circle1}
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+            strokeDasharray="100, 100"
+          />
+          <path
+            className={classes.circleNeutral}
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+            strokeDasharray={`${value}, 100`}
+          />
+        </svg>
+        : color == 'negative' ?
+          <svg viewBox="0 0 36 36">
+            <path
+              className={classes.circle1}
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+              strokeDasharray="100, 100"
+            />
+            <path
+              className={classes.circleNegative}
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+              strokeDasharray={`${value}, 100`}
+            />
+          </svg> :
+          <svg viewBox="0 0 36 36">
+            <path
+              className={classes.circle1}
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+              strokeDasharray="100, 100"
+            />
+            <path
+              className={classes.circle2}
+              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+              strokeDasharray={`${value}, 100`}
+            />
+          </svg>
+      }
+
     </div>
   );
 }

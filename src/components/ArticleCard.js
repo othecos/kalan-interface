@@ -183,7 +183,7 @@ function ArticleCard({ article, className, ...rest }) {
         <Box flexGrow={1} />
         <IconButton
           component={RouterLink}
-          to={`/app/articles/${article._id}`}
+          to={`/app/analysis/sentiments/${article._id}`}
         >
           <SvgIcon fontSize="small">
             <ArrowRightIcon />

@@ -77,7 +77,6 @@ function SentimentsPreview({ className, ...rest }) {
       {...rest}
     >
       <CardHeader
-        action={<GenericMoreButton />}
         title="Noticias"
       />
       <Divider />
@@ -119,8 +118,7 @@ function SentimentsPreview({ className, ...rest }) {
                             variant="h6"
                             color="textPrimary"
                           >
-                            {articleSentiments.sentiments.score}
-                          %
+                            {articleSentiments.sentiments.label}
                         </Typography>
                           <Typography
                             variant="body2"
@@ -130,7 +128,7 @@ function SentimentsPreview({ className, ...rest }) {
                         </Typography>
                         </Box>
 
-                        <CircularProgress value={articleSentiments.sentiments.score * 100} />
+                        <CircularProgress value={100} color={ articleSentiments.sentiments.value == -1 ? 'negative' : articleSentiments.sentiments.value == 0 ? 'neutral' : 'positive'  } />
                       </Box>
                     </Box>
                   </TableCell>
@@ -148,7 +146,7 @@ function SentimentsPreview({ className, ...rest }) {
         <Button
           component={RouterLink}
           size="small"
-          to={`/app/analysis/sentiments/${sector?.key}`}
+          to={`/app/analysis/sentiments/`}
         >
           Ver todas
           <NavigateNextIcon className={classes.navigateNextIcon} />

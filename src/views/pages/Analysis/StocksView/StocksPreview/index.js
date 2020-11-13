@@ -28,6 +28,27 @@ function StocksPreview({ className, ...rest }) {
   const isMountedRef = useIsMountedRef();
   const [stocksPreview, setStocksPreview] = useState(null);
 
+
+  // const [stocks, setStocks] = useState(null);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try{
+  //       let response = await axios.get('/analysis/stocks/')
+  //       console.log(response.data);
+  //       let docs = response.data
+  //       setArticles(docs)
+  //     }catch(err){
+  //       if(err.response){
+  //         console.error("Error response:");
+  //         console.error(err.response);    // ***
+  //         console.error(err?.response?.status);  // ***
+  //         console.error(err?.response?.headers); // ***
+  //       }
+  //     }
+  //   }
+  //   fetchData();
+  // }, [])
+
   const getStocksPreview = useCallback(() => {
     axios
       .get('/api/stocks/top-stocks')
@@ -57,7 +78,7 @@ function StocksPreview({ className, ...rest }) {
       />
       <Divider />
       <PerfectScrollbar>
-        <Box minWidth={400}>
+        <Box >
           <List>
             {stocksPreview.map((stock, i) => (
               <StockPreviewItem

@@ -1,12 +1,17 @@
-import React from 'react'
+import React, {useState,useEffect,useCallback} from 'react'
 import {
   Container,
   Grid,
+  Box,
   makeStyles
 } from '@material-ui/core';
+import axios from 'src/utils/axiosMock';
+import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import PropTypes from 'prop-types'
 import Header from './Header'
 import Page from 'src/components/Page'
+import StocksList from './StocksList';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -23,24 +28,42 @@ const useStyles = makeStyles((theme) => ({
 }));
 function StocksView(props) {
   const classes = useStyles();
+  const isMountedRef = useIsMountedRef();
+  const [stocks, setStocks] = useState(null);
+
+  const getStocks = useCallback(() => {
+    axios
+      .get('/api/stocks/top-stocks')
+      .then((response) => {
+        if (isMountedRef.current) {
+          setStocks(response.data.stocks);
+        }
+      })
+  }, [isMountedRef]);
+
+  useEffect(() => {
+    getStocks();
+  }, [getStocks]);
+
+  if (!stocks) {
+    return null;
+  }
+
+
   return (
     <Page
-    className={classes.root}
-    title="Stocks"
-  >
-    <Container
-      maxWidth={false}
-      className={classes.container}
+      className={classes.root}
+      title="Ações"
     >
-      <Header />
-      <Grid
-        container
-        spacing={3}
-      >
-       
-      </Grid>
-    </Container>
-  </Page>
+      <Container maxWidth={false}>
+        <Header />
+        {stocks && (
+          <Box mt={3}>
+            <StocksList stocks={stocks} />
+          </Box>
+        )}
+      </Container>
+    </Page>
   )
 }
 

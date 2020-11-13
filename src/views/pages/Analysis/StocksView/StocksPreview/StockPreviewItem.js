@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import moment from 'moment';
@@ -7,11 +7,15 @@ import {
   ListItemText,
   IconButton,
   Tooltip,
-  makeStyles
+  makeStyles,
+  Box,
+  Typography,
+  Grid
 } from '@material-ui/core';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import StackAvatars from 'src/components/StackAvatars';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink,useLocation } from 'react-router-dom';
+import axios from 'src/utils/axios'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -22,20 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 function StockPreview({ stock, className, ...rest }) {
   const classes = useStyles();
-
-  // let deadline = 'N/A';
-  // let critical = false;
-
-  // if (stock.deadline) {
-  //   const now = moment();
-  //   const deadlineMoment = moment(stock.deadline);
-
-  //   if (deadlineMoment.isAfter(now) && deadlineMoment.diff(now, 'day') < 3) {
-  //     deadline = `${deadlineMoment.diff(now, 'day')} days remaining`;
-  //     critical = true;
-  //   }
-  // }
-
+  const location = useLocation();
   return (
     <ListItem
       className={clsx(
@@ -44,22 +35,49 @@ function StockPreview({ stock, className, ...rest }) {
       )}
       {...rest}
     >
-      <ListItemText
-        className={classes.listItemText}
-        primary={stock.name}
-        primaryTypographyProps={{ variant: 'h6', noWrap: true }}
-        secondary={stock.ticker}
-      />
-      <Tooltip title="View stock">
-        <IconButton
-          component={RouterLink}
-          to={stock.href} 
-          className={classes.viewButton}
-          edge="end"
-        >
-          <OpenInNewIcon fontSize="small" />
-        </IconButton>
-      </Tooltip>
+      <Grid container >
+        <Grid item xs={7}>
+          <ListItemText
+            className={classes.listItemText}
+            primary={stock.name}
+            primaryTypographyProps={{ variant: 'h6', noWrap: true }}
+            secondary={stock.ticker}
+          />
+        </Grid>
+
+
+        <Grid container spacing={2} item xs={5} alignItems="center" justify="flex-end">
+          <Grid item >
+            <Typography
+              align="right"
+              variant="h6"
+              color="textPrimary"
+            >
+             Atual - {stock.price || 'R$42,00'} 
+            </Typography>
+            <Typography
+              variant="body2"
+              color={"textSecondary"}
+            >
+              Justo -  <span className="secondary"> { stock?.valuation?.value || 'R$21,00'}</span>
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Tooltip title="View stock">
+              <IconButton
+                component={RouterLink}
+                to={`${location.pathname}/stocks/${stock.ticker}`}
+                className={classes.viewButton}
+              >
+                <OpenInNewIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Grid>
+
+        </Grid>
+      </Grid>
+
+
     </ListItem>
   );
 }

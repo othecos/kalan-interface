@@ -29,7 +29,6 @@ function AnalysisSentimentsView({ className, ...rest }) {
     const fetchData = async () => {
       try{
         let response = await axios.get('/analysis/news/')
-        console.log(response.data);
         let docs = response.data
         setArticles(docs)
       }catch(err){
@@ -53,9 +52,6 @@ function AnalysisSentimentsView({ className, ...rest }) {
     >
       <Container maxWidth="lg">
         <Header />
-        <Box mt={3}>
-          <Filter />
-        </Box>
         <Box mt={6}>
           <Results articles={articles}></Results>
         </Box>

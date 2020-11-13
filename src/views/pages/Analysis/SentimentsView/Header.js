@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -18,25 +18,32 @@ import {
   PlusCircle as PlusIcon,
   Calendar as CalendarIcon
 } from 'react-feather';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setSector } from 'src/actions/analysisActions';
 
 const timeRanges = [
   {
     value: 'today',
-    text: 'Today'
+    text: 'Hoje'
   },
   {
     value: 'yesterday',
-    text: 'Yesterday'
+    text: 'Ontem'
   },
   {
     value: 'last_30_days',
-    text: 'Last 30 days'
+    text: 'Últimos 30 dias'
   },
   {
     value: 'last_year',
-    text: 'Last year'
+    text: 'Último ano'
   }
+];
+const sectorsList = [
+  {
+    key: 'bank',
+    label: 'Setor Bancário'
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -47,10 +54,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header({ className, ...rest }) {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const actionRef = useRef(null);
+  const {sector} = useSelector(state => state.analysis)
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [timeRange, setTimeRange] = useState(timeRanges[2].text);
+
+  useEffect(() => {
+    dispatch(setSector(sectorsList[0]));
+  }, [dispatch]);
+
+  const handleSectorChange = async (sector ) =>{
+    setMenuOpen(false)
+    await dispatch(setSector(sector));
+  }
+  // const [timeRange, setTimeRange] = useState(timeRanges[2].text);
 
   return (
     <Grid
@@ -72,13 +90,13 @@ function Header({ className, ...rest }) {
             to="/app"
             component={RouterLink}
           >
-            Application
+            Análises
           </Link>
           <Typography
             variant="body1"
             color="textPrimary"
           >
-            Articles
+            Sentimentos
           </Typography>
 
         </Breadcrumbs>
@@ -90,7 +108,7 @@ function Header({ className, ...rest }) {
         </Typography>
       </Grid>
       <Grid item>
-        <Button
+      <Button
           ref={actionRef}
           onClick={() => setMenuOpen(true)}
         >
@@ -100,7 +118,7 @@ function Header({ className, ...rest }) {
           >
             <CalendarIcon />
           </SvgIcon>
-          {timeRange}
+          {sector?.label}
         </Button>
         <Menu
           anchorEl={actionRef.current}
@@ -117,12 +135,12 @@ function Header({ className, ...rest }) {
             horizontal: 'center'
           }}
         >
-          {timeRanges.map((t) => (
+          {sectorsList.map((t) => (
             <MenuItem
-              key={t.value}
-              onClick={() => setTimeRange(t.text)}
+              key={t.key}
+              onClick={()=> handleSectorChange(t)}
             >
-              {t.text}
+              {t.label}
             </MenuItem>
           ))}
         </Menu>

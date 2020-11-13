@@ -8,6 +8,7 @@ import {
   Chip,
   Container,
   Divider,
+  Grid,
   makeStyles,
   Typography
 } from '@material-ui/core';
@@ -28,30 +29,34 @@ const useStyles = makeStyles((theme) => ({
 function Keywords({ keywords, className, ...rest }) {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
-
   return (
     <Page
       className={classes.root}
-      title="Keywords"
+      title="Palavras chave"
     >
       <Container maxWidth="lg">
-        <Box mt={3}>
+        <Box mt={1} mb={1}>
           <Typography
             variant="subtitle2"
             color="textSecondary"
           >
-            Technology Stack
+            Palavras chave
               </Typography>
-          <Box mt={1}>
-            {keywords.map((keyword) => (
-              <Chip
-                key={keyword}
-                variant="outlined"
-                label={keyword}
-              />
-            ))}
-          </Box>
         </Box>
+
+        <Grid container spacing={2}>
+          {keywords.map((keyword, index) => (
+            <Grid item key={`keyword_${index}`}>
+              <Chip
+                variant="outlined"
+                label={keyword.text}
+
+              />
+            </Grid>
+
+          ))}
+        </Grid>
+
       </Container>
     </Page>
   );
@@ -59,6 +64,9 @@ function Keywords({ keywords, className, ...rest }) {
 
 Keywords.propTypes = {
   className: PropTypes.string,
-  keywords: PropTypes.array.isRequired
+  keywords: PropTypes.array
 };
+Keywords.defaultProps = {
+  keywords: []
+}
 export default Keywords;
