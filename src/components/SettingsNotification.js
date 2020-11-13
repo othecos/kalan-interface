@@ -66,14 +66,14 @@ function SettingsNotification() {
           color="textPrimary"
           gutterBottom
         >
-          Settings Updated
+          Atualização das configurações
         </Typography>
         <Typography
           variant="body2"
           color="textSecondary"
         >
-          We automatically updated your settings.
-          You change the settings any time from your dashboard settings.
+          Nós atualizamos automaticamente suas configurações
+          Você pode mudar as configurações a qualquer momento no painel de configurações
         </Typography>
         <Box
           mt={2}
@@ -81,7 +81,7 @@ function SettingsNotification() {
           justifyContent="space-between"
         >
           <Button onClick={handleClose}>
-            Close
+            Fechar
           </Button>
           <Button
             color="secondary"

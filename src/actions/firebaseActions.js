@@ -23,12 +23,20 @@ export function signUp(values, firebase) {
     try {
       let user = await firebase.createUser(
         { email: values.email, password: values.password },
-        { username: values.firstName, email: values.email }
+        {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email
+        }
       )
       dispatch({
         type: SIGNUP_SUCCESS,
         payload:
-          user
+        {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email
+        }
       });
     } catch (error) {
       dispatch({

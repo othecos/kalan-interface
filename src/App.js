@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Router } from 'react-router-dom';
+import { BrowserRouter,HashRouter, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
@@ -64,17 +64,14 @@ function App() {
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <SnackbarProvider maxSnack={1}>
-          <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <Router history={history}>
+          <HashRouter basename={'/'}>
               <FirebaseAuth>
                 <ScrollReset />
                 <GoogleAnalytics />
                 <CookiesNotification />
-                <SettingsNotification />
                 <Routes />
               </FirebaseAuth>
-            </Router>
-            </BrowserRouter>
+            </HashRouter>
           </SnackbarProvider>
         </MuiPickersUtilsProvider>
       </StylesProvider>

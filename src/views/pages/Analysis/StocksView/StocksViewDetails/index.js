@@ -102,7 +102,7 @@ function StocksViewDetails(props) {
         <Grid container
           className={classes.root}
           spacing={2}  >
-          <Grid container item xs={8} spacing={2} className={classes.container}>
+          <Grid container item xs={12} md={8} spacing={2} className={classes.container}>
             <Grid item xs={12}>
               <Card >
                 <CardHeader
@@ -236,7 +236,7 @@ function StocksViewDetails(props) {
             </Grid>
 
           </Grid>
-          <Grid container item xs={4} spacing={2}>
+          <Grid container item xs={12} md={4} spacing={2}>
             <Grid item xs={12}>
               <Suggestion/>
              

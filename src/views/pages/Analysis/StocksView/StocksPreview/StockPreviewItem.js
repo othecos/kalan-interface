@@ -36,7 +36,7 @@ function StockPreview({ stock, className, ...rest }) {
       {...rest}
     >
       <Grid container >
-        <Grid item xs={7}>
+        <Grid item xs={4} md={7}>
           <ListItemText
             className={classes.listItemText}
             primary={stock.name}
@@ -46,8 +46,8 @@ function StockPreview({ stock, className, ...rest }) {
         </Grid>
 
 
-        <Grid container spacing={2} item xs={5} alignItems="center" justify="flex-end">
-          <Grid item >
+        <Grid container spacing={2} xs={8} item md={5} alignItems="center" justify="flex-end">
+          {/* <Grid item >
             <Typography
               align="right"
               variant="h6"
@@ -61,9 +61,9 @@ function StockPreview({ stock, className, ...rest }) {
             >
               Justo -  <span className="secondary"> { stock?.valuation?.value || 'R$21,00'}</span>
             </Typography>
-          </Grid>
+          </Grid> */}
           <Grid item>
-            <Tooltip title="View stock">
+            <Tooltip title="Visualizar ação">
               <IconButton
                 component={RouterLink}
                 to={`${location.pathname}/stocks/${stock.ticker}`}
@@ -75,6 +75,7 @@ function StockPreview({ stock, className, ...rest }) {
           </Grid>
 
         </Grid>
+      
       </Grid>
 
 

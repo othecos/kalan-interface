@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useRef,
   useState
 } from 'react';
@@ -31,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Account() {
+function Account({profile}) {
   const classes = useStyles();
   const history = useHistory();
   const ref = useRef(null);
   const dispatch = useDispatch();
-  const account = useSelector((state) => state.account);
+  const account = profile
   const { enqueueSnackbar } = useSnackbar();
   const [isOpen, setOpen] = useState(false);
   const firebase = useFirebase()
@@ -53,14 +54,13 @@ function Account() {
     try {
       handleClose();
       await dispatch(signOut(firebase))
-      history.push('/');
+      history.push(`/`);
     } catch (error) {
       enqueueSnackbar('Unable to logout', {
         variant: 'error'
       });
     }
   };
-
   return (
     <>
       <Box
@@ -73,14 +73,14 @@ function Account() {
         <Avatar
           alt="User"
           className={classes.avatar}
-          src={account?.user?.avatar}
+          src={account?.avatar}
         />
         <Hidden smDown>
           <Typography
             variant="h6"
             color="inherit"
           >
-            {`${account?.user?.firstName || 'Otavio'} ${account?.user?.lastName || ''}`}
+            {`${account?.firstName || 'Otavio'} ${account?.lastName || ''}`}
           </Typography>
         </Hidden>
       </Box>
@@ -96,7 +96,7 @@ function Account() {
         anchorEl={ref.current}
         open={isOpen}
       >
-        <MenuItem
+        {/* <MenuItem
           component={RouterLink}
           to="/app/social/profile"
         >
@@ -107,7 +107,7 @@ function Account() {
           to="/app/account"
         >
           Minha conta
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={handleLogout}>
           Sair
         </MenuItem>

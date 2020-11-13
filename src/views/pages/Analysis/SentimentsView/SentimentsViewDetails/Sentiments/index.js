@@ -49,7 +49,7 @@ function Sentiments({ article, className, ...rest }) {
     className={clsx(classes.root, className)}
     spacing={2}
     {...rest} >
-      <Grid item xs={8} className={classes.container}>
+      <Grid item xs={12} md={8} className={classes.container}>
         <Card >
           <CardHeader
             avatar={(
@@ -87,7 +87,9 @@ function Sentiments({ article, className, ...rest }) {
             </Typography>
                 <Typography
                   variant="h6"
+                  noWrap
                   color="textSecondary"
+                  className={classes.wrap}
                 >
                   {article?.title?.text}
                 </Typography>
@@ -117,7 +119,7 @@ function Sentiments({ article, className, ...rest }) {
         </Card>
 
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} md={4}>
         <Score score={article.score} terms={['Selic', 'Selic Up', 'Selic stay']} />
       </Grid>
     </Grid>

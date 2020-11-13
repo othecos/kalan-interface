@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -19,6 +19,7 @@ import Contacts from './Contacts';
 import Notifications from './Notifications';
 import Search from './Search';
 import Settings from './Settings';
+import enhance from 'src/config/firebase/enhance';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,14 +40,13 @@ const useStyles = makeStyles((theme) => ({
 function TopBar({
   className,
   onMobileNavOpen,
+  auth,profile,
   ...rest
 }) {
   const classes = useStyles();
-
   return (
     <AppBar
       className={clsx(classes.root, className)}
-      {...rest}
     >
       <Toolbar className={classes.toolbar}>
         <Hidden lgUp>
@@ -71,7 +71,7 @@ function TopBar({
         />
         {/* <Settings /> */}
         <Box ml={2}>
-          <Account />
+          <Account profile={profile} />
         </Box>
       </Toolbar>
     </AppBar>
@@ -83,4 +83,4 @@ TopBar.propTypes = {
   onMobileNavOpen: PropTypes.func
 };
 
-export default TopBar;
+export default enhance(TopBar);

@@ -47,6 +47,7 @@ import {
 } from 'react-feather';
 import Logo from 'src/components/Logo';
 import NavItem from './NavItem';
+import enhance from 'src/config/firebase/enhance';
 
 const navConfig = [
   {
@@ -157,10 +158,10 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function NavBar({ openMobile, onMobileClose, }) {
+function NavBar({ openMobile, onMobileClose,profile }) {
   const classes = useStyles();
   const location = useLocation();
-  const { user } = useSelector((state) => state.account);
+  const user  = profile
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -192,27 +193,25 @@ function NavBar({ openMobile, onMobileClose, }) {
             display="flex"
             justifyContent="center"
           >
-            <RouterLink to="/app/account">
               <Avatar
                 alt="User"
                 className={classes.avatar}
                 src={user?.avatar}
               />
-            </RouterLink>
           </Box>
           <Box
             mt={2}
             textAlign="center"
           >
-            <Link
+            {/* <Link
               component={RouterLink}
               to="/app/account"
               variant="h5"
               color="textPrimary"
               underline="none"
-            >
+            > */}
               {`${user?.firstName || 'Otavio'} ${user?.lastName || ''}`}
-            </Link>
+            {/* </Link> */}
             <Typography
               variant="body2"
               color="textSecondary"
@@ -275,4 +274,4 @@ NavBar.propTypes = {
   openMobile: PropTypes.bool
 };
 
-export default NavBar;
+export default enhance(NavBar);

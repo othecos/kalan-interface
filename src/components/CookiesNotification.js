@@ -59,19 +59,7 @@ function CookiesNotification() {
           variant="body1"
           color="inherit"
         >
-          We use Cookies to ensure that we give you the best experience on our
-          website. Read our
-          {' '}
-          <Link
-            component="a"
-            color="inherit"
-            underline="always"
-            href="https://devias.io/privacy-policy"
-            target="_blank"
-          >
-            Privacy Policy
-          </Link>
-          .
+          Nós usamos Cookies para garantir a melhor experiência para você nesse site .
         </Typography>
         <Box
           mt={2}
@@ -83,7 +71,7 @@ function CookiesNotification() {
             variant="contained"
             className={classes.action}
           >
-            I Agree
+            Eu concordo
           </Button>
         </Box>
       </div>
