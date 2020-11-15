@@ -34,7 +34,7 @@ function AnalysisSentimentsView({ className, ...rest }) {
           const news = response.data.map((art)=>{
             const article = new Article()
             article.setDataFromDB(art)
-            return article.toPreview()
+            return article.toListItem()
           })
           setArticles(news)
         }else{

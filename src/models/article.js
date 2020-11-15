@@ -142,6 +142,16 @@ export class Article {
   toGraph() {
 
   }
+  toListItem(){
+    let obj ={
+      _id: this._id,
+      title: this.title.toJSON(),
+      metadata: this.metadata.toJSON(),
+      resume: this.resume,
+      score: this.score.toJSON(),
+    }
+    return obj
+  }
   toPreview() {
     let obj ={
       _id: this._id,
