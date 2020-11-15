@@ -18,6 +18,7 @@ import axios from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import GenericMoreButton from 'src/components/GenericMoreButton';
 import StockPreviewItem from './StockPreviewItem';
+import { Stock } from 'src/models/stock';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -54,7 +55,16 @@ function StocksPreview({ className, ...rest }) {
       .get('/api/stocks/top-stocks')
       .then((response) => {
         if (isMountedRef.current) {
-          setStocksPreview(response.data.stocks);
+          if(response.data && Array.isArray(response.data.stocks)){
+            const stocks = response.data.stocks.map((st)=>{
+              const stock = new Stock()
+              stock.setDataFromDB(st)
+              return stock.toListPreviewItem()
+            })
+            setStocksPreview(stocks);
+          }else{
+            return null
+          }
         }
       })
   }, [isMountedRef]);
@@ -82,7 +92,7 @@ function StocksPreview({ className, ...rest }) {
             {stocksPreview.map((stock, i) => (
               <StockPreviewItem
                 divider={i < stocksPreview.length - 1}
-                key={stock.id}
+                key={stock.key}
                 stock={stock}
               />
             ))}

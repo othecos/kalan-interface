@@ -20,6 +20,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+  rootPrimary:{
+    color: theme.palette.warning.contrastText,
+    backgroundColor: theme.palette.warning.main,
+    padding: theme.spacing(3),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  avatarPrimary:{
+    backgroundColor: theme.palette.warning.contrastText,
+    color: theme.palette.warning.main,
+    height: 48,
+    width: 48
+  },
   avatar: {
     backgroundColor: theme.palette.secondary.contrastText,
     color: theme.palette.secondary.main,
@@ -28,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Suggestion({ className, ...rest }) {
-  const classes = useStyles();
+function Suggestion({ className,title,text,icon,color, ...rest }) {
+  const classes = useStyles(color);
   const data = {
     value: '25.50',
     currency: '$'
@@ -37,7 +51,7 @@ function Suggestion({ className, ...rest }) {
 
   return (
     <Card
-      className={clsx(classes.root, className)}
+      className={clsx(color == 'secondary' ? classes.root : classes.rootPrimary, className)}
       {...rest}
     >
       <Box flexGrow={1}>
@@ -47,7 +61,7 @@ function Suggestion({ className, ...rest }) {
           gutterBottom
           variant="overline"
         >
-          Sugestão
+          {title}
         </Typography>
         <Box
           display="flex"
@@ -58,22 +72,31 @@ function Suggestion({ className, ...rest }) {
             color="inherit"
             variant="h3"
           >
-            Tendencia de alta
+            {text}
           </Typography>
         </Box>
       </Box>
       <Avatar
-        className={classes.avatar}
+        className={color == 'secondary' ? classes.avatar : classes.avatarPrimary }
         color="inherit"
       >
-        <ArrowUp />
+        {icon}
       </Avatar>
     </Card>
   );
 }
 
 Suggestion.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  title: PropTypes.string,
+  text: PropTypes.string,
+  icon: PropTypes.element,
+  color: PropTypes.oneOf(['primary', 'secondary', 'error', 'warning', 'success'])
+};
+Suggestion.defaultProps = {
+  className: '',
+  color: 'secondary',
+  icon:  <ArrowUp />
 };
 
 export default Suggestion;

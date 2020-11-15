@@ -9,7 +9,8 @@ import {
   ListItem,
   List,
   makeStyles,
-  Typography
+  Typography,
+  ListItemText
 } from '@material-ui/core';
 import PropTypes from 'prop-types'
 import Header from './Header'
@@ -20,6 +21,7 @@ import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import StocksPrices from './StocksPrices';
 import Suggestion from './Suggestion';
 import SentimentsGraph from '../../SentimentsView/SentimentsGraph';
+import { Stock } from 'src/models/stock';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -47,12 +49,15 @@ function StocksViewDetails(props) {
       .then((response) => {
         if (isMountedRef.current) {
           const result = response.data.stocks.find((stock) => stock.ticker == params.detail)
-          console.log(params, response.data.stocks, result)
+          let stockModel = new Stock()
           if (result) {
-            setStock(result)
+            stockModel.setDataFromDB(result)
           } else {
-            setStock(response.data.stocks[0])
+            stockModel.setDataFromDB(response.data.stocks[0])
           }
+          console.log(result)
+          setStock(stockModel.toDetail())
+          console.log(stockModel.toDetail())
         }
       })
   }, [isMountedRef]);
@@ -89,6 +94,9 @@ function StocksViewDetails(props) {
   //   }
 
   // }, [])
+  if(!stock){
+    return null
+  }
   return (
     <Page
       className={classes.root}
@@ -133,98 +141,88 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                      <Typography
-                        variant="subtitle2"
-                        color="textPrimary"
-                      >
-                        Titulo
-            </Typography>
+                       <ListItemText
+                        primary={'Empresa'}
+                        primaryTypographyProps={{ variant: 'subtitle2' }}
+                      />
                       <Typography
                         variant="h6"
                         color="textSecondary"
                       >
-                        Teste
-                    </Typography>
+                        {stock.name}
+                      </Typography>
                     </ListItem>
                     <ListItem
                       className={classes.listItem}
                       disableGutters
                       divider
                     >
-                      <Typography
-                        variant="subtitle2"
-                        color="textPrimary"
-                      >
-                        Link
-            </Typography>
+                        <ListItemText
+                        primary={'Divida liquida'}
+                        primaryTypographyProps={{ variant: 'subtitle2' }}
+                      />
                       <Typography
                         variant="h6"
                         color="textSecondary"
                         noWrap
                         className={classes.wrap}
                       >
-                        Teste
-                    </Typography>
+                        {stock?.fundamentus?.net_debt}
+                      </Typography>
                     </ListItem>
                     <ListItem
                       className={classes.listItem}
                       disableGutters
                       divider
                     >
-                      <Typography
-                        variant="subtitle2"
-                        color="textPrimary"
-                      >
-                        Link
-            </Typography>
+                          <ListItemText
+                        primary={'Patrimonio liquido (PL)'}
+                        primaryTypographyProps={{ variant: 'subtitle2' }}
+                      />
                       <Typography
                         variant="h6"
                         color="textSecondary"
                         noWrap
                         className={classes.wrap}
                       >
-                        Teste
-                    </Typography>
+                        {stock?.fundamentus?.pl}
+                      </Typography>
                     </ListItem>
                     <ListItem
                       className={classes.listItem}
                       disableGutters
                       divider
                     >
-                      <Typography
-                        variant="subtitle2"
-                        color="textPrimary"
-                      >
-                        Link
-                    </Typography>
+                          <ListItemText
+                        primary={ 'Dividend Yield (%)'}
+                        primaryTypographyProps={{ variant: 'subtitle2' }}
+                      />
                       <Typography
                         variant="h6"
                         color="textSecondary"
                         noWrap
                         className={classes.wrap}
                       >
-                        Teste
-                    </Typography>
+                        {stock?.fundamentus?.div_yield}
+                      </Typography>
                     </ListItem>
                     <ListItem
                       className={classes.listItem}
                       disableGutters
                       divider
                     >
-                      <Typography
-                        variant="subtitle2"
-                        color="textPrimary"
-                      >
-                        Link
-            </Typography>
+                           <ListItemText
+                        primary={ 'Taxa de Crescimento'}
+                        primaryTypographyProps={{ variant: 'subtitle2' }}
+                      />
                       <Typography
                         variant="h6"
                         color="textSecondary"
                         noWrap
                         className={classes.wrap}
                       >
-                        Teste
-                    </Typography>
+                        {stock?.fundamentus?.growth_rate}
+                      </Typography>
                     </ListItem>
                   </List>
                 </CardContent>
@@ -232,17 +230,21 @@ function StocksViewDetails(props) {
 
             </Grid>
             <Grid item xs={12}>
-              <StocksPrices />
+              <StocksPrices stock={stock} />
+            </Grid>
+            <Grid item xs={12}>
+              <Suggestion title={'Valuation'} color="secondary" text={'Potencial de valorização de ação'} />
+
             </Grid>
 
           </Grid>
           <Grid container item xs={12} md={4} spacing={2}>
-            <Grid item xs={12}>
-              <Suggestion/>
-             
+          <Grid item xs={12}>
+              <Suggestion title={'Sentimento das noticias'} color="primary" text={'Tendência de alta'} />
+
             </Grid>
             <Grid item xs={12}>
-            <SentimentsGraph />
+              <SentimentsGraph />
             </Grid>
           </Grid>
         </Grid>

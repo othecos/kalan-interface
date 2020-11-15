@@ -5,7 +5,7 @@ import {
   Card,
   Grid,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core';
 import Label from 'src/components/Label';
 
@@ -35,9 +35,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function StocksPrices({ className,values, ...rest }) {
+function StocksPrices({ className,stock, ...rest }) {
   const classes = useStyles();
-
+  if(!stock){
+    return null
+  }
+  if(stock){
+    console.log(stock)
+  }
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -68,11 +73,11 @@ function StocksPrices({ className,values, ...rest }) {
               variant="h3"
               color="textPrimary"
             >
-              R$
-              {values?.price}
+              {stock?.price}
             </Typography>
           </div>
         </Grid>
+       
         <Grid
           className={classes.item}
           item
@@ -93,32 +98,25 @@ function StocksPrices({ className,values, ...rest }) {
               variant="h3"
               color="textPrimary"
             >
-              R$
-              {values?.valuation?.value}
+              {stock?.valuation?.value}
             </Typography>
             <Label
               className={classes.label}
-              color="success"
+              color={stock.diff.value == 0 ? "secondary" : stock.diff.value > 0 ? "success" : 'error'}
             >
-              +12%
+             {stock?.diff?.label} 
             </Label>
           </div>
         </Grid>
+        
        </Grid>
     </Card>
   );
 }
 
 StocksPrices.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  stock:PropTypes.object,
 };
-StocksPrices.defaultProps = {
-  values: {
-    price: 32,
-    valuation: {
-      value: 12
-    }
-  }
-}
 
 export default StocksPrices;
