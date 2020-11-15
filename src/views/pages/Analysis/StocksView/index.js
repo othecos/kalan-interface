@@ -11,6 +11,7 @@ import PropTypes from 'prop-types'
 import Header from './Header'
 import Page from 'src/components/Page'
 import StocksList from './StocksList';
+import { Stock } from 'src/models/stock';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,16 @@ function StocksView(props) {
       .get('/api/stocks/top-stocks')
       .then((response) => {
         if (isMountedRef.current) {
-          setStocks(response.data.stocks);
+          if(response.data && Array.isArray(response.data.stocks)){
+            const stocks = response.data.stocks.map((st)=>{
+              const stock = new Stock()
+              stock.setDataFromDB(st)
+              return stock.toListItem()
+            })
+            setStocks(stocks);
+          }else{
+            return null
+          }
         }
       })
   }, [isMountedRef]);
