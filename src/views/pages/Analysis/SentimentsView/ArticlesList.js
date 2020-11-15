@@ -48,18 +48,11 @@ const useStyles = makeStyles((theme) => ({
 
 function Results({ className, articles, ...rest }) {
   const classes = useStyles();
-  const sortRef = useRef(null);
-  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+  const skeleton = [...Array(10).keys()]
   const lengthPerPage = 10
-  const [openSort, setOpenSort] = useState(false);
-  const [selectedSort, setSelectedSort] = useState('Most popular');
   const [mode, setMode] = useState('grid');
   const [count, setCount] = useState(10);
   const [articlesPiece, setArticlesPiece] = useState([]);
-
-  const handleSortOpen = () => {
-    setOpenSort(true);
-  };
 
   useEffect(() => {
     if(articles){
@@ -68,18 +61,10 @@ function Results({ className, articles, ...rest }) {
     }
   }, [articles])
 
-  const handleSortClose = () => {
-    setOpenSort(false);
-  };
   const handlePaginationChange = (event, value) => {
     const index = (value - 1) * lengthPerPage
     const finalIndex = index + lengthPerPage
     setArticlesPiece(articles.slice(index, finalIndex))
-  };
-
-  const handleSortSelect = (value) => {
-    setSelectedSort(value);
-    setOpenSort(false);
   };
 
   const handleModeChange = (event, value) => {
@@ -113,14 +98,6 @@ function Results({ className, articles, ...rest }) {
           display="flex"
           alignItems="center"
         >
-          {/* <Button
-            className={classes.sortButton}
-            onClick={handleSortOpen}
-            ref={sortRef}
-          >
-            {selectedSort}
-            <ArrowDropDownIcon />
-          </Button> */}
           <ToggleButtonGroup
             exclusive
             onChange={handleModeChange}

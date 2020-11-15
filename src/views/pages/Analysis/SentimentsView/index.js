@@ -12,8 +12,9 @@ import PropTypes from 'prop-types';
 import Page from 'src/components/Page';
 import Header from './Header';
 import Filter from './Filter';
-import Results from './Results';
+import ArticlesList from './ArticlesList';
 import axios from 'src/utils/axios'
+import { Article } from 'src/models/article';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,8 +30,17 @@ function AnalysisSentimentsView({ className, ...rest }) {
     const fetchData = async () => {
       try{
         let response = await axios.get('/analysis/news/')
-        let docs = response.data
-        setArticles(docs)
+        if(response.data && Array.isArray(response.data)){
+          const news = response.data.map((art)=>{
+            const article = new Article()
+            article.setDataFromDB(art)
+            return article.toPreview()
+          })
+          setArticles(news)
+        }else{
+          return null
+        }
+       
       }catch(err){
         if(err.response){
           console.error("Error response:");
@@ -53,7 +63,7 @@ function AnalysisSentimentsView({ className, ...rest }) {
       <Container maxWidth="lg">
         <Header />
         <Box mt={6}>
-          <Results articles={articles}></Results>
+          <ArticlesList articles={articles}></ArticlesList>
         </Box>
       </Container>
     </Page>

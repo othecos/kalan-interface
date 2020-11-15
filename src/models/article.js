@@ -1,10 +1,12 @@
-class ArticleTitle{
+import { isNull } from "lodash"
+
+class ArticleTitle {
   href = ''
   text = ''
-  constructor(){
+  constructor() {
 
   }
-  setDataFromDB() {
+  setDataFromDB(data) {
     if (data) {
       if (!isNull(data.href)) this.href = data.href
       if (!isNull(data.text)) this.text = data.text
@@ -18,13 +20,13 @@ class ArticleTitle{
     return obj
   }
 }
-class ArticleKeywordsSentiments{
+class ArticleKeywordsSentiments {
   score = ''
   label = ''
-  constructor(){
+  constructor() {
 
   }
-  setDataFromDB() {
+  setDataFromDB(data) {
     if (data) {
       if (!isNull(data.score)) this.score = data.score
       if (!isNull(data.label)) this.label = data.label
@@ -38,15 +40,15 @@ class ArticleKeywordsSentiments{
     return obj
   }
 }
-class ArticleKeywords{
-  sentiment =  new ArticleKeywordsSentiments()
+class ArticleKeywords {
+  sentiment = new ArticleKeywordsSentiments()
   text = ''
   relevance = 0
   count = 0
-  constructor(){
+  constructor() {
 
   }
-  setDataFromDB() {
+  setDataFromDB(data) {
     if (data) {
       if (!isNull(data.sentiment)) this.sentiment.setDataFromDB(data.sentiment)
       if (!isNull(data.text)) this.text = data.text
@@ -63,16 +65,16 @@ class ArticleKeywords{
     }
     return obj
   }
-   
+
 }
-class ArticleMetadata{
+class ArticleMetadata {
   datetime = ''
   source = ''
   query = ''
-  constructor(){
+  constructor() {
 
   }
-  setDataFromDB() {
+  setDataFromDB(data) {
     if (data) {
       if (!isNull(data.datetime)) this.datetime = data.datetime
       if (!isNull(data.source)) this.source = data.source
@@ -89,15 +91,15 @@ class ArticleMetadata{
   }
 }
 class ArticleScore {
-  value= 0
-  label= ''
-  terms= ""
-  constructor(){
+  value = 0
+  label = 'Não analisado'
+  terms = ""
+  constructor() {
 
   }
-  setDataFromDB() {
+  setDataFromDB(data) {
     if (data) {
-      if (!isNull(data.value)) this.value = data.datetime
+      if (!isNull(data.value)) this.value = data.value
       if (!isNull(data.label)) this.label = data.label
       if (!isNull(data.terms)) this.terms = data.terms
     }
@@ -111,35 +113,50 @@ class ArticleScore {
     return obj
   }
 }
-export class Article{
+export class Article {
   _id = ''
   title = new ArticleTitle()
   resume = ''
-  metadata = new ArticleMetadataO()
+  metadata = new ArticleMetadata()
   score = new ArticleScore()
-  constructor(){
-    
+  keywords = []
+  constructor() {
+
   }
-  setDataFromDB(){
+  setDataFromDB(data) {
     if (data) {
       if (!isNull(data._id)) this._id = data._id
       if (!isNull(data.resume)) this.resume = data.resume
       if (!isNull(data.title)) this.title.setDataFromDB(data.title)
       if (!isNull(data.metadata)) this.metadata.setDataFromDB(data.metadata)
       if (!isNull(data.score)) this.score.setDataFromDB(data.score)
+      if (!isNull(data.keywords) && Array.isArray(data.keywords)) {
+        data.keywords.forEach((keyword)=>{
+            let articleKeywords = new ArticleKeywords()
+            articleKeywords.setDataFromDB(keyword)
+            this.keywords.push(articleKeywords)
+        })
+      }
     }
   }
-  toGraph(){
+  toGraph() {
 
   }
-  toPreview(){
+  toPreview() {
+    let obj ={
+      _id: this._id,
+      title: this.title.toJSON(),
+      metadata: this.metadata.toJSON(),
+      resume: this.resume,
+      score: this.score.toJSON(),
+    }
+    return obj
+  }
+  toDetail() {
 
   }
-  toDetail(){
+  toDetailPreview() {
 
   }
-  toDetailPreview(){
-    
-  }
-  
+
 }

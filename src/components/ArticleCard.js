@@ -152,22 +152,6 @@ function ArticleCard({ article, className, ...rest }) {
         display="flex"
         alignItems="center"
       >
-        {/* {isLiked ? (
-          <Tooltip title="Unlike">
-            <IconButton
-              className={classes.likedButton}
-              onClick={handleUnlike}
-            >
-              <FavoriteIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        ) : (
-            <Tooltip title="Like">
-              <IconButton onClick={handleLike}>
-                <FavoriteBorderIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          )} */}
            <SvgIcon
           fontSize="small"
           color="secondary"
@@ -179,7 +163,7 @@ function ArticleCard({ article, className, ...rest }) {
           variant="subtitle2"
           color="secondary"
         >
-          {article?.score?.label || 'Neutro'}
+          {article?.score?.label}
         </Typography>
        
         <Box flexGrow={1} />
