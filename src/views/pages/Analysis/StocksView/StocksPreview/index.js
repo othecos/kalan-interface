@@ -59,7 +59,7 @@ function StocksPreview({ className, ...rest }) {
             const stocks = response.data.stocks.map((st)=>{
               const stock = new Stock()
               stock.setDataFromDB(st)
-              return stock.toListPreviewItem()
+              return stock.toPreview()
             })
             setStocksPreview(stocks);
           }else{

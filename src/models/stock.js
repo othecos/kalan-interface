@@ -81,7 +81,13 @@ export class Stock {
     }
   }
   toPreview() {
-
+    let obj = {
+      key: `item_${this._id}`,
+      name: this.name,
+      ticker: this.ticker,
+      href: this.href
+    }
+    return obj
   }
   toListItem() {
     let obj = {
@@ -91,15 +97,6 @@ export class Stock {
       href: this.href,
       price: toCurrency(this.price),
       valuation: this.valuation.toJSON()
-    }
-    return obj
-  }
-  toListPreviewItem(){
-    let obj = {
-      key: `item_${this._id}`,
-      name: this.name,
-      ticker: this.ticker,
-      href: this.href
     }
     return obj
   }
