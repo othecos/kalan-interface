@@ -7,13 +7,13 @@
     "static/js/2.6197fd07.chunk.js": "/kalan-interface/static/js/2.6197fd07.chunk.js",
     "static/js/2.6197fd07.chunk.js.map": "/kalan-interface/static/js/2.6197fd07.chunk.js.map",
     "main.css": "/kalan-interface/static/css/main.2b289f01.chunk.css",
-    "main.js": "/kalan-interface/static/js/main.7148fc7d.chunk.js",
-    "main.js.map": "/kalan-interface/static/js/main.7148fc7d.chunk.js.map",
+    "main.js": "/kalan-interface/static/js/main.5d96056b.chunk.js",
+    "main.js.map": "/kalan-interface/static/js/main.5d96056b.chunk.js.map",
     "runtime-main.js": "/kalan-interface/static/js/runtime-main.1a3e5eeb.js",
     "runtime-main.js.map": "/kalan-interface/static/js/runtime-main.1a3e5eeb.js.map",
     "static/css/5.6fecc2cc.chunk.css": "/kalan-interface/static/css/5.6fecc2cc.chunk.css",
-    "static/js/5.a6eaccad.chunk.js": "/kalan-interface/static/js/5.a6eaccad.chunk.js",
-    "static/js/5.a6eaccad.chunk.js.map": "/kalan-interface/static/js/5.a6eaccad.chunk.js.map",
+    "static/js/5.bb10adb6.chunk.js": "/kalan-interface/static/js/5.bb10adb6.chunk.js",
+    "static/js/5.bb10adb6.chunk.js.map": "/kalan-interface/static/js/5.bb10adb6.chunk.js.map",
     "static/js/6.6d64de78.chunk.js": "/kalan-interface/static/js/6.6d64de78.chunk.js",
     "static/js/6.6d64de78.chunk.js.map": "/kalan-interface/static/js/6.6d64de78.chunk.js.map",
     "static/js/7.e4285933.chunk.js": "/kalan-interface/static/js/7.e4285933.chunk.js",
@@ -37,18 +37,18 @@
     "static/js/16.382350f3.chunk.js": "/kalan-interface/static/js/16.382350f3.chunk.js",
     "static/js/16.382350f3.chunk.js.map": "/kalan-interface/static/js/16.382350f3.chunk.js.map",
     "index.html": "/kalan-interface/index.html",
-    "precache-manifest.3288d4ebb6a6c1cb1facc4ec1f482242.js": "/kalan-interface/precache-manifest.3288d4ebb6a6c1cb1facc4ec1f482242.js",
+    "precache-manifest.87fc8edf93f6414a20ae6ca9ac0b0c67.js": "/kalan-interface/precache-manifest.87fc8edf93f6414a20ae6ca9ac0b0c67.js",
     "service-worker.js": "/kalan-interface/service-worker.js",
     "static/css/5.6fecc2cc.chunk.css.map": "/kalan-interface/static/css/5.6fecc2cc.chunk.css.map",
     "static/css/main.2b289f01.chunk.css.map": "/kalan-interface/static/css/main.2b289f01.chunk.css.map",
     "static/js/0.63908cc2.chunk.js.LICENSE.txt": "/kalan-interface/static/js/0.63908cc2.chunk.js.LICENSE.txt",
-    "static/js/5.a6eaccad.chunk.js.LICENSE.txt": "/kalan-interface/static/js/5.a6eaccad.chunk.js.LICENSE.txt"
+    "static/js/5.bb10adb6.chunk.js.LICENSE.txt": "/kalan-interface/static/js/5.bb10adb6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1a3e5eeb.js",
     "static/css/5.6fecc2cc.chunk.css",
-    "static/js/5.a6eaccad.chunk.js",
+    "static/js/5.bb10adb6.chunk.js",
     "static/css/main.2b289f01.chunk.css",
-    "static/js/main.7148fc7d.chunk.js"
+    "static/js/main.5d96056b.chunk.js"
   ]
 }
