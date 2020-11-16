@@ -130,7 +130,7 @@ function StocksViewDetails(props) {
                       variant="overline"
                       color="textSecondary"
                     >
-                      Fundamentos
+                      Premissas
                     </Typography>
                   )}
                 />
@@ -158,7 +158,7 @@ function StocksViewDetails(props) {
                       divider
                     >
                         <ListItemText
-                        primary={'Divida liquida'}
+                        primary={'CAPM'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
                       <Typography
@@ -167,7 +167,7 @@ function StocksViewDetails(props) {
                         noWrap
                         className={classes.wrap}
                       >
-                        {stock?.fundamentus?.net_debt}
+                        {stock?.fundamentus?.CAPM}
                       </Typography>
                     </ListItem>
                     <ListItem
@@ -176,7 +176,7 @@ function StocksViewDetails(props) {
                       divider
                     >
                           <ListItemText
-                        primary={'Patrimonio liquido (PL)'}
+                        primary={'Beta'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
                       <Typography
@@ -185,7 +185,7 @@ function StocksViewDetails(props) {
                         noWrap
                         className={classes.wrap}
                       >
-                        {stock?.fundamentus?.pl}
+                        {stock?.fundamentus?.beta}
                       </Typography>
                     </ListItem>
                     <ListItem
@@ -203,7 +203,25 @@ function StocksViewDetails(props) {
                         noWrap
                         className={classes.wrap}
                       >
-                        {stock?.fundamentus?.div_yield}
+                        {stock?.dividend.yield}
+                      </Typography>
+                    </ListItem>
+                    <ListItem
+                      className={classes.listItem}
+                      disableGutters
+                      divider
+                    >
+                          <ListItemText
+                        primary={ 'Dividend por cota'}
+                        primaryTypographyProps={{ variant: 'subtitle2' }}
+                      />
+                      <Typography
+                        variant="h6"
+                        color="textSecondary"
+                        noWrap
+                        className={classes.wrap}
+                      >
+                        {stock?.fundamentus.divPerShare}
                       </Typography>
                     </ListItem>
                     <ListItem
@@ -221,7 +239,25 @@ function StocksViewDetails(props) {
                         noWrap
                         className={classes.wrap}
                       >
-                        {stock?.fundamentus?.growth_rate}
+                        {stock?.fundamentus?.growthRate}
+                      </Typography>
+                    </ListItem>
+                    <ListItem
+                      className={classes.listItem}
+                      disableGutters
+                      divider
+                    >
+                           <ListItemText
+                        primary={ 'Taxa livre de Risco'}
+                        primaryTypographyProps={{ variant: 'subtitle2' }}
+                      />
+                      <Typography
+                        variant="h6"
+                        color="textSecondary"
+                        noWrap
+                        className={classes.wrap}
+                      >
+                        {stock?.fundamentus?.riskFree}
                       </Typography>
                     </ListItem>
                   </List>
@@ -232,10 +268,10 @@ function StocksViewDetails(props) {
             <Grid item xs={12}>
               <StocksPrices stock={stock} />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <Suggestion title={'Valuation'} color="secondary" text={'Potencial de valorização de ação'} />
 
-            </Grid>
+            </Grid> */}
 
           </Grid>
           <Grid container item xs={12} md={4} spacing={2}>

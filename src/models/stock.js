@@ -2,27 +2,33 @@ import { isNaN, isNull } from "lodash"
 import { toCurrency } from "src/utils/currency"
 import { CURRENCY } from "./app"
 import { colors } from '@material-ui/core';
-class StockFundamentus {
-  net_debt = 0
-  pl = 0
-  div_yield = 0
-  growth_rate = 0
+class StockValuationPremisses {
+  CAPM =  0
+  beta = 0
+  betaDetails = ""
+  divPerShare = 0
+  growthRate = "0%"
+  riskFree = "0%"
   constructor() {
   }
   setDataFromDB(data) {
     if (data) {
-      if (!isNull(data.net_debt)) this.net_debt = data.net_debt
-      if (!isNull(data.pl)) this.pl = data.pl
-      if (!isNull(data.div_yield)) this.div_yield = data.div_yield
-      if (!isNull(data.growth_rate)) this.growth_rate = data.growth_rate
+      if (!isNull(data.CAPM)) this.CAPM = data.CAPM
+      if (!isNull(data.beta)) this.beta = data.beta
+      if (!isNull(data.betaDetails)) this.betaDetails = data.betaDetails
+      if (!isNull(data.divPerShare)) this.divPerShare = data.divPerShare
+      if (!isNull(data.growthRate)) this.growthRate = data.growthRate
+      if (!isNull(data.riskFree)) this.riskFree = data.riskFree
     }
   }
   toJSON() {
     let obj = {
-      net_debt: toCurrency(this.net_debt),
-      pl: toCurrency(this.pl),
-      div_yield: this.div_yield,
-      growth_rate: this.growth_rate
+      CAPM: this.CAPM,
+      beta: this.beta,
+      betaDetails: this.betaDetails,
+      divPerShare: toCurrency(this.divPerShare),
+      growthRate: this.growthRate,
+      riskFree: this.riskFree,
     }
     return obj
   }
@@ -30,6 +36,7 @@ class StockFundamentus {
 class StockValuation {
   value = 0
   status
+  premisses = new StockValuationPremisses()
   constructor() {
 
   }
@@ -37,12 +44,36 @@ class StockValuation {
     if (data) {
       if (!isNull(data.value)) this.value = data.value
       if (!isNull(data.status)) this.status = data.status
+      if (!isNull(data.premisses)) {
+          this.premisses.setDataFromDB(data.premisses)
+      }
     }
   }
   toJSON() {
     let obj = {
       value: toCurrency(this.value),
-      status: this.status
+      status: this.status,
+      premisses: this.premisses.toJSON()
+    }
+    return obj
+  }
+}
+class StockDividend{
+  period = 2019
+  yield = '0%'
+  constructor(){
+
+  }
+  setDataFromDB(data) {
+    if (data) {
+      if (!isNull(data.period)) this.period = data.period
+      if (!isNull(data.yield)) this.yield = data.yield
+    }
+  }
+  toJSON() {
+    let obj = {
+      period: this.period,
+      yield: this.yield
     }
     return obj
   }
@@ -54,9 +85,9 @@ export class Stock {
   date = ''
   price = 0
   name = ''
+  dividend = new StockDividend()
   href = 'app/analysis/stocks/'
   color = colors.cyan['500']
-  fundamentus = new StockFundamentus()
   valuation = new StockValuation()
   constructor() {
    
@@ -72,9 +103,9 @@ export class Stock {
       if (!isNull(data.category)) this.category = data.category
       if (!isNull(data.date)) this.date = data.date
       if (!isNull(data.price)) this.price = data.price
-      if (!isNull(data.fundamentus)){
-         this.fundamentus.setDataFromDB(data.fundamentus)
-        }
+      if (!isNull(data.dividend)){
+        this.dividend.setDataFromDB(data.dividend)
+      }
       if (!isNull(data.valuation)) {
         this.valuation.setDataFromDB(data.valuation)
       }
@@ -108,7 +139,8 @@ export class Stock {
       href: this.href,
       date: this.date,
       price: toCurrency(this.price),
-      fundamentus: this.fundamentus.toJSON(),
+      dividend: this.dividend.toJSON(),
+      fundamentus: this.valuation.premisses.toJSON(),
       valuation: this.valuation.toJSON(),
       diff: {
         value: this.getDiffPercentage(this.price,this.valuation.value),

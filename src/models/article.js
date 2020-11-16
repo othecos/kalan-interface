@@ -147,24 +147,7 @@ export class Article {
       }
     }
   }
-  toGraph() {
-    let obj = {
-      title: 'Sentimento da noticias',
-      positive: {
-        value: .56,
-        label: 'Positivo'
-      },
-      negative: {
-        value: .24,
-        label: 'Negativo'
-      },
-      neutral: {
-        value: .2,
-        label : 'Neutro'
-      }
-    }
-    return obj
-  }
+ 
   toListItem(){
     let obj ={
       _id: this._id,
@@ -207,4 +190,43 @@ export class Article {
 
   }
 
+}
+export class ArticleGraph {
+  constructor(){
+
+  }
+  setDataFromDB(data) {
+    if (data) {
+      if (!isNull(data.datasets)) this._id = data._id
+      if (!isNull(data.resume)) this.resume = data.resume
+      if (!isNull(data.title)) this.title.setDataFromDB(data.title)
+      if (!isNull(data.metadata)) this.metadata.setDataFromDB(data.metadata)
+      if (!isNull(data.score)) this.score.setDataFromDB(data.score)
+      if (!isNull(data.keywords) && Array.isArray(data.keywords)) {
+        data.keywords.forEach((keyword)=>{
+            let articleKeywords = new ArticleKeywords()
+            articleKeywords.setDataFromDB(keyword)
+            this.keywords.push(articleKeywords)
+        })
+      }
+    }
+  }
+  toJSON() {
+    let obj = {
+      title: 'Sentimento da noticias',
+      positive: {
+        value: .56,
+        label: 'Positivo'
+      },
+      negative: {
+        value: .24,
+        label: 'Negativo'
+      },
+      neutral: {
+        value: .2,
+        label : 'Neutro'
+      }
+    }
+    return obj
+  }
 }
