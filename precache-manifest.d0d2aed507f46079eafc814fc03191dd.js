@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bded503659266c32dfe13695ddcd93b2",
+    "revision": "6eccd7146bbc186e6eeee591df5a895f",
     "url": "/kalan-interface/index.html"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kalan-interface/static/js/1.4690a752.chunk.js"
   },
   {
-    "revision": "f3c644e1cd03d3e208ab",
-    "url": "/kalan-interface/static/js/10.cc4ccfd9.chunk.js"
+    "revision": "f3c7b0bf69b5f8d6aec9",
+    "url": "/kalan-interface/static/js/10.5be6ed44.chunk.js"
   },
   {
     "revision": "8ea9db74db77394efec1",
@@ -64,16 +64,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kalan-interface/static/js/5.bb10adb6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6cb7633a0e13f63dc1a1",
-    "url": "/kalan-interface/static/js/6.6d64de78.chunk.js"
+    "revision": "6bc05fce9cb80c191e99",
+    "url": "/kalan-interface/static/js/6.c5273205.chunk.js"
   },
   {
     "revision": "5ad6b8fb17401b9a696e",
     "url": "/kalan-interface/static/js/7.e4285933.chunk.js"
   },
   {
-    "revision": "9f77762a66d378d47f6d",
-    "url": "/kalan-interface/static/js/8.22a2aba7.chunk.js"
+    "revision": "e230b035a0e35f128d8d",
+    "url": "/kalan-interface/static/js/8.54e797cc.chunk.js"
   },
   {
     "revision": "8f0b99afa832f6092bd8",
@@ -84,7 +84,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kalan-interface/static/js/main.5d96056b.chunk.js"
   },
   {
-    "revision": "cd374c154a42e737f95e",
-    "url": "/kalan-interface/static/js/runtime-main.1a3e5eeb.js"
+    "revision": "87dbde2b62eafd52f08b",
+    "url": "/kalan-interface/static/js/runtime-main.1e376b2b.js"
   }
 ]);
