@@ -27,7 +27,12 @@ import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import GenericMoreButton from 'src/components/GenericMoreButton';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    maxHeight: '100%'
+  },
+  list:{
+    overflow: 'auto'
+  },
   item: {
     padding: theme.spacing(3),
     flexGrow: 1,
@@ -37,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Score({score,terms, className, ...rest }) {
+function Score({score, className, ...rest }) {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
 
@@ -76,7 +81,7 @@ function Score({score,terms, className, ...rest }) {
             variant="h3"
             color="textPrimary"
           >
-            Bancário
+            {score?.sector?.label}
           </Typography>
           <Typography
             align="center"
@@ -90,8 +95,8 @@ function Score({score,terms, className, ...rest }) {
         </div>
       </Box>
       <Divider />
-      <List disablePadding>
-        {terms.map((terms, index) => (
+      <List disablePadding className={classes.list}>
+        {score.terms.map((terms, index) => (
           <ListItem
             divider={index < terms.length - 1}
             key={`terms_${index}`}
@@ -126,13 +131,16 @@ function Score({score,terms, className, ...rest }) {
 Score.propTypes = {
   className: PropTypes.string,
   score: PropTypes.object,
-  terms: PropTypes.array
 };
 Score.defaultProps = {
   score: {
     label : 'Neutro',
-    value: 0
+    value: 0,
+    terms: [],
+    sector: {
+      label: ''
+    }
   },
-  terms: []
+  
 }
 export default Score;

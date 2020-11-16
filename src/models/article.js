@@ -1,4 +1,6 @@
 import { isNull } from "lodash"
+import { trimEllpsis } from "src/utils/string"
+import { KeyLabelPair } from "./app"
 
 class ArticleTitle {
   href = ''
@@ -90,12 +92,17 @@ class ArticleMetadata {
     return obj
   }
 }
+
 class ArticleScore {
   value = 0
   label = 'Não analisado'
-  terms = ""
+  terms = ['Selic Down', 'Selic Up', 'Selic mantain']
+  sector = new KeyLabelPair() 
   constructor() {
-
+    this.sector.setData({
+      key: 'bank',
+      label: 'Bancário'
+    })
   }
   setDataFromDB(data) {
     if (data) {
@@ -109,6 +116,7 @@ class ArticleScore {
       value: this.value,
       label: this.label,
       terms: this.terms,
+      sector: this.sector.toJSON()
     }
     return obj
   }
@@ -140,7 +148,22 @@ export class Article {
     }
   }
   toGraph() {
-
+    let obj = {
+      title: 'Sentimento da noticias',
+      positive: {
+        value: .56,
+        label: 'Positivo'
+      },
+      negative: {
+        value: .24,
+        label: 'Negativo'
+      },
+      neutral: {
+        value: .2,
+        label : 'Neutro'
+      }
+    }
+    return obj
   }
   toListItem(){
     let obj ={
@@ -163,7 +186,22 @@ export class Article {
     return obj
   }
   toDetail() {
-
+    let obj = {
+      header: {
+        title: trimEllpsis(this.title.text,30),
+        score: this.score.toJSON()
+      },
+      article: {
+        title: this.title.toJSON(),
+        resume: this.resume
+      },
+      sentiments: {
+        title: this.title.toJSON(),
+        score: this.score.toJSON()
+      },
+      keywords:  this.keywords.map((keyword)=>keyword.toJSON())
+    }
+    return obj
   }
   toDetailPreview() {
 

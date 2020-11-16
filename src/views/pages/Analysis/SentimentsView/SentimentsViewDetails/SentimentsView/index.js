@@ -26,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0
   },
   content: {
-    paddingTop: 0
+    paddingTop: 0,
+    maxHeight: '100%',
+    overflow: 'auto'
   },
   listItem: {
     padding: theme.spacing(2, 0),
@@ -40,11 +42,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Sentiments({ sentiments, className, ...rest }) {
+function Sentiments({sentiments, className, ...rest }) {
   const classes = useStyles();
-  useEffect(() => {
-  }, [sentiments])
   return (
+
     <Grid container   
     className={clsx(classes.root, className)}
     spacing={2}
@@ -120,7 +121,7 @@ function Sentiments({ sentiments, className, ...rest }) {
 
       </Grid>
       <Grid item xs={12} md={4}>
-        <Score score={sentiments.score} terms={['Selic', 'Selic Up', 'Selic stay']} />
+        <Score score={sentiments?.score} />
       </Grid>
     </Grid>
   );
@@ -128,9 +129,6 @@ function Sentiments({ sentiments, className, ...rest }) {
 
 Sentiments.propTypes = {
   className: PropTypes.string,
-  sentiments: PropTypes.object
+  sentiments: PropTypes.object,
 };
-Sentiments.defaultProps = {
-  sentiments: {}
-}
 export default Sentiments;

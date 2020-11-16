@@ -19,8 +19,8 @@ import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import KeywordsView from './KeywordsView';
 import Header from './Header'
 import SentimentsView from './SentimentsView';
-import { trimEllpsis } from 'src/utils/string'
 import ArticleView from './ArticleView';
+import { Article } from 'src/models/article';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,8 +56,14 @@ function ArticlesViewDetails(props) {
     const fetchData = async (id) => {
       try {
         let response = await axios.get(`/analysis/news/${id}`)
-        let docs = response.data
-        setArticle(docs)
+        if (response.data) {
+          const art = new Article()
+          art.setDataFromDB(response.data)
+          setArticle(art.toDetail())
+          console.log(art.toDetail())
+        } else {
+          return null
+        }
       } catch (err) {
         let status = 404
         if (err && err.response && err.response.status) status = err.response.status
@@ -65,7 +71,7 @@ function ArticlesViewDetails(props) {
           case 404:
             history.goBack()
             break;
-          default: 
+          default:
             history.goBack()
         }
       }
@@ -85,9 +91,9 @@ function ArticlesViewDetails(props) {
       title="Detalhe do artigo"
     >
       <Container
-      className={classes.container}
-       maxWidth={false}>
-        <Header articleTitleShortHand={article ? trimEllpsis(article.title.text, 30) : '...'} score={article?.score}/>
+        className={classes.container}
+        maxWidth={false}>
+        <Header articleTitleShortHand={article ?  article?.header?.title : '...'} score={article?.header.score} />
         <Box mt={3}>
           <Tabs
             onChange={handleTabsChange}
@@ -111,12 +117,12 @@ function ArticlesViewDetails(props) {
         {
           article ?
             <Box mt={3}>
-              {currentTab === 'article' && <ArticleView article={article} />}
-              {currentTab === 'sentiments' && <SentimentsView article={article} />}
+              {currentTab === 'article' && <ArticleView article={article.article} />}
+              {currentTab === 'sentiments' && <SentimentsView sentiments={article.sentiments} />}
               {currentTab === 'keywords' && <KeywordsView keywords={article.keywords} />}
             </Box> :
-            <Box  
-              display="flex" 
+            <Box
+              display="flex"
               height="100%"
               alignItems="center"
               justifyContent="center"
