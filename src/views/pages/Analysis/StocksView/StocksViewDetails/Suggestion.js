@@ -20,23 +20,23 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+  avatar: {
+    backgroundColor: theme.palette.secondary.contrastText,
+    color: theme.palette.secondary.main,
+    height: 48,
+    width: 48
+  },
   rootPrimary:{
-    color: theme.palette.warning.contrastText,
-    backgroundColor: theme.palette.warning.main,
+    color: theme.palette.success.contrastText,
+    backgroundColor: theme.palette.success.main,
     padding: theme.spacing(3),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between'
   },
   avatarPrimary:{
-    backgroundColor: theme.palette.warning.contrastText,
-    color: theme.palette.warning.main,
-    height: 48,
-    width: 48
-  },
-  avatar: {
-    backgroundColor: theme.palette.secondary.contrastText,
-    color: theme.palette.secondary.main,
+    backgroundColor: theme.palette.success.contrastText,
+    color: theme.palette.success.main,
     height: 48,
     width: 48
   }
@@ -44,10 +44,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Suggestion({ className,title,text,icon,color, ...rest }) {
   const classes = useStyles(color);
-  const data = {
-    value: '25.50',
-    currency: '$'
-  };
 
   return (
     <Card

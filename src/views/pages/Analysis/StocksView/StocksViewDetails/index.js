@@ -157,6 +157,22 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
+                       <ListItemText
+                        primary={'Data de análise'}
+                        primaryTypographyProps={{ variant: 'subtitle2' }}
+                      />
+                      <Typography
+                        variant="h6"
+                        color="textSecondary"
+                      >
+                        {stock.date}
+                      </Typography>
+                    </ListItem>
+                    <ListItem
+                      className={classes.listItem}
+                      disableGutters
+                      divider
+                    >
                         <ListItemText
                         primary={'CAPM'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
@@ -276,7 +292,7 @@ function StocksViewDetails(props) {
           </Grid>
           <Grid container item xs={12} md={4} spacing={2}>
           <Grid item xs={12}>
-              <Suggestion title={'Sentimento das noticias'} color="primary" text={'Tendência de alta'} />
+              <Suggestion title={'Sentimento das noticias'} color="success" text={'Tendência'} />
 
             </Grid>
             <Grid item xs={12}>

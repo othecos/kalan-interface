@@ -2,6 +2,7 @@ import { isNaN, isNull } from "lodash"
 import { toCurrency } from "src/utils/currency"
 import { CURRENCY } from "./app"
 import { colors } from '@material-ui/core';
+import { parseDate } from "src/utils/date";
 class StockValuationPremisses {
   CAPM =  0
   beta = 0
@@ -83,7 +84,7 @@ export class Stock {
   ticker = ''
   category = ''
   date = ''
-  price = 0
+  lastPrice = 0
   name = ''
   dividend = new StockDividend()
   href = 'app/analysis/stocks/'
@@ -102,7 +103,7 @@ export class Stock {
       if (!isNull(data.name)) this.name = data.name
       if (!isNull(data.category)) this.category = data.category
       if (!isNull(data.date)) this.date = data.date
-      if (!isNull(data.price)) this.price = data.price
+      if (!isNull(data.lastPrice)) this.lastPrice = data.lastPrice
       if (!isNull(data.dividend)){
         this.dividend.setDataFromDB(data.dividend)
       }
@@ -126,7 +127,7 @@ export class Stock {
       name: this.name,
       ticker: this.ticker,
       href: this.href,
-      price: toCurrency(this.price),
+      price: toCurrency(this.lastPrice),
       valuation: this.valuation.toJSON()
     }
     return obj
@@ -137,14 +138,14 @@ export class Stock {
       name: this.name,
       ticker: this.ticker,
       href: this.href,
-      date: this.date,
-      price: toCurrency(this.price),
+      date: parseDate(this.date),
+      price: toCurrency(this.lastPrice),
       dividend: this.dividend.toJSON(),
       fundamentus: this.valuation.premisses.toJSON(),
       valuation: this.valuation.toJSON(),
       diff: {
-        value: this.getDiffPercentage(this.price,this.valuation.value),
-        label: `${this.getDiffPercentage(this.price,this.valuation.value).toFixed(2)}%`
+        value: this.getDiffPercentage(this.lastPrice,this.valuation.value),
+        label: `${this.getDiffPercentage(this.lastPrice,this.valuation.value).toFixed(2)}%`
       }
     }
     return obj
