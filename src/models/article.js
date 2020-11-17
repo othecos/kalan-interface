@@ -94,10 +94,11 @@ class ArticleMetadata {
 }
 
 class ArticleScore {
-  value = 0
+  value = -2
   label = 'Não analisado'
-  terms = ['Selic Down', 'Selic Up', 'Selic mantain']
-  sector = new KeyLabelPair() 
+  terms = []
+  sector = new KeyLabelPair()
+  color = 'action'
   constructor() {
     this.sector.setData({
       key: 'bank',
@@ -106,7 +107,23 @@ class ArticleScore {
   }
   setDataFromDB(data) {
     if (data) {
-      if (!isNull(data.value)) this.value = data.value
+      if (!isNull(data.value)) {
+        this.value = data.value
+        switch (this.value) {
+          case -2:
+            this.color = 'action'
+            break;
+          case -1:
+            this.color = 'error'
+            break;
+          case 0:
+            this.color = 'secondary'
+            break;
+          case 1:
+            this.color = 'primary'
+            break;
+        }
+      }
       if (!isNull(data.label)) this.label = data.label
       if (!isNull(data.terms)) this.terms = data.terms
     }
@@ -116,7 +133,8 @@ class ArticleScore {
       value: this.value,
       label: this.label,
       terms: this.terms,
-      sector: this.sector.toJSON()
+      sector: this.sector.toJSON(),
+      color: this.color
     }
     return obj
   }
@@ -139,17 +157,17 @@ export class Article {
       if (!isNull(data.metadata)) this.metadata.setDataFromDB(data.metadata)
       if (!isNull(data.score)) this.score.setDataFromDB(data.score)
       if (!isNull(data.keywords) && Array.isArray(data.keywords)) {
-        data.keywords.forEach((keyword)=>{
-            let articleKeywords = new ArticleKeywords()
-            articleKeywords.setDataFromDB(keyword)
-            this.keywords.push(articleKeywords)
+        data.keywords.forEach((keyword) => {
+          let articleKeywords = new ArticleKeywords()
+          articleKeywords.setDataFromDB(keyword)
+          this.keywords.push(articleKeywords)
         })
       }
     }
   }
- 
-  toListItem(){
-    let obj ={
+
+  toListItem() {
+    let obj = {
       _id: this._id,
       title: this.title.toJSON(),
       metadata: this.metadata.toJSON(),
@@ -159,7 +177,7 @@ export class Article {
     return obj
   }
   toPreview() {
-    let obj ={
+    let obj = {
       _id: this._id,
       title: this.title.toJSON(),
       metadata: this.metadata.toJSON(),
@@ -171,7 +189,7 @@ export class Article {
   toDetail() {
     let obj = {
       header: {
-        title: trimEllpsis(this.title.text,30),
+        title: trimEllpsis(this.title.text, 30),
         score: this.score.toJSON()
       },
       article: {
@@ -182,7 +200,7 @@ export class Article {
         title: this.title.toJSON(),
         score: this.score.toJSON()
       },
-      keywords:  this.keywords.map((keyword)=>keyword.toJSON())
+      keywords: this.keywords.map((keyword) => keyword.toJSON())
     }
     return obj
   }
@@ -192,7 +210,7 @@ export class Article {
 
 }
 export class ArticleGraph {
-  constructor(){
+  constructor() {
 
   }
   setDataFromDB(data) {
@@ -203,10 +221,10 @@ export class ArticleGraph {
       if (!isNull(data.metadata)) this.metadata.setDataFromDB(data.metadata)
       if (!isNull(data.score)) this.score.setDataFromDB(data.score)
       if (!isNull(data.keywords) && Array.isArray(data.keywords)) {
-        data.keywords.forEach((keyword)=>{
-            let articleKeywords = new ArticleKeywords()
-            articleKeywords.setDataFromDB(keyword)
-            this.keywords.push(articleKeywords)
+        data.keywords.forEach((keyword) => {
+          let articleKeywords = new ArticleKeywords()
+          articleKeywords.setDataFromDB(keyword)
+          this.keywords.push(articleKeywords)
         })
       }
     }
@@ -224,7 +242,7 @@ export class ArticleGraph {
       },
       neutral: {
         value: .2,
-        label : 'Neutro'
+        label: 'Neutro'
       }
     }
     return obj

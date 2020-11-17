@@ -154,14 +154,14 @@ function ArticleCard({ article, className, ...rest }) {
       >
            <SvgIcon
           fontSize="small"
-          color="secondary"
+          color={article?.score?.color}
           className={classes.subscribersIcon}
         >
           <Eye />
         </SvgIcon>
         <Typography
           variant="subtitle2"
-          color="secondary"
+          color={article?.score?.color != 'action' ? article?.score?.color : 'initial'}
         >
           {article?.score?.label}
         </Typography>

@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import moment from 'moment';
@@ -15,6 +14,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom'
 import getInitials from 'src/utils/getInitials';
 import Score from './Score';
 
@@ -37,19 +37,19 @@ const useStyles = makeStyles((theme) => ({
   wrap: {
     maxWidth: '50%'
   },
-  container:{
-    height:'100%'
+  container: {
+    height: '100%'
   }
 }));
 
-function Sentiments({sentiments, className, ...rest }) {
+function Sentiments({ sentiments, className, ...rest }) {
   const classes = useStyles();
   return (
 
-    <Grid container   
-    className={clsx(classes.root, className)}
-    spacing={2}
-    {...rest} >
+    <Grid container
+      className={clsx(classes.root, className)}
+      spacing={2}
+      {...rest} >
       <Grid item xs={12} md={8} className={classes.container}>
         <Card >
           <CardHeader
@@ -100,20 +100,24 @@ function Sentiments({sentiments, className, ...rest }) {
                 disableGutters
                 divider
               >
+
                 <Typography
                   variant="subtitle2"
                   color="textPrimary"
                 >
                   Link
             </Typography>
-                <Typography
-                  variant="h6"
+                <Link
                   color="textSecondary"
+
+                  href={sentiments?.title?.href}
+                  target="_blank"
                   noWrap
+                  variant="h6"
                   className={classes.wrap}
                 >
                   {sentiments?.title?.href}
-                </Typography>
+                </Link>
               </ListItem>
             </List>
           </CardContent>

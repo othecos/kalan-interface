@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxHeight: '100%'
   },
-  list:{
+  list: {
     overflow: 'auto'
   },
   item: {
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Score({score, className, ...rest }) {
+function Score({ score, className, ...rest }) {
   const classes = useStyles();
   const isMountedRef = useIsMountedRef();
 
@@ -95,35 +95,37 @@ function Score({score, className, ...rest }) {
         </div>
       </Box>
       <Divider />
-      <List disablePadding className={classes.list}>
-        {score.terms.map((terms, index) => (
-          <ListItem
-            divider={index < terms.length - 1}
-            key={`terms_${index}`}
-          >
-            <ListItemText
-              disableTypography
-              primary={(
-                <Typography
-                  color="textPrimary"
-                  underline="none"
-                  variant="h6"
-                >
-                  Termos
-                </Typography>
-              )}
-              secondary={(
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  {terms}
-                </Typography>
-              )}
-            />
-          </ListItem>
-        ))}
-      </List>
+      {score && score.terms && score.terms.length > 0 &&
+        <List disablePadding className={classes.list}>
+          {score.terms.map((terms, index) => (
+            <ListItem
+              divider={index < terms.length - 1}
+              key={`terms_${index}`}
+            >
+              <ListItemText
+                disableTypography
+                primary={(
+                  <Typography
+                    color="textPrimary"
+                    underline="none"
+                    variant="h6"
+                  >
+                    Termos
+                  </Typography>
+                )}
+                secondary={(
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                  >
+                    {terms}
+                  </Typography>
+                )}
+              />
+            </ListItem>
+          ))}
+        </List>
+      }
     </Card>
   );
 }
@@ -134,13 +136,13 @@ Score.propTypes = {
 };
 Score.defaultProps = {
   score: {
-    label : 'Neutro',
+    label: 'Neutro',
     value: 0,
     terms: [],
     sector: {
       label: ''
     }
   },
-  
+
 }
 export default Score;

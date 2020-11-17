@@ -64,7 +64,7 @@ function Header({articleTitleShortHand,score, className, ...rest }) {
 
       </Grid>
       <Grid item>
-        <Button color="secondary" variant="outlined">
+        <Button color={score?.color != 'action' ? score?.color : 'default'} variant="outlined">
             {score?.label || 'Neutro'}
         </Button>
       </Grid>
