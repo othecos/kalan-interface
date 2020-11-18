@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     top: 0,
     width: '100%',
-    zIndex: 2000
   },
 }));
 
