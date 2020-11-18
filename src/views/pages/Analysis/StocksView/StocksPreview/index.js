@@ -14,11 +14,13 @@ import {
   List,
   makeStyles
 } from '@material-ui/core';
-import axios from 'src/utils/axiosMock';
+import axiosMock from 'src/utils/axiosMock';
+import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import GenericMoreButton from 'src/components/GenericMoreButton';
 import StockPreviewItem from './StockPreviewItem';
 import { Stock } from 'src/models/stock';
+import LoadingComponent from 'src/components/LoadingComponent';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -50,23 +52,16 @@ function StocksPreview({ className, ...rest }) {
   //   fetchData();
   // }, [])
 
-  const getStocksPreview = useCallback(() => {
-    axios
-      .get('/api/stocks/top-stocks')
-      .then((response) => {
-        if (isMountedRef.current) {
-          if(response.data && Array.isArray(response.data.stocks)){
-            const stocks = response.data.stocks.map((st)=>{
-              const stock = new Stock()
-              stock.setDataFromDB(st)
-              return stock.toPreview()
-            })
-            setStocksPreview(stocks);
-          }else{
-            return null
-          }
-        }
+  const getStocksPreview = useCallback(async () => {
+    const response = await axios.get('/analysis/stocks/')
+    if (isMountedRef.current && response.data ) {
+      const stocks = response.data.map((st) => {
+        const stock = new Stock()
+        stock.setDataFromDB(st)
+        return stock.toPreview()
       })
+      setStocksPreview(stocks);
+    }
   }, [isMountedRef]);
 
   useEffect(() => {
@@ -74,7 +69,7 @@ function StocksPreview({ className, ...rest }) {
   }, [getStocksPreview]);
 
   if (!stocksPreview) {
-    return null;
+    return <LoadingComponent></LoadingComponent>;
   }
 
   return (

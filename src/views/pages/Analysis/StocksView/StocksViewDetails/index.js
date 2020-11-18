@@ -15,13 +15,15 @@ import {
 import PropTypes from 'prop-types'
 import Header from './Header'
 import Page from 'src/components/Page'
-import axios from 'src/utils/axiosMock';
+import axios from 'src/utils/axios';
+import axiosMock from 'src/utils/axiosMock';
 import { useHistory } from 'react-router';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import StocksPrices from './StocksPrices';
 import Suggestion from './Suggestion';
 import SentimentsGraph from '../../SentimentsView/SentimentsGraph';
 import { Stock } from 'src/models/stock';
+import LoadingScreen from 'src/components/LoadingScreen';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -41,30 +43,46 @@ function StocksViewDetails(props) {
   const [stock, setStock] = useState(null);
   const history = useHistory();
   const isMountedRef = useIsMountedRef();
+  const [isMounted,setMounted ]= useState(null)
   const { params } = props.match
 
-  const getStock = useCallback(() => {
-    axios
-      .get('/api/stocks/top-stocks')
-      .then((response) => {
-        if (isMountedRef.current) {
-          const result = response.data.stocks.find((stock) => stock.ticker == params.detail)
-          let stockModel = new Stock()
-          if (result) {
-            stockModel.setDataFromDB(result)
-          } else {
-            stockModel.setDataFromDB(response.data.stocks[0])
-          }
-          console.log(result)
-          setStock(stockModel.toDetail())
-          console.log(stockModel.toDetail())
-        }
-      })
+  // const getStock = useCallback(() => {
+  //   axios
+  //     .get('/api/stocks/top-stocks')
+  //     .then((response) => {
+  //       if (isMountedRef.current) {
+  //         const result = response.data.stocks.find((stock) => stock.ticker == params.detail)
+  //         let stockModel = new Stock()
+  //         if (result) {
+  //           stockModel.setDataFromDB(result)
+  //         } else {
+  //           stockModel.setDataFromDB(response.data.stocks[0])
+  //         }
+  //         console.log(result)
+  //         setStock(stockModel.toDetail())
+  //         console.log(stockModel.toDetail())
+  //       }
+  //     })
+  // }, [isMountedRef]);
+  const getStock = useCallback(async () => {
+    if (params.detail) {
+      const response = await axios.get(`/analysis/stocks/${params.detail}`)
+      if (isMountedRef.current && response.data) {
+        const stock = new Stock()
+        stock.setDataFromDB(response.data)
+        setStock(stock.toDetail());
+      }
+    }
+
   }, [isMountedRef]);
 
   useEffect(() => {
-    getStock();
-  }, [getStock]);
+    if(!isMounted && params.detail){
+      console.log(isMounted)
+      getStock();
+      setMounted(true)
+    }
+  }, [getStock,props.match]);
 
   // if (!stock) {
   //   return null;
@@ -94,8 +112,8 @@ function StocksViewDetails(props) {
   //   }
 
   // }, [])
-  if(!stock){
-    return null
+  if (!stock) {
+    return <LoadingScreen></LoadingScreen>
   }
   return (
     <Page
@@ -141,7 +159,7 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                       <ListItemText
+                      <ListItemText
                         primary={'Empresa'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
@@ -157,7 +175,7 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                       <ListItemText
+                      <ListItemText
                         primary={'Data de análise'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
@@ -173,7 +191,7 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                        <ListItemText
+                      <ListItemText
                         primary={'CAPM'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
@@ -191,7 +209,7 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                          <ListItemText
+                      <ListItemText
                         primary={'Beta'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
@@ -209,8 +227,8 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                          <ListItemText
-                        primary={ 'Dividend Yield (%)'}
+                      <ListItemText
+                        primary={'Dividend Yield (%)'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
                       <Typography
@@ -227,8 +245,8 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                          <ListItemText
-                        primary={ 'Dividend por cota'}
+                      <ListItemText
+                        primary={'Dividend por cota'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
                       <Typography
@@ -245,8 +263,8 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                           <ListItemText
-                        primary={ 'Taxa de Crescimento'}
+                      <ListItemText
+                        primary={'Taxa de Crescimento'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
                       <Typography
@@ -263,8 +281,8 @@ function StocksViewDetails(props) {
                       disableGutters
                       divider
                     >
-                           <ListItemText
-                        primary={ 'Taxa livre de Risco'}
+                      <ListItemText
+                        primary={'Taxa livre de Risco'}
                         primaryTypographyProps={{ variant: 'subtitle2' }}
                       />
                       <Typography
@@ -291,7 +309,7 @@ function StocksViewDetails(props) {
 
           </Grid>
           <Grid container item xs={12} md={4} spacing={2}>
-          <Grid item xs={12}>
+            <Grid item xs={12}>
               <Suggestion title={'Sentimento das noticias'} color="success" text={'Tendência'} />
 
             </Grid>

@@ -1,17 +1,19 @@
-import React, {useState,useEffect,useCallback} from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import {
   Container,
   Grid,
   Box,
   makeStyles
 } from '@material-ui/core';
-import axios from 'src/utils/axiosMock';
+import axios from 'src/utils/axios';
+import axiosMock from 'src/utils/axiosMock';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import PropTypes from 'prop-types'
 import Header from './Header'
 import Page from 'src/components/Page'
 import StocksList from './StocksList';
 import { Stock } from 'src/models/stock';
+import LoadingScreen from 'src/components/LoadingScreen';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,31 +34,46 @@ function StocksView(props) {
   const isMountedRef = useIsMountedRef();
   const [stocks, setStocks] = useState(null);
 
-  const getStocks = useCallback(() => {
-    axios
-      .get('/api/stocks/top-stocks')
-      .then((response) => {
-        if (isMountedRef.current) {
-          if(response.data && Array.isArray(response.data.stocks)){
-            const stocks = response.data.stocks.map((st)=>{
-              const stock = new Stock()
-              stock.setDataFromDB(st)
-              return stock.toListItem()
-            })
-            setStocks(stocks);
-          }else{
-            return null
-          }
-        }
-      })
+  const getStocks = useCallback(async () => {
+    const response = await axios.get('/analysis/stocks')
+    if (isMountedRef.current) {
+      if (response.data && Array.isArray(response.data)) {
+        const stocks = response.data.map((st) => {
+          const stock = new Stock()
+          stock.setDataFromDB(st)
+          return stock.toListItem()
+        })
+        setStocks(stocks);
+      } else {
+        return null
+      }
+    }
   }, [isMountedRef]);
+  // const getStocks = useCallback(() => {
+  //   axios
+  //     .get('/api/stocks/top-stocks')
+  //     .then((response) => {
+  //       if (isMountedRef.current) {
+  //         if(response.data && Array.isArray(response.data.stocks)){
+  //           const stocks = response.data.stocks.map((st)=>{
+  //             const stock = new Stock()
+  //             stock.setDataFromDB(st)
+  //             return stock.toListItem()
+  //           })
+  //           setStocks(stocks);
+  //         }else{
+  //           return null
+  //         }
+  //       }
+  //     })
+  // }, [isMountedRef]);
 
   useEffect(() => {
     getStocks();
   }, [getStocks]);
 
   if (!stocks) {
-    return null;
+    return <LoadingScreen></LoadingScreen>;
   }
 
 

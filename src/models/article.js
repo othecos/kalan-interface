@@ -1,4 +1,5 @@
-import { isNull } from "lodash"
+import { isNull, isUndefined } from "lodash"
+import { numberToFixed } from "src/utils/math"
 import { trimEllpsis } from "src/utils/string"
 import { KeyLabelPair } from "./app"
 
@@ -210,40 +211,28 @@ export class Article {
 
 }
 export class ArticleGraph {
+  colors = []
+  data= []
+  labels = []
   constructor() {
-
   }
   setDataFromDB(data) {
-    if (data) {
-      if (!isNull(data.datasets)) this._id = data._id
-      if (!isNull(data.resume)) this.resume = data.resume
-      if (!isNull(data.title)) this.title.setDataFromDB(data.title)
-      if (!isNull(data.metadata)) this.metadata.setDataFromDB(data.metadata)
-      if (!isNull(data.score)) this.score.setDataFromDB(data.score)
-      if (!isNull(data.keywords) && Array.isArray(data.keywords)) {
-        data.keywords.forEach((keyword) => {
-          let articleKeywords = new ArticleKeywords()
-          articleKeywords.setDataFromDB(keyword)
-          this.keywords.push(articleKeywords)
-        })
-      }
-    }
+    if(data){
+      if(!(isUndefined(data.labels) || isNull(data.labels)) ) this.labels = data.labels
+      if(!(isUndefined(data.data) || isNull(data.data))) this.data = data.data
+      if(!(isUndefined(data.colors) || isNull(data.colors))) this.colors = data.colors
+  }
   }
   toJSON() {
     let obj = {
       title: 'Sentimento da noticias',
-      positive: {
-        value: .56,
-        label: 'Positivo'
-      },
-      negative: {
-        value: .24,
-        label: 'Negativo'
-      },
-      neutral: {
-        value: .2,
-        label: 'Neutro'
-      }
+      datasets: [
+        {
+          data: this.data.map((d)=> numberToFixed(d)),
+          backgroundColor: this.colors,
+        }
+      ],
+      labels: this.labels
     }
     return obj
   }

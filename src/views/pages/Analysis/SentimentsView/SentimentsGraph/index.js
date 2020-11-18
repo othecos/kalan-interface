@@ -14,9 +14,11 @@ import {
   makeStyles
 } from '@material-ui/core';
 import GenericMoreButton from 'src/components/GenericMoreButton';
-import axios from 'src/utils/axiosMock';
+import axiosMock from 'src/utils/axiosMock';
+import axios from 'src/utils/axios';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
 import Chart from './Chart';
+import { ArticleGraph } from 'src/models/article';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -38,14 +40,27 @@ function SentimentsGraph({ className, ...rest }) {
   const isMountedRef = useIsMountedRef();
   const [sentiments, setSentiments] = useState(null);
 
-  const getSentiments = useCallback(() => {
-    axios
-      .get('/api/analysis/graph')
-      .then((response) => {
-        if (isMountedRef.current) {
-          setSentiments(response.data.sentiments);
-        }
-      });
+  // const getSentiments = useCallback(() => {
+  //   axiosMock
+  //     .get('/api/analysis/graph')
+  //     .then((response) => {
+  //       if (isMountedRef.current) {
+  //         setSentiments(response.data.sentiments);
+  //       }
+  //     });
+  // }, [isMountedRef]);
+  const getSentiments = useCallback(async () => {
+    try{
+      const response = await axios.get('/analysis/news/graph')
+      if (isMountedRef.current && response.data) {
+        const graph = new ArticleGraph()
+        graph.setDataFromDB(response.data)
+        setSentiments(graph.toJSON());
+      }
+    }catch(err){
+      console.error(err);
+    }
+   
   }, [isMountedRef]);
 
   useEffect(() => {
@@ -62,7 +77,7 @@ function SentimentsGraph({ className, ...rest }) {
       {...rest}
     >
       <CardHeader
-        title="Sentimento das noticias"
+        title={sentiments.title}
       />
       <Divider />
       <Box
