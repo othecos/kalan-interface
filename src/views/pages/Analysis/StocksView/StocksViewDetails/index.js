@@ -24,6 +24,7 @@ import Suggestion from './Suggestion';
 import SentimentsGraph from '../../SentimentsView/SentimentsGraph';
 import { Stock } from 'src/models/stock';
 import LoadingScreen from 'src/components/LoadingScreen';
+import { ArrowDown, ArrowRight } from 'react-feather';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -310,7 +311,7 @@ function StocksViewDetails(props) {
           </Grid>
           <Grid container item xs={12} md={4} spacing={2}>
             <Grid item xs={12}>
-              <Suggestion title={'Sentimento das noticias'} color="success" text={'Tendência'} />
+              <Suggestion title={'Sentimento das noticias'} color={stock?.score?.value == 1 ? 'success': 'secondary'} text={'Tendência'} icon={stock?.score?.value == 0 ? <ArrowRight></ArrowRight> : stock?.score?.value == -1 ? <ArrowDown></ArrowDown> : <ArrowRight></ArrowRight>} />
 
             </Grid>
             <Grid item xs={12}>
