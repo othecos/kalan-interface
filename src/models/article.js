@@ -121,7 +121,7 @@ class ArticleScore {
             this.color = 'secondary'
             break;
           case 1:
-            this.color = 'primary'
+            this.color = 'success'
             break;
         }
       }

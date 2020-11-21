@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { Edit as EditIcon } from 'react-feather';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import CustomizedButtons from 'src/components/CustomButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -64,9 +65,9 @@ function Header({articleTitleShortHand,score, className, ...rest }) {
 
       </Grid>
       <Grid item>
-        <Button color={score?.color != 'action' ? score?.color : 'default'} variant="outlined">
-            {score?.label || 'Neutro'}
-        </Button>
+        <CustomizedButtons color={score?.color != 'action' ? score?.color : 'default'} variant="outlined">
+        {score?.label || 'Neutro'}
+        </CustomizedButtons>
       </Grid>
     </Grid>
   );
