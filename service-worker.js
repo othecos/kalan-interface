@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/kalan-interface/precache-manifest.698236740e1ac49fcc04fd8f015b332b.js"
+  "/kalan-interface/precache-manifest.d77ee44f6440a4c2d03c1e8e70f9b813.js"
 );
 
 self.addEventListener('message', (event) => {
