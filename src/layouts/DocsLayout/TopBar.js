@@ -46,7 +46,7 @@ function TopBar({ onMobileNavOpen }) {
         </Hidden>
         <Hidden mdDown>
           <RouterLink to="/">
-            <Logo />
+            <Logo   />
           </RouterLink>
         </Hidden>
         <Box

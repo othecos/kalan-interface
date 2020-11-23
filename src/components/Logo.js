@@ -4,7 +4,8 @@ function Logo(props) {
   return (
     <img
       alt="Logo"
-      src={`${process.env.PUBLIC_URL}/static/logo.svg`}
+      style={{maxHeight: '48px',}}
+      src={`${process.env.PUBLIC_URL}/static/Logo-Kalan-3.png`}
       {...props}
     />
   );

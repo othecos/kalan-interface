@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 2000
   },
   logo: {
-    width: 200,
+    minWidth: '48px',
+    height: 'auto',
     maxWidth: '100%'
   }
 }));
@@ -37,7 +38,7 @@ function SlashScreen() {
         justifyContent="center"
         mb={6}
       >
-        <Logo className={classes.logo} />
+        <Logo style={{maxHeight: '128px'}} className={classes.logo} />
       </Box>
       <CircularProgress />
     </div>

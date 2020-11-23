@@ -93,7 +93,7 @@ function LoginView() {
           alignItems="center"
         >
           <RouterLink to="/">
-            <Logo />
+            <Logo   />
           </RouterLink>
           <Button
             component={RouterLink}

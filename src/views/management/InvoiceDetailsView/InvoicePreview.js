@@ -39,7 +39,7 @@ function InvoicePreview({ invoice, className, ...rest }) {
             justify="space-between"
           >
             <Grid item>
-              <Logo />
+              <Logo   />
               <Typography
                 variant="h5"
                 color="textPrimary"
