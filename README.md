@@ -1,37 +1,107 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
 
-## Available Scripts
+  <h3 align="center">Kalan - Stock prediction</h3>
 
-In the project directory, you can run:
-
-### `npm start` or `yarn start`
-
-Runs the app in development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will automatically reload if you make changes to the code.<br>
-You will see the build errors and lint warnings in the console.
-
-<p align='center'>
-<img src='https://cdn.jsdelivr.net/gh/marionebl/create-react-app@9f6282671c54f0874afd37a72f6689727b562498/screencast-error.svg' width='600' alt='Build errors'>
+  <p align="center">
+    Kalan is a stock prediction tool for the Brazilian stock market. It uses AI custom models to predict the price of stocks
+    <br />
+     <a href="https://othecos.github.io/kalan-interface"><strong>Check the demo</strong></a> 
+  </p>
 </p>
 
-### `npm test` or `yarn test`
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#configuring-environments">Configuring environments</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+  </ol>
+</details>
 
-Runs the test watcher in an interactive mode.<br>
-By default, runs tests related to files changed since the last commit.
+<!-- ABOUT THE PROJECT -->
 
-[Read more about testing.](https://facebook.github.io/create-react-app/docs/running-tests)
+## About The Project
 
-### `npm run build` or `yarn build`
+This is the interface that shows the predictions results
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Built With
 
-The build is minified and the filenames include the hashes.<br>
+-   [React.Js](https://reactjs.org/)
+-   [Material Ui](https://material-ui.com/)
+-   [Axios](https://github.com/axios/axios)
+-   [Typescript](https://www.typescriptlang.org/)
 
-Your app is ready to be deployed.
+<!-- GETTING STARTED -->
 
-## User Guide
+#
 
-You can find detailed instructions on using Create React App and many tips in [its documentation](https://facebook.github.io/create-react-app/).
+### Prerequisites
+
+You should have <strong>Node and NPM</strong> installed to run this project.
+
+To check with you have those installed, run and see some similar output:
+
+-   NPM
+    ```sh
+    npm -v
+    6.14.4
+    ```
+-   Node
+    ```sh
+    node -v
+    v10.19.0
+    ```
+
+### Installation
+
+1. Install the NPM Packages dependencies
+    ```sh
+     npm install
+    ```
+
+### Configuring environments
+
+1. Since this application uses Google Maps, you **must** provide `NEXT_PUBLIC_API_KEY` in the `.env.local`
+
+    - You can generate this API KEY [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+2. You also must config your `NEXT_PUBLIC_HOST`.
+   <br>
+   You can use our ready to use server that was provided in the `.env.example` , or connect to local instance.
+
+3. In the end of this steps, your `.env.local` should look like this
+
+    ```sh
+    NEXT_PUBLIC_API_KEY=AIzaSyAIo1JFFQDuBesadasdasd-dsa3CAxnBHzE
+    NEXT_PUBLIC_HOST=https://mam-challenge-backend.herokuapp.com/
+    NEXT_PUBLIC_VERSION="v1"
+    ```
+
+#
+
+## Usage
+
+After the initial setup, you are ready to go and can start your development server
+
+1. To use your local environment, run:
+
+    ```sh
+    npm run dev
+    ```
+
+#
