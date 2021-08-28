@@ -26,7 +26,6 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
-        <li><a href="#configuring-environments">Configuring environments</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -74,25 +73,6 @@ To check with you have those installed, run and see some similar output:
      npm install
     ```
 
-### Configuring environments
-
-1. Since this application uses Google Maps, you **must** provide `NEXT_PUBLIC_API_KEY` in the `.env.local`
-
-    - You can generate this API KEY [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
-
-2. You also must config your `NEXT_PUBLIC_HOST`.
-   <br>
-   You can use our ready to use server that was provided in the `.env.example` , or connect to local instance.
-
-3. In the end of this steps, your `.env.local` should look like this
-
-    ```sh
-    NEXT_PUBLIC_API_KEY=AIzaSyAIo1JFFQDuBesadasdasd-dsa3CAxnBHzE
-    NEXT_PUBLIC_HOST=https://mam-challenge-backend.herokuapp.com/
-    NEXT_PUBLIC_VERSION="v1"
-    ```
-
-#
 
 ## Usage
 
