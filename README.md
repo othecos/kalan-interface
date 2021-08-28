@@ -81,7 +81,7 @@ After the initial setup, you are ready to go and can start your development serv
 1. To use your local environment, run:
 
     ```sh
-    npm run dev
+    npm run start
     ```
 
 #
